@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-08T16:09:35.974Z",
+  "cwd": "/tmp",
+  "PATH": "/usr/bin:/bin",
+  "tools": [
+    "search_literature",
+    "get_paper",
+    "download_paper"
+  ],
+  "calls": [
+    {
+      "tool": "search_literature",
+      "status": "partial",
+      "source_statuses": [
+        {
+          "source": "wos_starter",
+          "status": "not_configured",
+          "reason": "Set WOS_API_KEY"
+        }
+      ]
+    },
+    {
+      "tool": "get_paper",
+      "status": "ok",
+      "source_statuses": [
+        {
+          "source": "crossref",
+          "status": "ok",
+          "elapsed_ms": 901
+        },
+        {
+          "source": "openalex",
+          "status": "ok",
+          "elapsed_ms": 1219
+        }
+      ]
+    },
+    {
+      "tool": "download_paper",
+      "status": "already_exists",
+      "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/c179dfc42002305e9f9cdc4e532fbf039cafbc7694ba3f17083cc303dead41b5.pdf"
+    }
+  ]
+}

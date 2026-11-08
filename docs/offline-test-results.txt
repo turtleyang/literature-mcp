@@ -1,0 +1,67 @@
+npm notice run literature-mcp@1.0.0 check
+npm notice run npm run typecheck && npm test && npm run format:check && npm audit --omit=dev
+npm notice run literature-mcp@1.0.0 typecheck
+npm notice run tsc --noEmit -p tsconfig.json
+npm notice run literature-mcp@1.0.0 test
+npm notice run npm run build && node --test --test-concurrency=1 tests/**/*.test.mjs
+npm notice run literature-mcp@1.0.0 build
+npm notice run tsc -p tsconfig.json
+✔ Wiley TDM uses exact encoded DOI, token header, validates PDF and reuses local file offline (97.267055ms)
+✔ Wiley subscription-denied 404 is restricted rather than paper not_found (4.978402ms)
+✔ missing Wiley token never fakes success (3.777063ms)
+✔ key alone and allow_publisher_api=false prevent publisher requests (6.202624ms)
+✔ Elsevier structured XML is stored as XML with DOI, never a PDF (8.127551ms)
+✔ Elsevier permission failure is restricted without auth retries (3.611264ms)
+✔ Springer OA verifies exact metadata DOI and downloads official PDF (6.241146ms)
+✔ Springer OA JATS fallback stays XML (8.479092ms)
+✔ Unpaywall exact DOI candidates require email and keep submitted version (2.348795ms)
+✔ arXiv exact ID API resolves version; PDF remains preprint (7.553704ms)
+✔ unrelated arXiv DOI cannot substitute a requested journal article (3.915118ms)
+✔ PDF header/MIME, EOF, malformed content, repository identity, XML DOI are checked (4.702118ms)
+✔ interrupted response, invalid PDF and oversize leave no final or temporary files (13.763979ms)
+✔ path traversal, unapproved directories and symlink directories are rejected (2.046535ms)
+✔ existing unknown files never overwritten; corrupt indexed copy is detected (14.092435ms)
+✔ same DOI multiple OA candidates are sequential; successful OA never calls publisher (6.795895ms)
+✔ Europe PMC full text requires exact DOI and OA flag (2.140622ms)
+✔ default overwrite=false also preserves a pre-existing unindexed target (5.053426ms)
+✔ cross-session Wiley pace is persisted and shared by independent library instances (20.087551ms)
+✔ Wiley 403 identifies invalid token without a retry (3.384431ms)
+✔ allow_publisher_api=false also prevents keyed Springer OA API (2.893382ms)
+✔ unversioned arXiv OA links preserve actual PDF version and reject version substitution (3.229485ms)
+✔ official JATS external DTD declaration is ignored safely; entity expansion is rejected (0.616765ms)
+✔ DOI auto-download resolves an unversioned arXiv location to official version before fetching (7.791021ms)
+✔ SSRF blocks private IP, credentials, HTTP, custom ports and unsafe IPv6 (4.479223ms)
+✔ redirect follows HTTPS and strips publisher secrets on origin change (13.043348ms)
+✔ redirect to a private service is rejected before a second request (2.797081ms)
+✔ 401/403 never retry; 429 Retry-After is honored by returning rate_limited (5.727345ms)
+✔ 500 permits one bounded retry (2.634746ms)
+✔ cancellation and request deadline become explicit statuses (33.230759ms)
+✔ actual MCP schemas expose exactly three tools and complete search/get/selected-download/local-reuse (124.339969ms)
+✔ actual pinned upstream WoS Starter uses v2, correct key/header/query and known zero (3.991366ms)
+✔ actual pinned upstream Expanded selects FR and independent key (0.86298ms)
+✔ fast routes only OpenAlex+Crossref; DOI dedup and source citations survive (22.464519ms)
+✔ wos default only Starter; missing key is not_configured without network (2.421535ms)
+✔ WoS Starter and Expanded credentials and query routing stay separate (2.488822ms)
+✔ a key alone never grants authorization to commercial search (2.14013ms)
+✔ deep routes public trio; never sweeps configured paid APIs (3.184841ms)
+✔ timeout in one source returns healthy source and service remains usable (2.778124ms)
+✔ metadata is exact DOI; measured zero is retained, unknown stays null (3.52582ms)
+✔ all not-found is distinct from failed retrieval (2.482447ms)
+✔ years, counts, source limits, mode constraints and DOI URL normalization (1.010995ms)
+✔ year postfilter corrects upstream single-year over-inclusion (2.718202ms)
+✔ OpenAlex author, journal, year and citation filters use stable IDs (2.477909ms)
+✔ citation sorting retrieves relevant candidates before ranking, not globally cited loose matches (2.677271ms)
+✔ explicit Expanded metadata uses FR and capped citing relationship call (2.090587ms)
+ℹ tests 46
+ℹ suites 0
+ℹ pass 46
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2115.784329
+npm notice run literature-mcp@1.0.0 format:check
+npm notice run prettier --check "src/**/*.ts" "tests/**/*.mjs" "scripts/*.mjs" package.json tsconfig.json
+Checking formatting...
+All matched files use Prettier code style!
+found 0 vulnerabilities

@@ -1,0 +1,1048 @@
+{
+  "at": "2026-11-08T15:45:37.278Z",
+  "environment": "User Linux x86_64 host, Node 24.19.0, Clash TUN Fake-IP with explicit trusted official hosts",
+  "tests": [
+    {
+      "label": "A",
+      "name": "search_literature",
+      "input": {
+        "query": "diamond thermal conductivity measurement",
+        "mode": "fast",
+        "max_results": 5
+      },
+      "elapsed_ms": 4231,
+      "result": {
+        "status": "partial",
+        "query": "diamond thermal conductivity measurement",
+        "papers": [
+          {
+            "doi": "10.1201/9781003210719-18",
+            "title": "Measurement of the Thermal Diffusivity of Diamond with a Modified Angström Method",
+            "authors": [
+              "H. Altmann",
+              "O. Nilsson",
+              "J. Fricke"
+            ],
+            "journal": "Thermal Conductivity 23",
+            "year": 2021,
+            "publisher": "CRC Press",
+            "publication_type": "book-chapter",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1201/9781003210719-18",
+                "url": "https://doi.org/10.1201/9781003210719-18"
+              }
+            ],
+            "citation_counts": {
+              "crossref": null
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1109/ectc.1992.204210",
+            "title": "Prediction and measurement of thermal conductivity of diamond filled adhesives",
+            "authors": [
+              "J.C. Bolger"
+            ],
+            "journal": "1992 Proceedings 42nd Electronic Components &amp; Technology Conference",
+            "year": 2003,
+            "publisher": "IEEE",
+            "publication_type": "proceedings-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1109/ectc.1992.204210",
+                "url": "https://doi.org/10.1109/ectc.1992.204210"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 4
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1201/9781003760412-25",
+            "title": "Thermal Conductivity of Diamond Films",
+            "authors": [
+              "J. E. Graebner"
+            ],
+            "journal": "Thermal Conductivity 25/Thermal Expansion 13",
+            "year": 2026,
+            "publisher": "CRC Press",
+            "publication_type": "book-chapter",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1201/9781003760412-25",
+                "url": "https://doi.org/10.1201/9781003760412-25"
+              }
+            ],
+            "citation_counts": {
+              "crossref": null
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1016/s0925-9635(98)00227-1",
+            "title": "Direct measurement of CVD diamond film thermal conductivity by using photoacoustics",
+            "authors": [
+              "A.N. Obraztsov",
+              "I.Yu. Pavlovsky",
+              "H. Okushi",
+              "H. Watanabe"
+            ],
+            "journal": "Diamond and Related Materials",
+            "year": 1998,
+            "publisher": "Elsevier BV",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1016/s0925-9635(98)00227-1",
+                "url": "https://doi.org/10.1016/s0925-9635(98)00227-1"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 8
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1016/s0925-9635(00)00231-4",
+            "title": "Measurement of thermal conductivity in diamond films using a simple scanning thermocouple technique",
+            "authors": [
+              "H.P Ho",
+              "K.C Lo",
+              "S.C Tjong",
+              "S.T Lee"
+            ],
+            "journal": "Diamond and Related Materials",
+            "year": 2000,
+            "publisher": "Elsevier BV",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1016/s0925-9635(00)00231-4",
+                "url": "https://doi.org/10.1016/s0925-9635(00)00231-4"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 14
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          }
+        ],
+        "source_statuses": [
+          {
+            "source": "openalex",
+            "status": "rate_limited",
+            "reason": "HTTP 429 from api.openalex.org",
+            "elapsed_ms": 1198
+          },
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 4224
+          }
+        ],
+        "deduplicated": true,
+        "ranking": "Source order, source relevance; not a systematic review",
+        "cached": false
+      }
+    },
+    {
+      "label": "B",
+      "name": "search_literature",
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos"
+      },
+      "elapsed_ms": 1,
+      "result": {
+        "status": "partial",
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "papers": [],
+        "source_statuses": [
+          {
+            "source": "wos_starter",
+            "status": "not_configured",
+            "reason": "Set WOS_API_KEY"
+          }
+        ],
+        "deduplicated": true,
+        "ranking": "Source order, source relevance; not a systematic review",
+        "cached": false
+      }
+    },
+    {
+      "label": "C",
+      "name": "get_paper",
+      "input": {
+        "doi": "10.1038/nphys1170"
+      },
+      "elapsed_ms": 904,
+      "result": {
+        "status": "ok",
+        "paper": {
+          "doi": "10.1038/nphys1170",
+          "title": "Measured measurement",
+          "authors": [
+            "Markus Aspelmeyer"
+          ],
+          "journal": "Nature Physics",
+          "year": 2009,
+          "publisher": "Springer Science and Business Media LLC",
+          "abstract": null,
+          "publication_type": "journal-article",
+          "source_records": [
+            {
+              "source": "crossref",
+              "id": "10.1038/nphys1170",
+              "url": "https://doi.org/10.1038/nphys1170"
+            },
+            {
+              "source": "openalex",
+              "id": "https://openalex.org/W4289253527",
+              "url": "https://doi.org/10.1038/nphys1170"
+            }
+          ],
+          "citation_counts": {
+            "crossref": 11,
+            "openalex": 17
+          },
+          "open_access_locations": [],
+          "fulltext_access_status": "unknown",
+          "available_formats": [],
+          "available_fulltext_formats": [],
+          "local_file_path": null,
+          "downloaded_from": null,
+          "downloaded_at": null
+        },
+        "source_statuses": [
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 902
+          },
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 540
+          }
+        ]
+      }
+    },
+    {
+      "label": "D",
+      "name": "download_paper",
+      "input": {
+        "arxiv_id": "1706.03762v7",
+        "preferred_source": "arxiv"
+      },
+      "elapsed_ms": 6268,
+      "result": {
+        "status": "downloaded",
+        "arxiv_id": "1706.03762v7",
+        "source": "arxiv",
+        "format": "pdf",
+        "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+        "verified": true,
+        "identity_verification": "arXiv ID in PDF front matter",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "bytes": 2215244,
+        "version": "submittedVersion (1706.03762v7)",
+        "attempts": [
+          {
+            "source": "arxiv",
+            "status": "ok",
+            "elapsed_ms": 5292
+          }
+        ]
+      }
+    },
+    {
+      "label": "D-local-reuse",
+      "name": "download_paper",
+      "input": {
+        "arxiv_id": "1706.03762v7",
+        "preferred_source": "arxiv"
+      },
+      "elapsed_ms": 53,
+      "result": {
+        "status": "already_exists",
+        "arxiv_id": "1706.03762v7",
+        "source": "arxiv",
+        "format": "pdf",
+        "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+        "verified": true,
+        "identity_verification": "arXiv ID in PDF front matter",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "bytes": 2215244,
+        "version": "submittedVersion (1706.03762v7)"
+      }
+    },
+    {
+      "label": "E-no-token",
+      "name": "download_paper",
+      "input": {
+        "doi": "10.1111/1467-923x.12168",
+        "preferred_source": "wiley"
+      },
+      "elapsed_ms": 1420,
+      "result": {
+        "status": "credentials_required",
+        "doi": "10.1111/1467-923x.12168",
+        "reason": "Missing wiley full-text credential",
+        "publisher_url": "https://doi.org/10.1111/1467-923x.12168",
+        "open_access_locations": [
+          {
+            "source": "openalex",
+            "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/1467-923X.12168",
+            "landing_page_url": "https://doi.org/10.1111/1467-923x.12168",
+            "format": "pdf",
+            "version": "publishedVersion",
+            "license": null,
+            "is_oa": true,
+            "evidence": "OpenAlex DOI-matched work location",
+            "doi": "10.1111/1467-923x.12168"
+          },
+          {
+            "source": "openalex",
+            "url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID2777150_code1694652.pdf?abstractid=2757040&mirid=1&type=2",
+            "landing_page_url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID2777150_code1694652.pdf?abstractid=2757040&mirid=1&type=2",
+            "version": "submittedVersion",
+            "license": null,
+            "is_oa": true,
+            "evidence": "OpenAlex DOI-matched work location",
+            "doi": "10.1111/1467-923x.12168"
+          }
+        ],
+        "requires_institutional_authorization": true,
+        "attempts": [
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 1088
+          },
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 1417
+          },
+          {
+            "source": "wiley",
+            "status": "credentials_required",
+            "reason": "Missing wiley full-text credential"
+          }
+        ]
+      }
+    },
+    {
+      "label": "F-search-only",
+      "name": "search_literature",
+      "input": {
+        "query": "diamond semiconductor interfacial thermal conductance",
+        "mode": "fast",
+        "year_from": 2022,
+        "year_to": 2026,
+        "max_results": 8,
+        "sort_by": "citations"
+      },
+      "elapsed_ms": 3182,
+      "result": {
+        "status": "partial",
+        "query": "diamond semiconductor interfacial thermal conductance",
+        "papers": [
+          {
+            "doi": "10.3847/1538-4365/ac4414",
+            "title": "The Seventeenth Data Release of the Sloan Digital Sky Surveys: Complete Release of MaNGA, MaStar, and APOGEE-2 Data",
+            "authors": [
+              "Abdurro’uf",
+              "Katherine Accetta",
+              "Conny Aerts",
+              "Víctor Silva Aguirre",
+              "Romina Ahumada",
+              "Nikhil Ajgaonkar",
+              "N. Filiz Ak",
+              "Shadab Alam",
+              "Carlos Allende Prieto",
+              "Andrés Almeida",
+              "Friedrich Anders",
+              "Scott F. Anderson",
+              "Brett H. Andrews",
+              "Borja Anguiano",
+              "Erik Aquino-Ortíz",
+              "Alfonso Aragón-Salamanca",
+              "Maria Argudo-Fernández",
+              "Metin Ata",
+              "Marie Aubert",
+              "Vladimir Avila-Reese",
+              "Carles Badenes",
+              "Rodolfo H. Barbá",
+              "Kat Barger",
+              "Jorge K. Barrera-Ballesteros",
+              "Rachael L. Beaton",
+              "Timothy C. Beers",
+              "Francesco Belfiore",
+              "Chad F. Bender",
+              "Mariangela Bernardi",
+              "Matthew A. Bershady",
+              "Florian Beutler",
+              "Christian Moni Bidin",
+              "Jonathan C. Bird",
+              "Dmitry Bizyaev",
+              "Guillermo A. Blanc",
+              "Michael R. Blanton",
+              "Nicholas Fraser Boardman",
+              "Adam S. Bolton",
+              "Médéric Boquien",
+              "Jura Borissova",
+              "Jo Bovy",
+              "W. N. Brandt",
+              "Jordan Brown",
+              "Joel R. Brownstein",
+              "Marcella Brusa",
+              "Johannes Buchner",
+              "Kevin Bundy",
+              "Joseph N. Burchett",
+              "Martin Bureau",
+              "Adam Burgasser",
+              "Tuesday K. Cabang",
+              "Stephanie Campbell",
+              "Michele Cappellari",
+              "Joleen K. Carlberg",
+              "Fábio Carneiro Wanderley",
+              "Ricardo Carrera",
+              "Jennifer Cash",
+              "Yan-Ping Chen",
+              "Wei-Huai Chen",
+              "Brian Cherinka",
+              "Cristina Chiappini",
+              "Peter Doohyun Choi",
+              "S. Drew Chojnowski",
+              "Haeun Chung",
+              "Nicolas Clerc",
+              "Roger E. Cohen",
+              "Julia M. Comerford",
+              "Johan Comparat",
+              "Luiz da Costa",
+              "Kevin Covey",
+              "Jeffrey D. Crane",
+              "Irene Cruz-Gonzalez",
+              "Connor Culhane",
+              "Katia Cunha",
+              "Y. Sophia 昱 Dai 戴",
+              "Guillermo Damke",
+              "Jeremy Darling",
+              "James W. Davidson Jr.",
+              "Roger Davies",
+              "Kyle Dawson",
+              "Nathan De Lee",
+              "Aleksandar M. Diamond-Stanic",
+              "Mariana Cano-Díaz",
+              "Helena Domínguez Sánchez",
+              "John Donor",
+              "Chris Duckworth",
+              "Tom Dwelly",
+              "Daniel J. Eisenstein",
+              "Yvonne P. Elsworth",
+              "Eric Emsellem",
+              "Mike Eracleous",
+              "Stephanie Escoffier",
+              "Xiaohui Fan",
+              "Emily Farr",
+              "Shuai Feng",
+              "José G. Fernández-Trincado",
+              "Diane Feuillet",
+              "Andreas Filipp",
+              "Sean P Fillingham",
+              "Peter M. Frinchaboy",
+              "Sebastien Fromenteau",
+              "Lluís Galbany",
+              "Rafael A. García",
+              "D. A. García-Hernández",
+              "Junqiang Ge",
+              "Doug Geisler",
+              "Joseph Gelfand",
+              "Tobias Géron",
+              "Benjamin J. Gibson",
+              "Julian Goddy",
+              "Diego Godoy-Rivera",
+              "Kathleen Grabowski",
+              "Paul J. Green",
+              "Michael Greener",
+              "Catherine J. Grier",
+              "Emily Griffith",
+              "Hong Guo",
+              "Julien Guy",
+              "Massinissa Hadjara",
+              "Paul Harding",
+              "Sten Hasselquist",
+              "Christian R. Hayes",
+              "Fred Hearty",
+              "Jesús Hernández",
+              "Lewis Hill",
+              "David W. Hogg",
+              "Jon A. Holtzman",
+              "Danny Horta",
+              "Bau-Ching Hsieh",
+              "Chin-Hao Hsu",
+              "Yun-Hsin Hsu",
+              "Daniel Huber",
+              "Marc Huertas-Company",
+              "Brian Hutchinson",
+              "Ho Seong Hwang",
+              "Héctor J. Ibarra-Medel",
+              "Jacob Ider Chitham",
+              "Gabriele S. Ilha",
+              "Julie Imig",
+              "Will Jaekle",
+              "Tharindu Jayasinghe",
+              "Xihan Ji",
+              "Jennifer A. Johnson",
+              "Amy Jones",
+              "Henrik Jönsson",
+              "Ivan Katkov",
+              "Dr. Arman Khalatyan",
+              "Karen Kinemuchi",
+              "Shobhit Kisku",
+              "Johan H. Knapen",
+              "Jean-Paul Kneib",
+              "Juna A. Kollmeier",
+              "Miranda Kong",
+              "Marina Kounkel",
+              "Kathryn Kreckel",
+              "Dhanesh Krishnarao",
+              "Ivan Lacerna",
+              "Richard R. Lane",
+              "Rachel Langgin",
+              "Ramon Lavender",
+              "David R. Law",
+              "Daniel Lazarz",
+              "Henry W. Leung",
+              "Ho-Hin Leung",
+              "Hannah M. Lewis",
+              "Cheng Li",
+              "Ran Li",
+              "Jianhui Lian",
+              "Fu-Heng Liang",
+              "Lihwai 俐 暉 Lin 林",
+              "Yen-Ting Lin",
+              "Sicheng Lin",
+              "Chris Lintott",
+              "Dan Long",
+              "Penélope Longa-Peña",
+              "Carlos López-Cobá",
+              "Shengdong Lu",
+              "Britt F. Lundgren",
+              "Yuanze Luo",
+              "J. Ted Mackereth",
+              "Axel de la Macorra",
+              "Suvrath Mahadevan",
+              "Steven R. Majewski",
+              "Arturo Manchado",
+              "Travis Mandeville",
+              "Claudia Maraston",
+              "Berta Margalef-Bentabol",
+              "Thomas Masseron",
+              "Karen L. Masters",
+              "Savita Mathur",
+              "Richard M. McDermid",
+              "Myles Mckay",
+              "Andrea Merloni",
+              "Michael Merrifield",
+              "Szabolcs Meszaros",
+              "Andrea Miglio",
+              "Francesco Di Mille",
+              "Dante Minniti",
+              "Rebecca Minsley",
+              "Antonela Monachesi",
+              "Jeongin Moon",
+              "Benoit Mosser",
+              "John Mulchaey",
+              "Demitri Muna",
+              "Ricardo R. Muñoz",
+              "Adam D. Myers",
+              "Natalie Myers",
+              "Seshadri Nadathur",
+              "Preethi Nair",
+              "Kirpal Nandra",
+              "Justus Neumann",
+              "Jeffrey A. Newman",
+              "David L. Nidever",
+              "Farnik Nikakhtar",
+              "Christian Nitschelm",
+              "Julia E. O’Connell",
+              "Luis Garma-Oehmichen",
+              "Gabriel Luan Souza de Oliveira",
+              "Richard Olney",
+              "Daniel Oravetz",
+              "Mario Ortigoza-Urdaneta",
+              "Yeisson Osorio",
+              "Justin Otter",
+              "Zachary J. Pace",
+              "Nelson Padilla",
+              "Kaike Pan",
+              "Hsi-An Pan",
+              "Taniya Parikh",
+              "James Parker",
+              "Sebastien Peirani",
+              "Karla Peña Ramírez",
+              "Samantha Penny",
+              "Will J. Percival",
+              "Ismael Perez-Fournon",
+              "Marc Pinsonneault",
+              "Frédérick Poidevin",
+              "Vijith Jacob Poovelil",
+              "Adrian M. Price-Whelan",
+              "Anna Bárbara de Andrade Queiroz",
+              "M. Jordan Raddick",
+              "Amy Ray",
+              "Sandro Barboza Rembold",
+              "Nicole Riddle",
+              "Rogemar A. Riffel",
+              "Rogério Riffel",
+              "Hans-Walter Rix",
+              "Annie C. Robin",
+              "Aldo Rodríguez-Puebla",
+              "Alexandre Roman-Lopes",
+              "Carlos Román-Zúñiga",
+              "Benjamin Rose",
+              "Ashley J. Ross",
+              "Graziano Rossi",
+              "Kate H. R. Rubin",
+              "Mara Salvato",
+              "Sebástian F. Sánchez",
+              "José R. Sánchez-Gallego",
+              "Robyn Sanderson",
+              "Felipe Antonio Santana Rojas",
+              "Edgar Sarceno",
+              "Regina Sarmiento",
+              "Conor Sayres",
+              "Elizaveta Sazonova",
+              "Adam L. Schaefer",
+              "Ricardo Schiavon",
+              "David J Schlegel",
+              "Donald P. Schneider",
+              "Mathias Schultheis",
+              "Axel Schwope",
+              "Aldo Serenelli",
+              "Javier Serna",
+              "Zhengyi Shao",
+              "Griffin Shapiro",
+              "Anubhav Sharma",
+              "Yue Shen",
+              "Matthew Shetrone",
+              "Yiping Shu",
+              "Joshua D. Simon",
+              "M. F. Skrutskie",
+              "Rebecca Smethurst",
+              "Verne Smith",
+              "Jennifer Sobeck",
+              "Taylor Spoo",
+              "Dani Sprague",
+              "David V. Stark",
+              "Keivan G. Stassun",
+              "Matthias Steinmetz",
+              "Dennis Stello",
+              "Alexander Stone-Martinez",
+              "Thaisa Storchi-Bergmann",
+              "Guy S. Stringfellow",
+              "Amelia Stutz",
+              "Yung-Chau Su",
+              "Manuchehr Taghizadeh-Popp",
+              "Michael S. Talbot",
+              "Jamie Tayar",
+              "Eduardo Telles",
+              "Johanna Teske",
+              "Ani Thakar",
+              "Christopher Theissen",
+              "Andrew Tkachenko",
+              "Daniel Thomas",
+              "Rita Tojeiro",
+              "Hector Hernandez Toledo",
+              "Nicholas W. Troup",
+              "Jonathan R. Trump",
+              "James Trussler",
+              "Jacqueline Turner",
+              "Sarah Tuttle",
+              "Eduardo Unda-Sanzana",
+              "José Antonio Vázquez-Mata",
+              "Marica Valentini",
+              "Octavio Valenzuela",
+              "Jaime Vargas-González",
+              "Mariana Vargas-Magaña",
+              "Pablo Vera Alfaro",
+              "Sandro Villanova",
+              "Fiorenzo Vincenzo",
+              "David Wake",
+              "Jack T. Warfield",
+              "Jessica Diane Washington",
+              "Benjamin Alan Weaver",
+              "Anne-Marie Weijmans",
+              "David H. Weinberg",
+              "Achim Weiss",
+              "Kyle B. Westfall",
+              "Vivienne Wild",
+              "Matthew C. Wilde",
+              "John C. Wilson",
+              "Robert F. Wilson",
+              "Mikayla Wilson",
+              "Julien Wolf",
+              "W. M. Wood-Vasey",
+              "Renbin 人斌 Yan 严",
+              "Olga Zamora",
+              "Gail Zasowski",
+              "Kai Zhang",
+              "Cheng Zhao",
+              "Zheng Zheng",
+              "Zheng Zheng",
+              "Kai Zhu"
+            ],
+            "journal": "The Astrophysical Journal Supplement Series",
+            "year": 2022,
+            "publisher": "American Astronomical Society",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.3847/1538-4365/ac4414",
+                "url": "https://doi.org/10.3847/1538-4365/ac4414"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 1385
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1021/acs.est.1c04158",
+            "title": "Outside the Safe Operating Space of the Planetary Boundary for Novel Entities",
+            "authors": [
+              "Linn Persson",
+              "Bethanie M. Carney Almroth",
+              "Christopher D. Collins",
+              "Sarah Cornell",
+              "Cynthia A. de Wit",
+              "Miriam L. Diamond",
+              "Peter Fantke",
+              "Martin Hassellöv",
+              "Matthew MacLeod",
+              "Morten W. Ryberg",
+              "Peter Søgaard Jørgensen",
+              "Patricia Villarrubia-Gómez",
+              "Zhanyun Wang",
+              "Michael Zwicky Hauschild"
+            ],
+            "journal": "Environmental Science &amp; Technology",
+            "year": 2022,
+            "publisher": "American Chemical Society (ACS)",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1021/acs.est.1c04158",
+                "url": "https://doi.org/10.1021/acs.est.1c04158"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 1218
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1126/science.adg3755",
+            "title": "Minimizing buried interfacial defects for efficient inverted perovskite solar cells",
+            "authors": [
+              "Shuo Zhang",
+              "Fangyuan Ye",
+              "Xiaoyu Wang",
+              "Rui Chen",
+              "Huidong Zhang",
+              "Liqing Zhan",
+              "Xianyuan Jiang",
+              "Yawen Li",
+              "Xiaoyu Ji",
+              "Shuaijun Liu",
+              "Miaojie Yu",
+              "Furong Yu",
+              "Yilin Zhang",
+              "Ruihan Wu",
+              "Zonghao Liu",
+              "Zhijun Ning",
+              "Dieter Neher",
+              "Liyuan Han",
+              "Yuze Lin",
+              "He Tian",
+              "Wei Chen",
+              "Martin Stolterfoht",
+              "Lijun Zhang",
+              "Wei-Hong Zhu",
+              "Yongzhen Wu"
+            ],
+            "journal": "Science",
+            "year": 2023,
+            "publisher": "American Association for the Advancement of Science (AAAS)",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1126/science.adg3755",
+                "url": "https://doi.org/10.1126/science.adg3755"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 1215
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1016/j.energy.2021.121652",
+            "title": "A review on thermal management of lithium-ion batteries for electric vehicles",
+            "authors": [
+              "Xinghui Zhang",
+              "Zhao Li",
+              "Lingai Luo",
+              "Yilin Fan",
+              "Zhengyu Du"
+            ],
+            "journal": "Energy",
+            "year": 2022,
+            "publisher": "Elsevier BV",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1016/j.energy.2021.121652",
+                "url": "https://doi.org/10.1016/j.energy.2021.121652"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 1069
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1056/nejmoa2307291",
+            "title": "Pulsed Field or Conventional Thermal Ablation for Paroxysmal Atrial Fibrillation",
+            "authors": [
+              "Vivek Y. Reddy",
+              "Edward P. Gerstenfeld",
+              "Andrea Natale",
+              "William Whang",
+              "Frank A. Cuoco",
+              "Chinmay Patel",
+              "Stavros E. Mountantonakis",
+              "Douglas N. Gibson",
+              "John D. Harding",
+              "Christopher R. Ellis",
+              "Kenneth A. Ellenbogen",
+              "David B. DeLurgio",
+              "Jose Osorio",
+              "Anitha B. Achyutha",
+              "Christopher W. Schneider",
+              "Andrew S. Mugglin",
+              "Elizabeth M. Albrecht",
+              "Kenneth M. Stein",
+              "John W. Lehmann",
+              "Moussa Mansour"
+            ],
+            "journal": "New England Journal of Medicine",
+            "year": 2023,
+            "publisher": "Massachusetts Medical Society",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1056/nejmoa2307291",
+                "url": "https://doi.org/10.1056/nejmoa2307291"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 1034
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1016/j.cej.2021.132741",
+            "title": "Battery thermal management systems (BTMs) based on phase change material (PCM): A comprehensive review",
+            "authors": [
+              "Jie Luo",
+              "Deqiu Zou",
+              "Yinshuang Wang",
+              "Shuo Wang",
+              "Li Huang"
+            ],
+            "journal": "Chemical Engineering Journal",
+            "year": 2022,
+            "publisher": "Elsevier BV",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1016/j.cej.2021.132741",
+                "url": "https://doi.org/10.1016/j.cej.2021.132741"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 774
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1103/revmodphys.95.025003",
+            "title": "Semiconductor spin qubits",
+            "authors": [
+              "Guido Burkard",
+              "Thaddeus D. Ladd",
+              "Andrew Pan",
+              "John M. Nichol",
+              "Jason R. Petta"
+            ],
+            "journal": "Reviews of Modern Physics",
+            "year": 2023,
+            "publisher": "American Physical Society (APS)",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1103/revmodphys.95.025003",
+                "url": "https://doi.org/10.1103/revmodphys.95.025003"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 768
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          },
+          {
+            "doi": "10.1103/revmodphys.94.025002",
+            "title": "Interfacial thermal resistance: Past, present, and future",
+            "authors": [
+              "Jie Chen",
+              "Xiangfan Xu",
+              "Jun Zhou",
+              "Baowen Li"
+            ],
+            "journal": "Reviews of Modern Physics",
+            "year": 2022,
+            "publisher": "American Physical Society (APS)",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1103/revmodphys.94.025002",
+                "url": "https://doi.org/10.1103/revmodphys.94.025002"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 765
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null
+          }
+        ],
+        "source_statuses": [
+          {
+            "source": "openalex",
+            "status": "rate_limited",
+            "reason": "HTTP 429 from api.openalex.org",
+            "elapsed_ms": 398
+          },
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 3181
+          }
+        ],
+        "deduplicated": true,
+        "ranking": "OpenAlex count, Crossref fallback; counts from different databases remain separate",
+        "cached": false
+      }
+    }
+  ],
+  "tools": [
+    "search_literature",
+    "get_paper",
+    "download_paper"
+  ]
+}

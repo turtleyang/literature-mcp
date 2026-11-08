@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-08T16:01:04.940Z",
+  "codex": [
+    {
+      "name": "literature-mcp",
+      "authStatus": "unsupported",
+      "tools": [
+        "get_paper",
+        "download_paper",
+        "search_literature"
+      ]
+    }
+  ],
+  "pi": {
+    "runtime": "Installed pi-mcp-adapter McpServerManager; no LLM session",
+    "status": "connected",
+    "tools": [
+      "search_literature",
+      "get_paper",
+      "download_paper"
+    ],
+    "calls": [
+      {
+        "tool": "search_literature",
+        "status": "partial"
+      },
+      {
+        "tool": "get_paper",
+        "status": "ok"
+      },
+      {
+        "tool": "download_paper",
+        "status": "already_exists"
+      }
+    ]
+  }
+}

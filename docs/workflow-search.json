@@ -1,0 +1,291 @@
+{
+  "status": "partial",
+  "query": "diamond thermal boundary conductance",
+  "papers": [
+    {
+      "doi": "10.1016/j.diamond.2024.111850",
+      "title": "The interfacial roughness dependence of Cu/diamond thermal boundary conductance: A molecular dynamics study",
+      "authors": [
+        "Jibang Liao",
+        "Mengya Zhang",
+        "Donghan Yang",
+        "Zhiqiang He",
+        "Yi Liu",
+        "Ling Li"
+      ],
+      "journal": "Diamond and Related Materials",
+      "year": 2025,
+      "publisher": "Elsevier BV",
+      "publication_type": "journal-article",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.1016/j.diamond.2024.111850",
+          "url": "https://doi.org/10.1016/j.diamond.2024.111850"
+        }
+      ],
+      "citation_counts": {
+        "crossref": 16
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 6,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.56028/aetr.3.1.861",
+      "title": "Enhancing the thermal boundary conductance of Cu/Diamond interface via diamond surface amorphization by molecular dynamics simulation",
+      "authors": [
+        "Ziyang Wang",
+        "Lin Lin",
+        "Yanhui Feng",
+        "Fangyuan Sun"
+      ],
+      "journal": "Advances in Engineering Technology Research",
+      "year": 2023,
+      "publisher": "Madison Academic Press",
+      "publication_type": "journal-article",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.56028/aetr.3.1.861",
+          "url": "https://doi.org/10.56028/aetr.3.1.861"
+        }
+      ],
+      "citation_counts": {
+        "crossref": 6
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 4,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.1109/itherm55376.2025.11235652",
+      "title": "Direct Visualization of Local Thermal Conductivity and Boundary Conductance of Diamond Particles",
+      "authors": [
+        "Luke Gyubin Min",
+        "Heungdong Kwon",
+        "Christopher Perez",
+        "Mehdi Asheghi",
+        "Kenneth E. Goodson"
+      ],
+      "journal": "2025 24th IEEE Intersociety Conference on Thermal and Thermomechanical Phenomena in Electronic Systems (ITherm)",
+      "year": 2025,
+      "publisher": "IEEE",
+      "publication_type": "proceedings-article",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.1109/itherm55376.2025.11235652",
+          "url": "https://doi.org/10.1109/itherm55376.2025.11235652"
+        }
+      ],
+      "citation_counts": {
+        "crossref": 1
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 5,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.2139/ssrn.4835749",
+      "title": "Thermal Boundary Conductance of Metal–Diamond Interfaces Predicted by Machine Learning Interatomic Potentials",
+      "authors": [
+        "Khalid  Zobaid Adnan",
+        "Mahesh  Raj Neupane",
+        "Tianli Feng"
+      ],
+      "journal": null,
+      "year": 2024,
+      "publisher": "Elsevier BV",
+      "publication_type": "posted-content",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.2139/ssrn.4835749",
+          "url": "https://doi.org/10.2139/ssrn.4835749"
+        }
+      ],
+      "citation_counts": {
+        "crossref": null
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 3,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.2139/ssrn.4947643",
+      "title": "The Interfacial Roughness Dependence of Cu/Diamond Thermal Boundary Conductance: A Molecular Dynamics Study",
+      "authors": [
+        "Jibang Liao",
+        "Ling Li",
+        "Mengya Zhang",
+        "Donghan Yang",
+        "Zhiqiang He",
+        "Yi Liu"
+      ],
+      "journal": null,
+      "year": 2024,
+      "publisher": "Elsevier BV",
+      "publication_type": "posted-content",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.2139/ssrn.4947643",
+          "url": "https://doi.org/10.2139/ssrn.4947643"
+        }
+      ],
+      "citation_counts": {
+        "crossref": null
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 6,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.2139/ssrn.7560598",
+      "title": "Thermal boundary conductance of the Cu|TiC|diamond stack: audited nonequilibrium molecular dynamics, adhesion scaling, electron-phonon enhancement, and a machine-learned cross-engine benchmark",
+      "authors": [
+        "Yao Mou",
+        "Mingjun Yang",
+        "Lishan Kang",
+        "Letian Shi"
+      ],
+      "journal": null,
+      "year": 2026,
+      "publisher": "Elsevier BV",
+      "publication_type": "posted-content",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.2139/ssrn.7560598",
+          "url": "https://doi.org/10.2139/ssrn.7560598"
+        }
+      ],
+      "citation_counts": {
+        "crossref": null
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 4,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.2139/ssrn.7303209",
+      "title": "A Green’s-Function Boundary-Integral Method for Vertical Thermal Boundary Conductance in Anisotropic Multilayers",
+      "authors": [
+        "Dihui Wang",
+        "Troy Munro",
+        "Heng Ban"
+      ],
+      "journal": null,
+      "year": 2026,
+      "publisher": "Elsevier BV",
+      "publication_type": "posted-content",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.2139/ssrn.7303209",
+          "url": "https://doi.org/10.2139/ssrn.7303209"
+        }
+      ],
+      "citation_counts": {
+        "crossref": null
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 3,
+      "authors_truncated": false
+    },
+    {
+      "doi": "10.2139/ssrn.7511872",
+      "title": "Interface morphology engineering in diamond/Cu composites: simultaneously enhancing interfacial thermal conductance and thermal cycling reliability through Self-Corrugated Diamond",
+      "authors": [
+        "Xing Bin",
+        "Wei Zhang",
+        "Yunzhen Jiang",
+        "Yongjian Fang",
+        "Jinbo Wu",
+        "Ziyang Yu"
+      ],
+      "journal": null,
+      "year": 2026,
+      "publisher": "Elsevier BV",
+      "publication_type": "posted-content",
+      "source_records": [
+        {
+          "source": "crossref",
+          "id": "10.2139/ssrn.7511872",
+          "url": "https://doi.org/10.2139/ssrn.7511872"
+        }
+      ],
+      "citation_counts": {
+        "crossref": null
+      },
+      "open_access_locations": [],
+      "fulltext_access_status": "unknown",
+      "available_formats": [],
+      "available_fulltext_formats": [],
+      "local_file_path": null,
+      "downloaded_from": null,
+      "downloaded_at": null,
+      "author_count": 6,
+      "authors_truncated": false
+    }
+  ],
+  "source_statuses": [
+    {
+      "source": "openalex",
+      "status": "rate_limited",
+      "reason": "HTTP 429 from api.openalex.org",
+      "elapsed_ms": 1143
+    },
+    {
+      "source": "crossref",
+      "status": "ok",
+      "elapsed_ms": 6234
+    }
+  ],
+  "deduplicated": true,
+  "ranking": "Within retrieved relevant candidates: OpenAlex count, Crossref fallback; database counts remain separate",
+  "cached": false
+}

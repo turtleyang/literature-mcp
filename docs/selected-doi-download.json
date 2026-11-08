@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-08T16:04:52.202Z",
+  "input": {
+    "doi": "10.1016/j.ijthermalsci.2025.109876",
+    "preferred_source": "auto",
+    "allow_publisher_api": false
+  },
+  "result": {
+    "status": "downloaded",
+    "downloaded_at": "2026-11-08T16:04:52.194Z",
+    "doi": "10.1016/j.ijthermalsci.2025.109876",
+    "arxiv_id": "2407.15404v1",
+    "source": "arxiv",
+    "format": "pdf",
+    "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/c179dfc42002305e9f9cdc4e532fbf039cafbc7694ba3f17083cc303dead41b5.pdf",
+    "verified": true,
+    "identity_verification": "arXiv ID explicitly associated with target DOI by source record",
+    "sha256": "deae1719299b3dc4d216f555748556c9c18dbb75056ba94ebcf6ef8470c5410a",
+    "bytes": 2649751,
+    "version": "submittedVersion (2407.15404v1)",
+    "attempts": [
+      {
+        "source": "crossref",
+        "status": "ok",
+        "elapsed_ms": 852
+      },
+      {
+        "source": "openalex",
+        "status": "ok",
+        "elapsed_ms": 1307
+      },
+      {
+        "source": "arxiv",
+        "status": "ok",
+        "elapsed_ms": 4135
+      }
+    ]
+  },
+  "version_confirmation": {
+    "source": "Official arXiv Atom API",
+    "url": "https://export.arxiv.org/api/query?id_list=2407.15404",
+    "confirmed_at": "2026-11-08T16:08:44.302Z",
+    "note": "Version resolved after initial QA download; original PDF bytes unchanged. DOI and exact title match API record."
+  }
+}

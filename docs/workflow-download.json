@@ -1,0 +1,28 @@
+{
+  "status": "rate_limited",
+  "doi": "10.1103/revmodphys.94.025002",
+  "reason": "HTTP 429 from api.semanticscholar.org",
+  "publisher_url": "https://doi.org/10.1103/revmodphys.94.025002",
+  "open_access_locations": [],
+  "requires_institutional_authorization": false,
+  "attempts": [
+    {
+      "source": "crossref",
+      "status": "ok",
+      "elapsed_ms": 838,
+      "cached": true
+    },
+    {
+      "source": "openalex",
+      "status": "ok",
+      "elapsed_ms": 1388,
+      "cached": true
+    },
+    {
+      "source": "semantic_scholar",
+      "status": "rate_limited",
+      "reason": "HTTP 429 from api.semanticscholar.org",
+      "elapsed_ms": 3340
+    }
+  ]
+}

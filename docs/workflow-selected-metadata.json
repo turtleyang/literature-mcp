@@ -1,0 +1,53 @@
+{
+  "status": "ok",
+  "paper": {
+    "doi": "10.1103/revmodphys.94.025002",
+    "title": "Interfacial thermal resistance: Past, present, and future",
+    "authors": [
+      "Jie Chen",
+      "Xiangfan Xu",
+      "Jun Zhou",
+      "Baowen Li"
+    ],
+    "journal": "Reviews of Modern Physics",
+    "year": 2022,
+    "publisher": "American Physical Society (APS)",
+    "abstract": "As devices and circuits scale to ever smaller sizes and thermal management in them becomes more important, heat transport across their interfaces plays a crucial role in their development. While the study of interfacial thermal resistance goes back almost 90 years, its increasing importance has led to significant recent progress in theory, experiment, and simulation. This review chronicles this progress for solid-solid, solid-liquid, and solid-gas interfaces, discusses how to tailor interfaces to minimize the resistance, and mentions some of the remaining challenges.",
+    "publication_type": "journal-article",
+    "source_records": [
+      {
+        "source": "crossref",
+        "id": "10.1103/revmodphys.94.025002",
+        "url": "https://doi.org/10.1103/revmodphys.94.025002"
+      },
+      {
+        "source": "openalex",
+        "id": "https://openalex.org/W4224279550",
+        "url": "https://doi.org/10.1103/revmodphys.94.025002"
+      }
+    ],
+    "citation_counts": {
+      "crossref": 765,
+      "openalex": 761
+    },
+    "open_access_locations": [],
+    "fulltext_access_status": "unknown",
+    "available_formats": [],
+    "available_fulltext_formats": [],
+    "local_file_path": null,
+    "downloaded_from": null,
+    "downloaded_at": null
+  },
+  "source_statuses": [
+    {
+      "source": "crossref",
+      "status": "ok",
+      "elapsed_ms": 838
+    },
+    {
+      "source": "openalex",
+      "status": "ok",
+      "elapsed_ms": 1388
+    }
+  ]
+}

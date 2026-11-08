@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+literature-library/
+.local/
+*.tmp
+coverage/
+config/*local*
+# Generated host-specific MCP/runtime configuration; regenerate using scripts/setup.mjs
+config/node-path
+.codex/config.toml
+.mcp.json
