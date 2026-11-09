@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-11-09",
+  "execution_environment": "GitHub-hosted native Windows and Ubuntu runners, Node.js 24.19.0",
+  "repository": "turtleyang/literature-mcp",
+  "visibility": "private",
+  "commit": "b2df87329c96364a32c9506dcf501c62b5e104b5",
+  "run_id": 42555589452,
+  "run_url": "https://github.com/turtleyang/literature-mcp/actions/runs/42555589452",
+  "jobs": [
+    {
+      "id": 128960439369,
+      "name": "check (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-09T03:17:41Z",
+      "completed_at": "2026-11-09T03:18:22Z",
+      "summary": {
+        "name": "check (windows-latest)",
+        "tests": 52,
+        "pass": 52,
+        "fail": 0,
+        "skipped": 0,
+        "offline_smoke_passed": true,
+        "format_passed": true,
+        "audit_zero_known_vulnerabilities": true
+      }
+    },
+    {
+      "id": 128960439708,
+      "name": "check (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-09T03:17:42Z",
+      "completed_at": "2026-11-09T03:18:01Z",
+      "summary": {
+        "name": "check (ubuntu-latest)",
+        "tests": 52,
+        "pass": 52,
+        "fail": 0,
+        "skipped": 0,
+        "offline_smoke_passed": true,
+        "format_passed": true,
+        "audit_zero_known_vulnerabilities": true
+      }
+    }
+  ],
+  "previous_run": {
+    "id": 42555199255,
+    "result": "Windows storage canonicalization rejected legitimate directory aliases; fixed using matching volume/file IDs without relaxing link rejection"
+  },
+  "provider_api_scope": "CI uses mocks and makes no real scholarly database or publisher requests",
+  "server_deployment": "Not performed, as requested"
+}

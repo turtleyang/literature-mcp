@@ -111,3 +111,13 @@ SHA-256 deae1719299b3dc4d216f555748556c9c18dbb75056ba94ebcf6ef8470c5410a
 - setup 已在现有 checkout 执行，原有 .env 内容哈希保持不变；本机旧配置保留，新 Cursor 配置仅按需创建。
 - GitHub 私有仓库已创建，Windows 与 Ubuntu 的 Actions 结果将在发布后单独核对。本段不把 Linux 的路径模拟当成 Windows 原生测试。
 - 用户选择暂不部署服务器；此前只读环境检查没有在服务器安装软件、写入项目、凭据或文献。
+
+### 1.1.0 最终跨平台验收
+
+GitHub 私有仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/literature-mcp)。[成功的 Windows/Ubuntu Actions](https://github.com/turtleyang/literature-mcp/actions/runs/42555589452) 实测源码提交 `b2df87329c96364a32c9506dcf501c62b5e104b5`，两端均完成 52 项测试（52 pass、0 fail、0 skipped）、原生 stdio smoke、格式和审计；不是在 Linux 中模拟 Windows 后作出的成功结论。[机器可读回执](cross-platform-ci.json)。
+
+首轮 Windows CI 暴露了 realpath 规范化与短路径目录别名造成的拒绝，修复后按目录卷号和文件 ID 确认同一性，仍保留路径越界、symlink 和 junction 拒绝；另通过 .gitattributes 固定源码 LF，避免 Windows checkout 影响格式。初轮失败保留在 Actions 历史中。
+
+发布前已从干净的本地 Git clone 重新安装固定依赖、编译、生成缺失配置并跑 stdio smoke；当前真实私有 .env 内容哈希未变，三份已有 PDF 再校验和复用成功。检查了待推送内容和全部本地 Git 历史，未发现本次真实 OpenAlex/Wiley 凭据。私有 .env、本机客户端配置、SSH 私钥、node_modules 和 PDF 均未提交。
+
+Windows 的真实出版社账户/机构网络下载、Windows 各 Agent 的完整交互仍不等于 CI 验收；CI 没有使用任何真实凭据。服务器按用户选择未部署，没有在 hermes 安装 Node、写入项目、凭据或文献。
