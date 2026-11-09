@@ -81,3 +81,33 @@ SHA-256 deae1719299b3dc4d216f555748556c9c18dbb75056ba94ebcf6ef8470c5410a
 - Springer Metadata / OA / Full Text：各产品 Key，TDM 另需协议。
 - Unpaywall：真实联系邮箱。OpenAlex/Semantic Scholar 免费 Key 可改善匿名限流，但不保证无限额度。
 - Europe PMC 真实 XML 全文及各出版社真实 PDF/XML 请求未在线验证；没有因 Mock 通过而报告已验证。
+
+## 后续凭据验证：2026-11-09
+
+本节更新上文初次构建时尚无 OpenAlex/Wiley 凭据的历史状态，不改写原始回执。用户在私有 .env 中填写凭据并明确要求测试后，在同一本机执行以下真实检查：
+
+- OpenAlex：使用实际读取的 Key，通过项目 stdio MCP 的 search_literature 工具只检索 OpenAlex，返回 ok、3 篇真实论文及 DOI，来源耗时 3228 ms。
+- Wiley：仅为本轮测试临时启用 wiley 授权。对开放获取论文 10.1002/aelm.202400387，官方 api.wiley.com 返回 302 到 alm.wiley.com，随后 HTTP 200、application/pdf。跨域时不携带 Token。
+- 首次 MCP 下载失败源于本机 Fake-IP DNS 的精确域名白名单缺少 alm.wiley.com。测试进程在验证官方 HTTPS 重定向来源后只补充该域名，真实下载及校验成功；没有关闭 TLS 或内网访问保护。
+- PDF 为 9 页、3,491,719 字节，前两页识别到目标 DOI，经过完整 PDF 结构解析，随后使用项目存储层保存文件及 SHA-256。只下载此一篇指定 OA 测试论文，未测试订阅内容权限。
+- 私有 .env 未修改；当前持久授权名单仍为空。常驻调用需要在原列表分别加入 LITERATURE_AUTHORIZED_APIS=wiley 和 LITERATURE_TRUSTED_FAKE_IP_HOSTS 中的 alm.wiley.com（保留其他原有项）。
+
+[脱敏凭据测试回执](credential-test-2026-11-09.json)保留了首次失败、重定向诊断与成功文件记录；不包含任何 Key/Token 值。源代码未变更，本轮没有将离线 Mock 当成真实凭据验证。
+
+### 用户补齐持久配置后的复验
+
+仍在 2026-11-09 的同一本机，确认 .env 的 wiley 授权和 alm.wiley.com 域名均已生效，且没有重复配置名。用正常 scripts/start.sh 启动全新 stdio MCP 进程，没有设置任何临时环境覆盖。
+
+- search_literature：仅 OpenAlex，返回 ok，带 Key 查询耗时 2283 ms。
+- download_paper：对先前同一篇 OA 测试论文显式 overwrite=true，确保走真实 TDM 下载而非本地缓存；返回 downloaded、wiley_tdm、pdf、verified=true，下载阶段耗时 17746 ms。
+- 文件 3,491,719 字节，SHA-256 与前次完全一致。本轮仅覆盖本项目自己生成的同篇 QA 测试文件，未修改私有 .env、其他论文或源代码。
+
+完整回执保存在 credential-test-2026-11-09.json 的 persistent_configuration_retest 字段；前面临时授权与白名单缺失的记录属于历史测试，不再代表当前配置。
+
+## 1.1.0 跨平台发布准备
+
+- 本机 Linux：51 项离线测试、类型、格式、生产依赖审计及隔离的原生 stdio smoke 通过。
+- 新增 setup 保留私有配置、Windows/POSIX 客户端路径、盘符/UNC 根及 Windows 大小写规范化测试。
+- setup 已在现有 checkout 执行，原有 .env 内容哈希保持不变；本机旧配置保留，新 Cursor 配置仅按需创建。
+- GitHub 私有仓库已创建，Windows 与 Ubuntu 的 Actions 结果将在发布后单独核对。本段不把 Linux 的路径模拟当成 Windows 原生测试。
+- 用户选择暂不部署服务器；此前只读环境检查没有在服务器安装软件、写入项目、凭据或文献。

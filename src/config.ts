@@ -2,6 +2,9 @@ import { readFileSync } from 'node:fs';
 import { dirname, resolve, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 export const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+export const projectVersion: string = JSON.parse(
+  readFileSync(resolve(projectRoot, 'package.json'), 'utf8'),
+).version;
 // Node's parser does not execute shell expansions. Existing process environment wins.
 export function loadLocalEnv() {
   const file = process.env.LITERATURE_ENV_FILE || resolve(projectRoot, '.env');

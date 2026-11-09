@@ -3,15 +3,15 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const transport = new StdioClientTransport({
-  command: fileURLToPath(new URL('./start.sh', import.meta.url)),
+  command: process.execPath,
+  args: [fileURLToPath(new URL('../dist/server.js', import.meta.url))],
   stderr: 'pipe',
 });
 transport.stderr?.on('data', (b) => process.stderr.write(b));
 const client = new Client({ name: 'literature-live-acceptance', version: '1.0.0' });
 const report = {
   at: new Date().toISOString(),
-  environment:
-    'User Linux x86_64 host, Node 24.19.0, Clash TUN Fake-IP with explicit trusted official hosts',
+  environment: `${process.platform}/${process.arch}, ${process.version}; actual caller network`,
   tests: [],
 };
 async function call(label, name, args) {

@@ -259,7 +259,11 @@ test('path traversal, unapproved directories and symlink directories are rejecte
   try {
     await assert.rejects(c.library.directory(join(c.root, '..', 'escape')));
     await mkdir(join(c.root, 'actual'));
-    await symlink(join(c.root, 'actual'), join(c.root, 'linked'));
+    await symlink(
+      join(c.root, 'actual'),
+      join(c.root, 'linked'),
+      process.platform === 'win32' ? 'junction' : 'dir',
+    );
     await assert.rejects(c.library.directory(join(c.root, 'linked')));
   } finally {
     await c.close();

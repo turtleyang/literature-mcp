@@ -30,6 +30,13 @@ export class Upstream implements Backend {
       for (const key of [
         'PATH',
         'HOME',
+        'USERPROFILE',
+        'SYSTEMROOT',
+        'APPDATA',
+        'LOCALAPPDATA',
+        'TEMP',
+        'TMP',
+        'PATHEXT',
         'TMPDIR',
         'HTTPS_PROXY',
         'HTTP_PROXY',

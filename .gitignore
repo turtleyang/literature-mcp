@@ -12,3 +12,7 @@ config/*local*
 config/node-path
 .codex/config.toml
 .mcp.json
+
+.cursor/mcp.json
+*.pem
+*.key

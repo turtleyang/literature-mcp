@@ -1,6 +1,6 @@
 {
   "name": "literature-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Local, source-aware literature discovery and authorized full-text MCP server",
   "type": "module",
@@ -14,13 +14,14 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "start": "node dist/server.js",
-    "test": "npm run build && node --test --test-concurrency=1 tests/**/*.test.mjs",
+    "test": "npm run build && node --test --test-concurrency=1 \"tests/**/*.test.mjs\"",
     "test:online": "node scripts/online-test.mjs",
     "doctor": "node scripts/doctor.mjs",
     "smoke": "node scripts/smoke.mjs",
-    "check": "npm run typecheck && npm test && npm run format:check && npm audit --omit=dev",
+    "check": "npm run typecheck && npm test && npm run smoke && npm run format:check && npm audit --omit=dev",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.mjs\" \"scripts/*.mjs\" package.json tsconfig.json",
-    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.mjs\" \"scripts/*.mjs\" package.json tsconfig.json"
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.mjs\" \"scripts/*.mjs\" package.json tsconfig.json",
+    "setup": "node scripts/setup.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.2",

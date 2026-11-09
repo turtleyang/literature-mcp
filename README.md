@@ -2,32 +2,47 @@
 
 本地科研文献检索与合法全文下载 MCP Server。TypeScript + 官方 MCP SDK，使用 stdio，向客户端只暴露 `search_literature`、`get_paper`、`download_paper` 三个工具。检索不会自动下载论文；每次下载只处理一个明确指定的 DOI 或 arXiv ID。
 
-本机安装位置：`/home/xianiming/桌面/lit-search-mcp`。项目名称为 `literature-mcp`，沿用现有工作区目录，没有另建一套嵌套项目。
+源码仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/literature-mcp)（私有，需要你的 GitHub 账户有访问权限）。Windows 和 Linux 使用同一份源码、依赖锁与 Node.js 入口，无需单独维护两个版本。GitHub 不存储你的 API Key 或文献库。
 
-## 快速开始
+## 在新电脑上安装
 
-已在本机安装、编译并部署，无需全局安装 npm 包、管理员权限、Docker 或常驻后台服务。
+先安装 Git 与 Node.js **24.x**（固定验证版本见 `.nvmrc`）。在终端执行：
 
 ```bash
-cd /home/xianiming/桌面/lit-search-mcp
-npm run doctor
+git clone git@github.com:turtleyang/literature-mcp.git
+cd literature-mcp
+npm ci --ignore-scripts
+npm run build
+npm run setup
 npm run smoke
 ```
 
-新机器或恢复安装时：
+Windows PowerShell 若阻止 `npm.ps1`，将命令里的 `npm` 换成 `npm.cmd`，无需修改执行策略。私有仓库需要先配置自己的 GitHub SSH 登录；也可使用 GitHub 提供的 HTTPS clone 地址和正常账户认证，不要将 Token 拼进 URL。
+
+`npm run setup` 会记录当前 Node 的绝对路径，并在缺失时创建：
+
+- `.env`：从 `.env.example` 复制，随后自行填写凭据。
+- `.mcp.json`：Claude Code / Pi 项目配置。
+- `.codex/config.toml`：Codex 项目配置。
+- `.cursor/mcp.json`：Cursor 项目配置。
+
+客户端命令直接指向本机 Node 可执行文件，参数为本机 `dist/server.js` 的绝对路径；Windows 无需 Bash。所有已有 `.env`、客户端配置都会保留，不会被覆盖；迁移目录或更换 Node 位置后，需检查已有配置。`scripts/start.sh` 仍保留为 Linux/SSH 的兼容入口。
+
+`npm run smoke` 是不访问学术数据库的 stdio 检查，即使项目里有真实凭据，也只使用隔离的临时测试目录。它检查三个工具发现、未配置来源状态和输入校验；完整模拟下载测试由 `npm test` 完成。
+
+填写 `.env` 后运行 `npm run doctor` 确认读取状态。新电脑上的文献默认保存在该 checkout 的 `literature-library`，不同电脑不会自动同步。不要直接搬用包含旧绝对路径的 JSON 索引。
+
+更新已有安装：
 
 ```bash
-# 使用 Node.js 24.x；本机验证版本记录在 .nvmrc
+git pull --ff-only
 npm ci --ignore-scripts
 npm run build
-node scripts/setup.mjs
-# 仅在 .env 尚不存在时，从 .env.example 复制并 chmod 600
-npm run check
+npm run setup
+npm run smoke
 ```
 
-`package-lock.json` 固定完整依赖树。`scripts/setup.mjs` 写入当前 Node 绝对路径，并生成尚不存在的项目级客户端配置，不覆盖已有配置。迁移目录或删除旧 Node 版本后，应重新生成 Node 路径并手工核对已有客户端配置中的绝对路径。
-
-MCP 客户端的启动命令是项目内 `scripts/start.sh` 的绝对路径；不要把 `npm start` 的 npm 提示文本作为 MCP 协议输出。脚本通过已记录的 Node 路径启动，自动读取项目 `.env`，不依赖终端的 nvm 初始化或当前目录。
+依赖由 `package-lock.json` 固定。更新不会通过 setup 覆盖你的私有配置或文献库。GitHub Actions 分别使用 Windows 与 Ubuntu 执行类型检查、离线测试、stdio 检查、格式与审计；实际运行结果见 [Actions](https://github.com/turtleyang/literature-mcp/actions)。
 
 ## 能力与边界
 
@@ -41,7 +56,7 @@ MCP 客户端的启动命令是项目内 `scripts/start.sh` 的绝对路径；�
 | WoS Expanded | 独立 Key、SR/FR、可选 citing 关系 | 不提供 PDF | 模拟通过；无真实 Key / 机构 API 授权 |
 | Scopus / ScienceDirect | 复用上游授权检索 | Elsevier Article Retrieval 单独授权 | 检索路由、全文授权/格式模拟；无真实授权 |
 | Springer | 复用 Metadata 检索 | OA JSON/PDF/JATS；授权 TDM JATS | 离线模拟通过；无真实 API Key |
-| Wiley | 通过 Crossref/OpenAlex 找 DOI | 官方 TDM DOI PDF 接口 | Token/权限/重定向/格式模拟；无真实 Token |
+| Wiley | 通过 Crossref/OpenAlex 找 DOI | 官方 TDM DOI PDF 接口 | Linux 真实 TDM OA PDF 下载通过；订阅权限范围未测 |
 | Unpaywall | DOI 精确 OA 位置 | 已发现的合法 PDF 候选 | 离线通过；未提供真实联系邮箱 |
 | Europe PMC / PMC | DOI 精确且 OA 标记匹配 | Europe PMC 官方 XML 全文 | 离线通过；未做真实全文下载 |
 
@@ -152,40 +167,53 @@ literature-library/
 
 ## MCP 客户端
 
-启动命令统一为：
+`npm run setup` 已生成项目配置，适合在本项目目录中使用。配置中的 Node 和 `dist/server.js` 均使用运行 setup 的这台机器的真实绝对路径，不依赖客户端工作目录。以下示例用于理解结构，以 setup 生成的实际值为准。
 
-```text
-/home/xianiming/桌面/lit-search-mcp/scripts/start.sh
-```
-
-**Codex**：已创建项目级 `.codex/config.toml`，没有修改已有全局服务器。此工作区原有 trust 配置为 trusted，`codex mcp get literature-mcp` 和新建的 App Server 连接检查都已识别三个工具。本聊天最初加载的工具集合不会因写配置自动更新；重新打开此项目的聊天/重启连接后才能作为本聊天原生工具使用。也可以在 Codex 的 MCP 设置中添加同一 stdio 命令。[官方说明](https://developers.openai.com/codex/mcp)
+Codex 的项目文件为 `.codex/config.toml`：
 
 ```toml
 [mcp_servers.literature-mcp]
-command = "/home/xianiming/桌面/lit-search-mcp/scripts/start.sh"
+command = "/absolute/path/to/node"
+args = ["/absolute/path/to/literature-mcp/dist/server.js"]
 startup_timeout_sec = 30
 tool_timeout_sec = 180
 ```
 
-若要在所有项目中启用，用户可自行运行以下命令；本次没有写全局配置：
+Windows 示例采用 TOML 单引号，路径不需要手工双写反斜线：
 
-```bash
-codex mcp add literature-mcp -- /home/xianiming/桌面/lit-search-mcp/scripts/start.sh
+```toml
+[mcp_servers.literature-mcp]
+command = 'C:\Program Files\nodejs\node.exe'
+args = ['C:\Tools\literature-mcp\dist\server.js']
+startup_timeout_sec = 30
+tool_timeout_sec = 180
 ```
 
-**Pi Agent**：本机 Pi 1.1.0 已安装 `pi-mcp-adapter`，根 `.mcp.json` 使用其支持的格式。已用实际安装的 Adapter `McpServerManager` 连接、发现和调用三个工具；未发起 Pi 的模型会话，也未代替用户确认新的项目 trust。进入此目录后按 Pi 的项目确认流程加载 `.mcp.json`，再通过 `mcp` 代理发现和调用工具。Pi 内建 MCP 的另一种配置方法是 `pi mcp add literature-mcp --local -- /绝对路径/scripts/start.sh`，不必同时配置两份。[Pi 官方项目](https://github.com/earendil-works/pi)、[已安装 Adapter 文档](https://github.com/nicobailon/pi-mcp-adapter)
+若希望在任意项目中使用，把**该服务器配置项**合并到 Codex 用户配置：Linux 为 `~/.codex/config.toml`，Windows 为 `%USERPROFILE%\.codex\config.toml`。不要覆盖其他配置；已有同名服务器时修改该项，不重复添加。[Codex 官方说明](https://developers.openai.com/codex/mcp)
 
-**Claude Code**：可复用根 `.mcp.json`，或执行以下命令。本机未安装，未报告客户端端到端成功。[官方说明](https://code.claude.com/docs/en/mcp)
-
-```bash
-claude mcp add --transport stdio --scope project literature-mcp -- /home/xianiming/桌面/lit-search-mcp/scripts/start.sh
-```
-
-**Cursor**：将下面的 `mcpServers` 合并进项目 `.cursor/mcp.json`，保留其他服务器。本机未安装，未做端到端验证。[官方说明](https://cursor.com/docs/mcp)
+Claude Code / Pi 的项目 `.mcp.json`，以及 Cursor 的 `.cursor/mcp.json` 使用同样的服务器定义：
 
 ```json
-{"mcpServers":{"literature-mcp":{"command":"/home/xianiming/桌面/lit-search-mcp/scripts/start.sh","args":[]}}}
+{
+  "mcpServers": {
+    "literature-mcp": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": ["C:\\Tools\\literature-mcp\\dist\\server.js"]
+    }
+  }
+}
 ```
+
+在其他项目使用时，将该定义合并到相应客户端的用户级配置，或在客户端 MCP 设置中填写相同 command/args。密钥始终放在 MCP 项目私有 `.env`，不必复制到每个客户端配置里。
+
+本机 Pi 使用 `pi-mcp-adapter`；其他 Pi 安装可使用其内建 MCP。按客户端正常流程信任项目并重新连接，检查是否出现三个核心工具。[Pi](https://github.com/earendil-works/pi)、[Pi MCP Adapter](https://github.com/nicobailon/pi-mcp-adapter)、[Claude Code](https://code.claude.com/docs/en/mcp)、[Cursor](https://cursor.com/docs/mcp)。客户端实际验收范围见 [验收记录](docs/verification.md)，不能将 Windows 运行库检查说成所有 Windows 客户端均已实测。
+
+## 以后改为服务器运行
+
+当前发布同时保留本地运行能力，尚未部署服务器。如果以后部署到自己的 Linux 服务器，可让每个客户端通过 `ssh -T` 启动远端 `scripts/start.sh`，复用标准 stdio，无需开放额外 HTTP 端口；各客户端要先能正常 SSH 登录该服务器。
+
+服务器运行时，密钥配置和 PDF 路径属于服务器，Windows 本地不会自动出现这些文件。迁移文献、上传凭据和部署服务器应分别明确安排，不随 Git push 自动发生。`docs/deployment.md` 说明两种方式的区别。
 
 ## 故障排查与维护
 

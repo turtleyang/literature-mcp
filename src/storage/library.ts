@@ -16,6 +16,7 @@ import type { Paper, DownloadResult } from '../models/paper.js';
 import { stableId } from '../utils/identifiers.js';
 import { Failure, wait } from '../utils/control.js';
 import { validateFulltext, type Identity } from '../download/validate.js';
+import { directoryChain, samePath } from '../utils/paths.js';
 const within = (parent: string, child: string) => {
   const r = relative(parent, child);
   return !r || (!r.startsWith(`..${sep}`) && r !== '..' && !isAbsolute(r));
@@ -34,11 +35,7 @@ export class Library {
       await this.noSymlinkDir(dir);
   }
   private async noSymlinkDir(dir: string) {
-    const abs = resolve(dir);
-    const parts = abs.split(sep).filter(Boolean);
-    let current: string = sep;
-    for (const part of parts) {
-      current = resolve(current, part);
+    for (const current of directoryChain(dir)) {
       try {
         const s = await lstat(current);
         if (s.isSymbolicLink() || !s.isDirectory())
@@ -66,7 +63,7 @@ export class Library {
       throw new Failure('restricted', 'save_directory is outside configured allowed roots');
     await this.noSymlinkDir(dir);
     const actual = await realpath(dir);
-    if (actual !== dir) throw new Failure('restricted', 'Resolved storage path changed');
+    if (!samePath(actual, dir)) throw new Failure('restricted', 'Resolved storage path changed');
     return dir;
   }
   private metadataPath(identifier: string) {

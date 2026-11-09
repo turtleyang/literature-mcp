@@ -65,13 +65,16 @@ try {
   app.kill('SIGTERM');
 }
 try {
-  const file = '/home/xianiming/.pi/agent/npm/node_modules/pi-mcp-adapter/dist/server-manager.js';
+  const { createRequire } = await import('node:module');
+  const require = createRequire(import.meta.url);
+  const file =
+    process.env.PI_MCP_ADAPTER_MODULE || require.resolve('pi-mcp-adapter/dist/server-manager.js');
   const { McpServerManager } = await import(pathToFileURL(file));
   const manager = new McpServerManager(process.cwd());
   try {
     const connection = await manager.connect('literature-mcp', {
-      command: fileURLToPath(new URL('./start.sh', import.meta.url)),
-      args: [],
+      command: process.execPath,
+      args: [fileURLToPath(new URL('../dist/server.js', import.meta.url))],
     });
     const names = connection.tools.map((t) => t.name);
     const calls = [];
