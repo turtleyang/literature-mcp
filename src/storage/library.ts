@@ -63,7 +63,26 @@ export class Library {
       throw new Failure('restricted', 'save_directory is outside configured allowed roots');
     await this.noSymlinkDir(dir);
     const actual = await realpath(dir);
-    if (!samePath(actual, dir)) throw new Failure('restricted', 'Resolved storage path changed');
+    if (!samePath(actual, dir)) {
+      // Windows TEMP can use an 8.3 alias (RUNNER~1) while realpath expands it.
+      // Accept that spelling only when both non-link directories have the same
+      // volume and file ID; do not weaken the ancestor symlink/junction checks.
+      const [requested, resolved] = await Promise.all([
+        lstat(dir, { bigint: true }),
+        lstat(actual, { bigint: true }),
+      ]);
+      const identicalWindowsDirectory =
+        process.platform === 'win32' &&
+        requested.isDirectory() &&
+        resolved.isDirectory() &&
+        !requested.isSymbolicLink() &&
+        !resolved.isSymbolicLink() &&
+        requested.ino !== 0n &&
+        requested.dev === resolved.dev &&
+        requested.ino === resolved.ino;
+      if (!identicalWindowsDirectory)
+        throw new Failure('restricted', 'Resolved storage path changed');
+    }
     return dir;
   }
   private metadataPath(identifier: string) {

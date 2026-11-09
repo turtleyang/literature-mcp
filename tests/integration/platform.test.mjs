@@ -94,3 +94,28 @@ test('offline stdio launcher works from a different working directory on the nat
     child.kill();
   }
 });
+
+test('native filesystem canonicalization retains a safe TEMP directory even with a Windows short-name alias', async () => {
+  const { Library } = await import('../../dist/storage/library.js');
+  const { makeConfig } = await import('../../dist/config.js');
+  const { realpath } = await import('node:fs/promises');
+  const root = await mkdtemp(path.join(tmpdir(), 'literature-canonical-'));
+  try {
+    const library = new Library(makeConfig({ LITERATURE_LIBRARY_DIR: root }));
+    await library.init();
+    const target = path.join(root, 'papers');
+    try {
+      assert.equal(await library.directory(), target);
+    } catch (error) {
+      assert.fail(
+        JSON.stringify({
+          requested: target,
+          canonical: await realpath(target),
+          error: error.message,
+        }),
+      );
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

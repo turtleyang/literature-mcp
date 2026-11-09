@@ -14,7 +14,7 @@ setup 用独占创建保留已有环境文件和客户端配置。更换机器�
 
 ## Windows 路径与测试
 
-目录逐级校验保留盘符根和 UNC share 根；realpath 比较允许 Windows 的大小写和长路径命名空间规范化，同时仍拒绝符号链接/目录联接跳转。测试中的目录链接使用 Windows junction，无需开发者模式的 symlink 权限。
+目录逐级校验保留盘符根和 UNC share 根；realpath 比较允许 Windows 的大小写和长路径命名空间规范化；8.3 短路径需通过目录卷号和文件 ID 同一性确认，同时仍拒绝符号链接/目录联接跳转。测试中的目录链接使用 Windows junction，无需开发者模式的 symlink 权限。
 
 GitHub Actions 的 Windows 和 Ubuntu 任务使用相同固定 Node 版本，执行全部离线测试及原生 stdio 子进程检查。没有真实 API Key 的 CI 不调用商业接口，也不下载论文。每次改变源码、启动器、依赖或测试后必须观察两个平台的实际结果。
 
