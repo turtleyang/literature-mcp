@@ -51,19 +51,35 @@ export class SearchService {
         reason: `Explicitly authorize ${source} in LITERATURE_AUTHORIZED_APIS`,
       };
   }
+  private sourceContext(source: Source): Partial<SourceStatus> {
+    if (source !== 'wos_starter' && source !== 'wos_expanded') return {};
+    const version = (this.cfg.env.WOS_STARTER_VERSION || 'v2').toLowerCase();
+    return {
+      database: { id: 'WOS', name: 'Web of Science Core Collection' },
+      api_product: source === 'wos_starter' ? 'starter' : 'expanded',
+      ...(source === 'wos_starter'
+        ? { api_capabilities: { pagination: true, total_matches: true } }
+        : {}),
+      ...(source === 'wos_starter' && (version === 'v1' || version === 'v2')
+        ? { api_version: version }
+        : {}),
+    };
+  }
   private async run(
     source: Source,
     fn: () => Promise<Paper[]>,
     signal?: AbortSignal,
   ): Promise<{ papers: Paper[]; state: SourceStatus }> {
     const configured = this.configured(source);
-    if (configured) return { papers: [], state: configured };
+    const sourceContext = this.sourceContext(source);
+    if (configured) return { papers: [], state: { ...configured, ...sourceContext } };
     const start = Date.now();
     try {
       const papers = await this.gate.run(fn, signal);
       return {
         papers,
         state: {
+          ...sourceContext,
           source,
           status: papers.length ? 'ok' : 'not_found',
           elapsed_ms: Date.now() - start,
@@ -73,7 +89,13 @@ export class SearchService {
       const f = failure(e);
       return {
         papers: [],
-        state: { source, status: f.status, reason: f.message, elapsed_ms: Date.now() - start },
+        state: {
+          ...sourceContext,
+          source,
+          status: f.status,
+          reason: f.message,
+          elapsed_ms: Date.now() - start,
+        },
       };
     }
   }
@@ -124,10 +146,19 @@ export class SearchService {
         abstract: undefined,
       })),
       source_statuses: results.map((r) => r.state),
+      retrieval: {
+        limitation_scope: 'this_mcp_tool',
+        requested_max_results: input.max_results,
+        returned_count: Math.min(papers.length, input.max_results),
+        max_results_per_call: 50,
+        total_matches: null,
+        pagination_available: false,
+        exhaustiveness_verified: false,
+      },
       deduplicated: true,
       ranking:
         input.sort_by === 'citations'
-          ? 'Within retrieved relevant candidates: OpenAlex count, Crossref fallback; database counts remain separate'
+          ? 'Within retrieved candidates: OpenAlex count when present, otherwise Crossref then another available source count. Counts remain separate; not a global ranking.'
           : input.sort_by === 'relevance'
             ? 'Source order, source relevance; not a systematic review'
             : 'Publication year descending',

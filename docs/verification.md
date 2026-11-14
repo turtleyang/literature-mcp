@@ -121,3 +121,107 @@ GitHub 私有仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/
 发布前已从干净的本地 Git clone 重新安装固定依赖、编译、生成缺失配置并跑 stdio smoke；当前真实私有 .env 内容哈希未变，三份已有 PDF 再校验和复用成功。检查了待推送内容和全部本地 Git 历史，未发现本次真实 OpenAlex/Wiley 凭据。私有 .env、本机客户端配置、SSH 私钥、node_modules 和 PDF 均未提交。
 
 Windows 的真实出版社账户/机构网络下载、Windows 各 Agent 的完整交互仍不等于 CI 验收；CI 没有使用任何真实凭据。服务器按用户选择未部署，没有在 hermes 安装 Node、写入项目、凭据或文献。
+
+## WoS Expanded 凭据测试：2026-11-13
+
+本次在用户本机 Linux 执行真实联网测试。doctor 确认 WOS_EXPANDED_API_KEY 已被读取，持久授权列表仍只有 wiley。按用户明确的测试请求，仅在新 stdio MCP 测试进程中增加 wos_expanded，没有修改私有 .env 或扩大其他来源权限。
+
+- search_literature 仅选择 WoS Expanded，查询 `TS=("diamond" AND "thermal conductivity")`，SR、最多 1 条。来源返回 failed、通用上游错误，耗时 2303 ms；没有回退公开库，没有返回论文。
+- 为辨别通用错误，随后向官方 `https://api.clarivate.com/api/wos/` 发出一次相同参数的直接请求，使用 X-ApiKey 请求头，不重试。HTTP 403、JSON 提示 `You cannot consume this service`，耗时 2045 ms。
+- 结论是当前凭据不能访问该 Expanded 服务；尚未确定是应用订阅、审批、机构许可还是 Key 与应用配置不匹配。403 本身不能证明 Key 字符串填写错误。[官方访问说明](https://developer.clarivate.com/help/api-access)说明 Key 绑定应用及订阅计划；[Expanded 产品说明](https://developer.clarivate.com/apis/wos)要求付费许可。
+- 短记录检索失败后没有继续消耗 FR 或引用关系请求；未测试 Starter 或全文下载。没有记录凭据值，.env 内容哈希核验保持不变。源码及固定依赖未改动，本次未重跑离线测试，不将已有 Mock 结果作为真实许可通过证据。
+
+[脱敏测试回执](wos-expanded-test-2026-11-13.json)。以上记录仅针对 Expanded；随后用户提供了 Starter 地址，产品对应关系与当前配置建议以下节为准，不应由 Expanded 的 403 推断 Starter 不可用。
+
+### 用户提供 Starter v1 地址后的复验
+
+同日用户提供官方邮件中的 `https://api.clarivate.com/apis/wos-starter/v1/`。[官方 OpenAPI](https://developer.clarivate.com/apis/wos-starter/swagger)列出 Starter v1/v2 的独立服务地址、X-ApiKey 认证和 `/documents` 检索路径；本次使用邮件中的 v1，没有再向 Expanded 发请求。
+
+- 在同一本机 Linux 启动全新 stdio MCP 测试进程。将现有 WOS_EXPANDED_API_KEY 的值仅在测试进程中映射到 WOS_API_KEY，设置 WOS_STARTER_VERSION=v1，在原 wiley 授权上临时增加 wos_starter。私有 .env 内容哈希核验未变。
+- search_literature 使用 mode=wos、wos_product=starter、max_results=1，查询 `TS=("diamond" AND "thermal conductivity")`；返回 ok、cached=false，来源 wos_starter 耗时 1875 ms，没有查询其他数据库。
+- 返回论文：Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite，2025，CERAMICS INTERNATIONAL，DOI `10.1016/j.ceramint.2025.06.299`，UID `WOS:001567956700028`，WoS Starter 被引次数 11。本次结果证明该 Key 可调用 Starter v1，不能据此推定具体订阅计划或 Expanded 权限。
+- 原 Expanded 403 记录保留为不同产品的历史请求；先前要求优先核对 Expanded 订阅的排障方向不适用于用户现在提供的 Starter 地址。没有测试 Starter v2、Expanded FR/关系或全文下载；源码与依赖未变。
+
+正常启用应将现有 Key 从 WOS_EXPANDED_API_KEY 移到 WOS_API_KEY，设置 `WOS_STARTER_VERSION=v1`，并将授权行设为 `LITERATURE_AUTHORIZED_APIS=wiley,wos_starter` 后重启 MCP。[Starter 脱敏回执](wos-starter-test-2026-11-13.json)。
+
+### 用户修改 .env 后的持久配置复验
+
+同日用户告知已修改 .env 并要求新一轮测试。实际配置中 WOS_API_KEY 已有值、Expanded Key 已清除，但没有 WOS_STARTER_VERSION，授权仍只有 wiley；没有同名重复配置，也没有继承的相关环境变量覆盖文件。首次全新 stdio 调用返回 restricted，明确要求本地授权 wos_starter，该次未访问官方接口。
+
+随后仅补齐私有 .env 的 WOS_STARTER_VERSION=v1，以及授权列表中的 wos_starter；保留原 wiley 授权、全部密钥值、其他配置及文件权限。再次启动全新 MCP 进程，不传入 env 覆盖：
+
+- 工具发现正常，仅有 search_literature、get_paper、download_paper 三个工具。
+- 同一 TS 查询仅访问 Starter，max_results=1；返回 ok、cached=false、来源耗时 3305 ms。
+- 返回同篇 DOI `10.1016/j.ceramint.2025.06.299`，UID `WOS:001567956700028`，WoS Starter 被引次数 11。测试期间 .env 内容哈希保持不变；新启动的服务可以直接使用持久配置。
+
+原始拦截、配置补齐和最终成功均追加到 [同一脱敏回执](wos-starter-test-2026-11-13.json) 的 persistent_configuration_retests、persistent_configuration_correction 及 current_conclusion，保留此前临时测试记录。此次没有修改源码或固定依赖，没有重新下载全文，也未将其他产品权限视为已通过。已运行的 MCP 连接仍需重启加载配置。
+
+## Pi 用户级安装：2026-11-13
+
+用户要求给本机 Pi Agent 安装此服务。本机为 Pi 1.1.0、pi-mcp-adapter 7.0.0，适配器已按现有设置接管内建 MCP；此前文献服务只有项目 `.mcp.json`，用户级标准 MCP 文件中仅有原 Zotero 服务。
+
+- 使用实际 Pi CLI 的 `mcp add` 新建 `~/.pi/agent/mcp.json`，只加入 literature-mcp；Node 与 dist/server.js 使用现有绝对路径，exposure=direct。没有安装或更新额外软件包，没有复制任何 API Key。
+- 适配器配置加载器在项目之外的 `/tmp` 同时识别 zotero 与 literature-mcp，没有项目级文献配置参与。原 Zotero 配置、Pi settings 和项目私有 .env 内容哈希保持不变。
+- 通过已安装 Pi SDK 加载实际 pi-mcp-adapter 扩展，在 `/tmp` 创建内存会话并执行 session_start。扩展无加载错误，三个文献工具均注册且激活：literature-mcp_search_literature、literature-mcp_get_paper、literature-mcp_download_paper。
+- 从该 Pi 工具运行时调用 search_literature，只查询 WoS Starter、最多 1 条，返回 ok、cached=false，来源耗时 1575 ms；DOI 为 `10.1016/j.ceramint.2025.06.299`，WoS 被引次数 11。服务直接读取当前项目 .env，没有测试环境覆盖。
+- 首次验收脚本直接将适配器附有说明文本的返回值整体解析为 JSON，发生脚本解析错误；三个工具当时已正常加载。修正验收解析后复验成功，前次记录保留。最终发送 session_shutdown，关闭测试连接，没有遗留该次测试服务。
+
+本轮没有发送 LLM 请求，没有加载其他 Pi 扩展或进行新全文下载，也未操作用户现有交互会话；不把 SDK 运行时验证描述成 Pi 界面或模型自动选工具的端到端验收。已打开的 Pi 输入 `/reload` 或重启加载新增配置。[脱敏安装与运行时回执](pi-install-2026-11-13.json)。
+
+## Pi 真实模型对话测试：2026-11-14
+
+用户明确要求实际调用 Pi 测试后，在本机直接运行已安装 Pi CLI 的 print/json 模式，使用 Pi 默认模型 gpt-5.6-terra，未覆盖模型、服务凭据或 MCP 环境。在项目之外的临时目录创建全新无历史对话，仅允许 literature-mcp_search_literature，要求以 TS/PY 字段检索 2020—2025 年 diamond thermal conductivity 文献、最多 3 篇，并解释 Starter 与 Expanded 的能力边界。没有读取原用户对话，也未给模型补充正确答案。
+
+- 模型第一、二次分别向 Starter 传入 record_view=full 和 short，都返回 -32602 参数错误。这两次在 MCP 输入校验阶段结束，没有访问 WoS API。
+- 第三轮模型生成参数时长时间停顿，随后模型响应以 error/terminated 结束；原 Pi 会话自动恢复并继续。没有更换模型或发送第二条纠正提示，现有日志不足以确定模型流中断原因。
+- 第三次实际工具调用去掉 record_view，使用 `TS=(diamond AND "thermal conductivity") AND PY=(2020-2025)`，mode=wos、wos_product=starter、sources=[wos_starter]、year_from=2020、year_to=2025、max_results=3。返回 ok、cached=false，WoS 来源耗时 2899 ms。
+- 返回 DOI `10.1016/j.ceramint.2025.06.299`、`10.1016/j.diamond.2024.111257`、`10.1016/j.diamond.2023.110213`，WoS Starter 被引次数分别为 11、34、42；Pi 最终回答中的三条记录及计数与工具输出一致。
+- Pi 正确确认本次 TS/PY 字段检索成功，并说明 3 篇候选不代表完整集合；但最终仍称无法据此宣称查询 Core Collection，并把更完整的 Core Collection 能力与 Expanded 关联。
+
+检索链路与凭据验证通过，首轮参数选择和能力解释仍需改进。核对固定上游 0.3.3 的 MCP handler、StarterClient 和本项目转发路径：未覆盖 databaseId，Starter 客户端以 WOS 为默认值并作为 db 参数发送。[官方 Starter 说明](https://developer.clarivate.com/apis/wos-starter)明确包含 Core Collection，[官方 OpenAPI](https://developer.clarivate.com/apis/wos-starter/swagger)列出 db=WOS 的含义及支持字段。该数据库判断来自实际固定代码和官方契约，不是对 HTTPS 请求抓包。当前 MCP 结果未显式返回数据库标识，参数字段说明也没有向模型明确 record_view 的适用范围，模型仅凭返回记录无法直接核验数据库身份。
+
+原始脱敏 JSON 事件保存在被 Git 忽略的 .local/pi-e2e-2026-11-14，模型正文、参数错误、成功工具结果、模型信息及人工核验保存在 [Pi 真实对话回执](pi-e2e-2026-11-14.json)。整轮约 232 秒，Pi 正常退出；私有 .env、Pi settings、Pi 用户级 MCP 配置和 Zotero 配置哈希保持不变，没有下载全文。本轮仅更新验收与状态记录，未修改应用源码或运行离线回归；交互界面、原用户会话和修订说明后的复验均未覆盖。
+
+## Pi 调试修复与最终验收：2026-11-14
+
+本节记录用户要求继续调试至 Pi 可正常使用后的 1.1.1 修复，前节是修复前的历史结果。修改限定于本项目的工具说明、来源/采集元信息、相关测试及文档；没有改上游包源码、真实凭据、许可门控或三个工具名称。
+
+### 修复内容
+
+- 将 Starter 的核心合集、支持字段和 record_view 适用条件写入 MCP 指令、工具描述及字段 JSON Schema；Starter 仍严格拒绝 record_view，改进错误信息，而非静默丢弃无效参数。
+- WoS 来源状态增加 database、api_product、Starter api_version；检索和精确元数据都返回数据库身份，失败状态不因这些目标信息而变成访问成功。
+- 增加 retrieval 的候选上限、实际条数、未知总数、不暴露分页、未验证穷尽性信息。实际 Pi 回归又暴露“把封装缺项归因于 API”问题，因此进一步加入 limitation_scope=this_mcp_tool 和 Starter api_capabilities.pagination/total_matches=true，并在工具说明中明确 API 的 page/limit、metadata.total 与当前 MCP 封装的区别。
+- 说明 include_citations 控制额外施引关系，元数据中的被引计数不需要该选项；提示 overwrite=false 会复用已验证的本地文件。
+- 使用已安装适配器的缓存 API，只将 literature-mcp 条目过期并重新发现；原 Zotero 缓存未因此被覆盖。最终再次通过实际服务 SDK 发现工具，逐项比较 Pi 缓存中的三个定义及服务器指令，完全一致。
+
+### 离线与协议回归
+
+最终 `npm run check` 完成：类型检查、**56 项测试全部通过、0 失败、0 跳过**、隔离的真实 stdio smoke、格式检查及生产依赖审计（0 个已知漏洞）。离线原始输出保存在被 Git 忽略的 .local/pi-e2e-2026-11-14/offline-check-final.log。
+
+新增/扩展检查覆盖：通过实际 MCP listTools 验证给模型的参数描述；short/full 的 Starter 请求仍在输入层拒绝且不调用后端；去掉该参数可恢复；成功、缺凭据和混合来源结果保留正确数据库与状态；有界结果不伪造总数或全量覆盖；缓存保留采集元信息；Starter 精确 DOI 计数不额外查施引关系。固定上游真实类的 HTTP Mock 同时覆盖 Starter v1/v2 的 db=WOS 和 Expanded 的 databaseId=WOS。这些 HTTP Mock 仅证明代码契约，不代表真实 Expanded 账户可用。
+
+### 真实 Pi 模型对话
+
+使用已安装 Pi CLI 1.1.0、适配器 7.0.0、原默认模型 gpt-5.6-terra。最终两个验收会话使用 **Pi 默认工具集、扩展、技能和上下文发现**，没有工具白名单，也没有覆盖 MCP 环境或替换模型。测试从项目之外启动，使用新对话，非 SDK 手工直接调用。
+
+| 最终验收 | 实际证据 |
+| --- | --- |
+| 完整工作流 | Pi 主动调用 search_literature、get_paper、download_paper，三次调用全部首次成功，没有无效参数重试；约 48 秒完成 |
+| 核心合集字段检索 | `TS=(diamond AND "thermal conductivity") AND PY=(2020-2025)`，最多 1 篇，Starter v1，数据库回执 WOS / Web of Science Core Collection，ok、cached=false |
+| 精确元数据与被引数 | 对同一 DOI `10.1016/j.ceramint.2025.06.299` 调用 get_paper，metadata_sources=[wos_starter]、include_citations=false，返回同一论文和被引数 11，未请求施引关系 |
+| 下载工具本地复用 | 对测试前已核验的 `1706.03762v7` 设置 overwrite=false、allow_publisher_api=false，返回 already_exists、verified=true；SHA-256 与测试前完全一致，没有重新下载 |
+| 原错误说明回归 | 将用户原报告交给正常 Pi 核验；首次 TI/PY 查询成功，返回 DOI `10.35848/1347-4065/ac4304`，随后正确纠正“缺 Expanded 不能核心合集/字段检索”，并区分 API 分页/总数与 MCP 封装限制；约 32 秒完成 |
+
+本地 QA PDF 为 2,215,244 字节，SHA-256 `bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697`，版本 submittedVersion (1706.03762v7)。本轮实际验证的是下载工具的已验证本地复用分支；新网络 PDF 下载不作为本轮通过结论，相关下载实现另由离线回归及此前独立记录的真实下载覆盖。
+
+所有实际工具参数、结果、模型正文、版本、最终构建指纹及逐项验收在 [同一 Pi 回执](pi-e2e-2026-11-14.json) 的 runs 与 remediation 中。旧的中间结果与失败不删除：其中一轮在模型未返回、尚无 MCP 调用时进程退出 143，日志不足以确认原因，确认进程已终止后才用相同配置重试；最终验收会话均正常退出且模型无错误响应。默认 Pi 工作流的 stderr 另有现有 pi-browser-use 扩展的 Chrome code 21 提示，未阻止三个文献工具调用，本任务没有修改或验收该浏览器扩展。
+
+最终私有 .env、Pi 设置、Pi 用户级 MCP 配置、原 Zotero 配置的内容哈希均未变化，真实 Key 未复制到配置或回执。原交互界面/原聊天未被操作，已打开的 Pi 需 `/reload` 或重新连接。完成上述本机验收时，补丁尚未提交或推送；当时未验证 1.1.1 的新 Windows 原生 CI、真实 Expanded 或新出版社账户权限。后续发布以 Git refs 和 Actions 为准，不将历史 CI 当作当前提交的验证。
+
+## 浏览器启动提示的后续处理与发布准备：2026-11-14
+
+用户随后提供了 pi-browser-use 的 Chrome code 21 长调用栈。检查确认有一个父进程为 1 的后台 Edge，占用 Pi 专用浏览器目录；该进程的 cwd 与此前未完成 Pi 测试的临时 cwd 完全相同，SingletonLock 也指向它。因此只向这一已确认的测试遗留浏览器发送 Browser.close，平稳退出；未终止其他浏览器，也未删除 profile、Cookie 或登录资料。
+
+随后通过实际 Pi SDK 加载原 pi-browser-use 扩展，运行 session_start 和 browser_doctor：34 个浏览器工具注册成功、扩展错误 0、doctor 非错误；没有发 LLM 请求或打开网站，session_shutdown 正常完成，Pi settings 哈希不变。该结果仅验证启动和诊断，不代表网站交互或登录已验收。[后续摘要](pi-e2e-2026-11-14.json)保留原因、处理范围和复验结果。
+
+按用户明确的推送指令，将 1.1.1 源码、相关测试、使用说明及脱敏回执归为同一修复。发布前检查所有非忽略候选文件及可达 Git blob，使用实际凭据精确匹配和常见 Token/私钥模式检查，未发现凭据；未安装专用扫描器。实际 .env、文献库、机器客户端配置和 .local 原始日志均排除，Pi 安装回执中的机器专用启动值也已省略。仓库权限和可见性经连接工具核对为 turtleyang/literature-mcp 私有仓库；最新远端和本地 main 在提交前同步。

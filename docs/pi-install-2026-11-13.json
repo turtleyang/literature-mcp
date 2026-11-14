@@ -1,0 +1,114 @@
+{
+  "at": "2026-11-13T12:55:59.124Z",
+  "environment": "User local Linux host",
+  "pi_version": "1.1.0",
+  "adapter_version": "7.0.0",
+  "scope": "Pi user-global",
+  "configuration_file": "/home/xianiming/.pi/agent/mcp.json",
+  "configuration_file_created": true,
+  "server": {
+    "name": "literature-mcp",
+    "exposure": "direct",
+    "description": "科研文献检索、精确 DOI 元数据查询和经授权的全文下载；支持 WoS Starter、OpenAlex、Crossref 等来源。",
+    "direct_node_entry_verified": true,
+    "absolute_command_and_entry_paths_verified": true,
+    "host_specific_launch_values": "Omitted from published evidence; actual client configuration remains local"
+  },
+  "credentials_copied": false,
+  "preserved": {
+    "pi_settings": true,
+    "existing_zotero_configuration": true,
+    "literature_env": true,
+    "other_pi_servers": true
+  },
+  "verification": [
+    {
+      "at": "2026-11-13T12:58:15.126Z",
+      "type": "Installed Pi SDK + installed pi-mcp-adapter extension runtime",
+      "cwd": "/tmp",
+      "user_global_configuration": "/home/xianiming/.pi/agent/mcp.json",
+      "model_request_sent": false,
+      "other_extensions_loaded": false,
+      "extension_load_errors": [],
+      "registered_literature_tools": [
+        "literature-mcp_search_literature",
+        "literature-mcp_get_paper",
+        "literature-mcp_download_paper"
+      ],
+      "active_literature_tools": [
+        "literature-mcp_search_literature",
+        "literature-mcp_get_paper",
+        "literature-mcp_download_paper"
+      ],
+      "failure": {
+        "code": null,
+        "reason": "Unexpected non-whitespace character after JSON at position 1043 (line 2 column 1)"
+      },
+      "protected_files_unchanged": true,
+      "failure_scope": "Verification harness JSON parsing of the adapter-decorated text; three tools were already registered. Corrected in the subsequent check."
+    },
+    {
+      "at": "2026-11-13T13:00:07.301Z",
+      "type": "Installed Pi SDK + installed pi-mcp-adapter extension runtime",
+      "cwd": "/tmp",
+      "user_global_configuration": "/home/xianiming/.pi/agent/mcp.json",
+      "model_request_sent": false,
+      "other_extensions_loaded": false,
+      "extension_load_errors": [],
+      "registered_literature_tools": [
+        "literature-mcp_search_literature",
+        "literature-mcp_get_paper",
+        "literature-mcp_download_paper"
+      ],
+      "active_literature_tools": [
+        "literature-mcp_search_literature",
+        "literature-mcp_get_paper",
+        "literature-mcp_download_paper"
+      ],
+      "call": {
+        "tool": "literature-mcp_search_literature",
+        "input": {
+          "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+          "mode": "wos",
+          "wos_product": "starter",
+          "max_results": 1
+        },
+        "elapsed_ms": 2238,
+        "status": "ok",
+        "source_statuses": [
+          {
+            "source": "wos_starter",
+            "status": "ok",
+            "elapsed_ms": 1575
+          }
+        ],
+        "cached": false,
+        "papers": [
+          {
+            "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "citation_counts": {
+              "wos_starter": 11
+            },
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001567956700028"
+              }
+            ]
+          }
+        ]
+      },
+      "extension_shutdown_completed": true,
+      "protected_files_unchanged": true
+    }
+  ],
+  "conclusion": {
+    "installed_user_global": true,
+    "pi_runtime_registered_three_tools": true,
+    "actual_wos_call_ok": true,
+    "model_request_sent": false,
+    "interactive_ui_not_tested": true,
+    "existing_pi_sessions_need_reload": true
+  }
+}

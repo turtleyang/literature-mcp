@@ -28,6 +28,12 @@ export interface SourceStatus {
   reason?: string;
   elapsed_ms?: number;
   cached?: boolean;
+  /** Configured target database; a failed/not_configured status does not prove access. */
+  database?: { id: string; name: string };
+  api_product?: 'starter' | 'expanded';
+  api_version?: 'v1' | 'v2';
+  /** Product-level capabilities, separate from what this MCP wrapper exposes. */
+  api_capabilities?: { pagination: boolean; total_matches: boolean };
 }
 export interface Location {
   source: string;

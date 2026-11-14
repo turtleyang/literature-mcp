@@ -52,7 +52,7 @@ npm run smoke
 | Crossref | 复用上游检索；独立精确 DOI 元数据补全 | 不把 TDM 链接当成 OA 授权 | 真实检索、精确 DOI 成功 |
 | Semantic Scholar | 复用检索；精确 DOI / 可选引文列表 | 官方 OA PDF 候选 | 离线通过；本机真实请求出现 429 |
 | arXiv | 复用上游搜索；原生 ID/版本解析 | 官方 PDF，标记预印本版本 | 真实 PDF 下载、校验及本地复用成功 |
-| WoS Starter | 复用上游，默认 v2，独立 Key | 不提供 PDF | 原始上游 HTTP 合约及调度模拟通过；无真实 Key |
+| WoS Starter | 核心合集 `db=WOS`，支持字段检索；默认 v2，可配置 v1 | 不提供 PDF | 本机 v1 真实检索、被引计数及 Pi 对话通过；详见验收记录 |
 | WoS Expanded | 独立 Key、SR/FR、可选 citing 关系 | 不提供 PDF | 模拟通过；无真实 Key / 机构 API 授权 |
 | Scopus / ScienceDirect | 复用上游授权检索 | Elsevier Article Retrieval 单独授权 | 检索路由、全文授权/格式模拟；无真实授权 |
 | Springer | 复用 Metadata 检索 | OA JSON/PDF/JATS；授权 TDM JATS | 离线模拟通过；无真实 API Key |
@@ -74,9 +74,12 @@ ACS、RSC、IEEE、Taylor & Francis、IOP、AIP、APS 预留扩展接口。可�
 
 - `fast` 默认只调用 OpenAlex + Crossref。
 - `wos` 只调用 WoS。`wos_product` 为 `starter`（默认）或 `expanded`；只有 Expanded 接受 `record_view: "short" | "full"`。
+- Starter 已支持核心合集 `db=WOS` 及 `TS`、`TI`、`AU`、`SO`、`PY`、`DO` 字段检索，不需要 Expanded。Starter 请求必须完全省略 `record_view`；`short` 也不适用。Expanded 的 `full` 指更丰富的元数据记录，不是论文全文。
 - `deep` 默认只调用 OpenAlex、Crossref、Semantic Scholar。通过 `sources` 显式补充授权来源，不扫描全部数据库。
 - `sources` 最多 5 个：`openalex`、`crossref`、`semantic_scholar`、`arxiv`、`wos_starter`、`wos_expanded`、`scopus`、`sciencedirect`、`springer`。
 - `max_results` 默认 10，上限 50；Scopus 单来源上游最多 25。
+- `source_statuses` 的 WoS 项会标明目标数据库、产品和 Starter API 版本；只有来源状态成功才表明本次检索成功。`retrieval` 给出请求上限、实际返回数及完整性边界；当前不提供总命中数或翻页，候选结果不能当作全量文献集合。
+- 分页和总数的上述限制属于本 MCP 封装。Starter API 本身支持 `page/limit` 和 `metadata.total`；结果中的 `api_capabilities` 与 `retrieval.limitation_scope` 会区分 API 能力和工具限制，不应据此断言 Starter 没有分页或无法进行任何计量分析。
 - 支持 `year_from`、`year_to`、`sort_by: "relevance" | "date" | "citations"`。
 - OpenAlex 的 `author_id`（`A…`）、`journal_id`（`S…`）、`min_citations` 必须同时指定 `sources:["openalex"]`，以免给其他库附加无法等价执行的 ID 条件。
 
@@ -91,6 +94,8 @@ ACS、RSC、IEEE、Taylor & Francis、IOP、AIP、APS 预留扩展接口。可�
 ```
 
 默认精确查询 Crossref + OpenAlex。严格比较标准化 DOI，不以相似标题替代。返回统一 `Paper`、来源状态、OA 位置和可发现格式，已有本地文件时附路径。不会下载全文，也不会为每篇搜索结果自动补充摘要。
+
+查询 WoS 元数据或被引次数时设置 `metadata_sources:["wos_starter"]`；被引次数会随元数据返回，不需要 `include_citations:true` 或 Expanded。
 
 `include_citations:true` 额外获取最多 20 条引文：已显式选用并授权的 WoS Expanded 记录优先调用其 citing 接口；其他情况使用 Semantic Scholar。引文失败单独报告，不丢失元数据。不把受限或超时解释成未收录。
 
@@ -208,6 +213,16 @@ Claude Code / Pi 的项目 `.mcp.json`，以及 Cursor 的 `.cursor/mcp.json` �
 在其他项目使用时，将该定义合并到相应客户端的用户级配置，或在客户端 MCP 设置中填写相同 command/args。密钥始终放在 MCP 项目私有 `.env`，不必复制到每个客户端配置里。
 
 本机 Pi 使用 `pi-mcp-adapter`；其他 Pi 安装可使用其内建 MCP。按客户端正常流程信任项目并重新连接，检查是否出现三个核心工具。[Pi](https://github.com/earendil-works/pi)、[Pi MCP Adapter](https://github.com/nicobailon/pi-mcp-adapter)、[Claude Code](https://code.claude.com/docs/en/mcp)、[Cursor](https://cursor.com/docs/mcp)。客户端实际验收范围见 [验收记录](docs/verification.md)，不能将 Windows 运行库检查说成所有 Windows 客户端均已实测。
+
+Pi 1.1.0 可添加用户级配置，让其他目录启动的 Pi 也能使用；以下两个绝对路径需替换为当前电脑的实际 Node 与服务路径：
+
+```bash
+pi mcp add literature-mcp --exposure direct -- "/absolute/path/to/node" "/absolute/path/to/literature-mcp/dist/server.js"
+```
+
+该命令写入 `~/.pi/agent/mcp.json`，本机现有 `pi-mcp-adapter` 7.0.0 也会读取此配置。密钥仍由服务从项目私有 `.env` 读取。已打开的 Pi 输入 `/reload` 或重启后使用；三个核心工具会直接显示，不需要再次安装适配器。本机安装及真实调用证据见 [Pi 安装回执](docs/pi-install-2026-11-13.json)。
+
+更新服务后，Pi MCP Adapter 可能仍持有旧工具说明；应重新连接 literature-mcp 并确认工具列表已刷新。本次 1.1.1 修复已在本机定向刷新该服务缓存，并用真实 Pi 模型对话检查，原始失败与后续复验分别保存在 [Pi 对话回执](docs/pi-e2e-2026-11-14.json)。
 
 ## 以后改为服务器运行
 

@@ -22,6 +22,14 @@ flowchart TD
 
 工具响应的状态与来源状态分离：搜索部分来源失败时仍可返回其他来源；精确元数据仅在全部查询明确未收录时返回 `not_found`；全文获取失败不反推文献不存在。预印本、作者接受稿、出版版由每个 OA 位置及下载记录独立标记。`available_formats` 是元数据提示或已验证本地格式，不保证未来请求成功。
 
+WoS 的来源状态携带 `database`、`api_product` 和适用的 Starter `api_version`，描述该来源的配置目标；只有 `status:ok` 才能结合这些字段判断本次成功访问的数据库。固定上游两种 WoS 产品在本项目路由下均默认使用核心合集 `WOS`，不因缺少 Expanded 而否认 Starter 的核心合集或受支持字段检索能力。来源配置缺失时仍保留失败状态，不把目标数据库信息当作许可证明。
+
+检索响应的 `retrieval` 说明候选上限、实际返回数及采集边界。上游归一化检索接口未透出总命中数或翻页，本项目不补造这些值；`total_matches:null`、`pagination_available:false` 与 `exhaustiveness_verified:false` 不等于论文不存在，而是当前无法证明采集完整。
+
+`retrieval.limitation_scope:this_mcp_tool` 明确上述限制属于本封装；WoS Starter 的 `api_capabilities` 同时说明 API 本身支持分页和总命中数。API 的 `page/limit` 与 `metadata.total` 在当前归一化链路未暴露，不能将封装缺项描述成 Starter 产品不支持这些能力，也不能由采集有限直接否定所有计量分析。
+
+供 Agent 读取的参数描述与实际校验共同维护：`record_view` 仅适用于 Expanded，Starter 必须省略；`include_citations` 控制施引关系，不控制元数据中的被引计数。以上约束写入 MCP 工具/字段说明，不依赖某个客户端的额外提示词。客户端可能缓存工具定义，更新服务后须重新发现定义再做真实模型调用验收。
+
 ## 上游边界
 
 不导入上游 Server 到主进程。`Upstream` 懒启动固定 npm 包的 stdio 进程，同一会话保持连接。只允许调用指定检索及 WoS 引文工具，绝不转发 `all`、Sci-Hub、Scholar 爬虫或上游直接下载。子进程 cwd 为临时空目录，环境只转发必要变量；ScrapingAnt/Sci-Hub 明确禁用，商业凭据仅按本地授权转发。退出时关闭连接、终止子进程并清理 cwd。

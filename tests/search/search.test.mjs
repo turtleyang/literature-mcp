@@ -42,6 +42,7 @@ test('WoS Starter and Expanded credentials and query routing stay separate', asy
   const c = await context(
     {
       WOS_API_KEY: 'mock',
+      WOS_STARTER_VERSION: 'v1',
       WOS_EXPANDED_API_KEY: 'mock2',
       LITERATURE_AUTHORIZED_APIS: 'wos_starter,wos_expanded',
     },
@@ -49,13 +50,83 @@ test('WoS Starter and Expanded credentials and query routing stay separate', asy
     () => [upstream()],
   );
   try {
-    await c.search.search(input({ mode: 'wos' }));
-    await c.search.search(input({ mode: 'wos', wos_product: 'expanded', record_view: 'full' }));
+    const starter = await c.search.search(input({ mode: 'wos' }));
+    const expanded = await c.search.search(
+      input({ mode: 'wos', wos_product: 'expanded', record_view: 'full' }),
+    );
     assert.equal(c.calls.length, 2);
     assert.equal(c.calls[0].args.apiProduct, 'starter');
     assert.equal(c.calls[1].args.apiProduct, 'expanded');
     assert.equal(c.calls[1].args.recordView, 'full');
+    assert.equal(c.calls[0].args.recordView, undefined);
+    assert.deepEqual(starter.source_statuses[0].database, {
+      id: 'WOS',
+      name: 'Web of Science Core Collection',
+    });
+    assert.equal(starter.source_statuses[0].api_product, 'starter');
+    assert.equal(starter.source_statuses[0].api_version, 'v1');
+    assert.deepEqual(starter.source_statuses[0].api_capabilities, {
+      pagination: true,
+      total_matches: true,
+    });
+    assert.equal(expanded.source_statuses[0].database.id, 'WOS');
+    assert.equal(expanded.source_statuses[0].api_product, 'expanded');
+    assert.equal(expanded.source_statuses[0].api_version, undefined);
+    const cached = await c.search.search(input({ mode: 'wos' }));
+    assert.equal(cached.cached, true);
+    assert.deepEqual(cached.source_statuses[0].database, starter.source_statuses[0].database);
+    assert.deepEqual(cached.retrieval, starter.retrieval);
     assert.equal(c.requests.length, 0);
+  } finally {
+    await c.close();
+  }
+});
+test('limited mixed-source results preserve database identity without claiming access or completeness', async () => {
+  const c = await context(
+    { WOS_API_KEY: 'mock', LITERATURE_AUTHORIZED_APIS: 'wos_starter' },
+    () => response({ results: [alexRecord(), alexRecord('10.1234/second')] }),
+    () => [upstream('10.1234/third')],
+  );
+  try {
+    const r = await c.search.search(
+      input({ sources: ['openalex', 'wos_starter', 'wos_expanded'], max_results: 1 }),
+    );
+    assert.equal(r.status, 'partial');
+    assert.equal(r.papers.length, 1);
+    assert.equal(r.retrieval.returned_count, r.papers.length);
+    assert.equal(r.retrieval.requested_max_results, 1);
+    assert.equal(r.retrieval.limitation_scope, 'this_mcp_tool');
+    assert.equal(r.retrieval.total_matches, null);
+    assert.equal(r.retrieval.pagination_available, false);
+    assert.equal(r.retrieval.exhaustiveness_verified, false);
+    assert.equal(r.source_statuses[0].database, undefined);
+    assert.equal(r.source_statuses[1].database.id, 'WOS');
+    assert.equal(r.source_statuses[1].status, 'ok');
+    assert.equal(r.source_statuses[2].database.id, 'WOS');
+    assert.equal(r.source_statuses[2].status, 'not_configured');
+    assert.equal(c.calls.length, 1);
+    assert.equal(c.calls[0].args.apiProduct, 'starter');
+  } finally {
+    await c.close();
+  }
+});
+test('Starter exact DOI metadata includes its database and counts without requesting citing papers', async () => {
+  const c = await context(
+    { WOS_API_KEY: 'mock', LITERATURE_AUTHORIZED_APIS: 'wos_starter' },
+    undefined,
+    () => [upstream(doi, 23)],
+  );
+  try {
+    const r = await c.search.get(doi, ['wos_starter']);
+    assert.equal(r.status, 'ok');
+    assert.equal(r.paper.citation_counts.wos_starter, 23);
+    assert.equal(r.source_statuses[0].database.id, 'WOS');
+    assert.equal(r.source_statuses[0].api_product, 'starter');
+    assert.equal(c.calls.length, 1);
+    assert.equal(c.calls[0].args.query, `DO="${doi}"`);
+    assert.equal(c.calls[0].args.recordView, undefined);
+    assert.equal(c.requests.length, 0);
+    assert.equal(r.citations, undefined);
   } finally {
     await c.close();
   }

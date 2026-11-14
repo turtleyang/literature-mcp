@@ -1,0 +1,172 @@
+{
+  "at": "2026-11-13T12:41:11.181Z",
+  "environment": "User local Linux host, fresh project stdio MCP process, fixed upstream package 0.3.3",
+  "user_supplied_service_base_url": "https://api.clarivate.com/apis/wos-starter/v1/",
+  "temporary_configuration": {
+    "WOS_API_KEY": "Existing WOS_EXPANDED_API_KEY value mapped in test process only; value omitted",
+    "WOS_STARTER_VERSION": "v1",
+    "LITERATURE_AUTHORIZED_APIS": [
+      "wiley",
+      "wos_starter"
+    ]
+  },
+  "authorization_basis": "User supplied the official Starter URL while requesting correction and testing of the same configured credential",
+  "persistent_configuration_changed": false,
+  "official_documentation": "https://developer.clarivate.com/apis/wos-starter/swagger",
+  "tests": [
+    {
+      "tool": "search_literature",
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos",
+        "wos_product": "starter",
+        "max_results": 1
+      },
+      "elapsed_ms": 1883,
+      "status": "ok",
+      "source_statuses": [
+        {
+          "source": "wos_starter",
+          "status": "ok",
+          "elapsed_ms": 1875
+        }
+      ],
+      "cached": false,
+      "papers": [
+        {
+          "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+          "doi": "10.1016/j.ceramint.2025.06.299",
+          "year": 2025,
+          "journal": "CERAMICS INTERNATIONAL",
+          "source_records": [
+            {
+              "source": "wos_starter",
+              "id": "WOS:001567956700028",
+              "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+            }
+          ],
+          "citation_counts": {
+            "wos_starter": 11
+          }
+        }
+      ]
+    }
+  ],
+  "conclusion": {
+    "starter_v1_usable": true,
+    "expanded_test_is_a_different_product": true,
+    "expanded_access_not_established": true,
+    "recommended_configuration_if_successful": [
+      "WOS_API_KEY=<the same key>",
+      "WOS_STARTER_VERSION=v1",
+      "LITERATURE_AUTHORIZED_APIS=wiley,wos_starter"
+    ]
+  },
+  "env_content_unchanged": true,
+  "persistent_configuration_retests": [
+    {
+      "at": "2026-11-13T12:45:49.236Z",
+      "environment": "User local Linux host; fresh stdio process; no environment overrides",
+      "phase": "User-edited persistent configuration before any correction",
+      "environment_overrides": false,
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos",
+        "wos_product": "starter",
+        "max_results": 1
+      },
+      "status": "partial",
+      "source_statuses": [
+        {
+          "source": "wos_starter",
+          "status": "restricted",
+          "reason": "Explicitly authorize wos_starter in LITERATURE_AUTHORIZED_APIS"
+        }
+      ],
+      "papers_returned": 0
+    },
+    {
+      "at": "2026-11-13T12:46:40.006Z",
+      "environment": "User local Linux host; fresh project stdio MCP process",
+      "phase": "Persistent configuration after completing the missing local authorization and version",
+      "environment_overrides": false,
+      "configuration": {
+        "WOS_API_KEY_present": true,
+        "WOS_STARTER_VERSION": "v1",
+        "authorized_apis": [
+          "wiley",
+          "wos_starter"
+        ]
+      },
+      "discovered_tools": [
+        "search_literature",
+        "get_paper",
+        "download_paper"
+      ],
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos",
+        "wos_product": "starter",
+        "max_results": 1
+      },
+      "elapsed_ms": 3310,
+      "status": "ok",
+      "source_statuses": [
+        {
+          "source": "wos_starter",
+          "status": "ok",
+          "elapsed_ms": 3305
+        }
+      ],
+      "cached": false,
+      "papers": [
+        {
+          "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+          "doi": "10.1016/j.ceramint.2025.06.299",
+          "journal": "CERAMICS INTERNATIONAL",
+          "year": 2025,
+          "source_records": [
+            {
+              "source": "wos_starter",
+              "id": "WOS:001567956700028"
+            }
+          ],
+          "citation_counts": {
+            "wos_starter": 11
+          }
+        }
+      ],
+      "env_content_unchanged_during_retest": true
+    }
+  ],
+  "persistent_configuration_correction": {
+    "at": "2026-11-13T12:46:11.720Z",
+    "changed_fields": {
+      "WOS_STARTER_VERSION": "v1",
+      "LITERATURE_AUTHORIZED_APIS": [
+        "wiley",
+        "wos_starter"
+      ]
+    },
+    "credentials_unchanged": true,
+    "unrelated_configuration_unchanged": true,
+    "permissions_unchanged": true,
+    "reason": "Complete the user-requested Starter configuration and retest without environment overrides; initial persistent test was blocked by missing local authorization"
+  },
+  "current_conclusion": {
+    "at": "2026-11-13T12:46:43.833Z",
+    "persistent_starter_v1_usable": true,
+    "environment_overrides": false,
+    "credential_values_changed_by_assistant": false,
+    "corrected_fields": [
+      "WOS_STARTER_VERSION",
+      "LITERATURE_AUTHORIZED_APIS"
+    ],
+    "not_tested": [
+      "WoS Expanded",
+      "WoS Starter v2",
+      "Publisher full-text access"
+    ],
+    "persistent_configuration_corrected": true
+  }
+}

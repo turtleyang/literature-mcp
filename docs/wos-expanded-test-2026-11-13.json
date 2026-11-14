@@ -1,0 +1,78 @@
+{
+  "at": "2026-11-13T12:35:40.373Z",
+  "environment": "User local Linux host; fresh project stdio MCP process; fixed upstream package 0.3.3",
+  "credentials": {
+    "WOS_EXPANDED_API_KEY": true
+  },
+  "persistent_authorized_apis": [
+    "wiley"
+  ],
+  "test_process_authorized_apis": [
+    "wiley",
+    "wos_expanded"
+  ],
+  "temporary_authorization_basis": "User explicitly requested testing the newly added WoS Expanded key",
+  "persistent_configuration_changed": false,
+  "tests": [
+    {
+      "tool": "search_literature",
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos",
+        "wos_product": "expanded",
+        "record_view": "short",
+        "max_results": 1
+      },
+      "elapsed_ms": 2309,
+      "status": "partial",
+      "source_statuses": [
+        {
+          "source": "wos_expanded",
+          "status": "failed",
+          "reason": "Upstream search_webofscience failed",
+          "elapsed_ms": 2303
+        }
+      ],
+      "cached": false,
+      "papers": []
+    }
+  ],
+  "not_tested": [
+    "WoS Starter",
+    "Cited/citing related-record endpoints",
+    "Publisher full-text access"
+  ],
+  "full_record_test": "Not attempted because short-record search did not return a verified WoS UID",
+  "env_content_unchanged": true,
+  "direct_diagnostic": {
+    "at": "2026-11-13T12:36:19.523Z",
+    "reason": "Isolate generic upstream MCP failure using a single direct request with identical Expanded SR parameters and no retries",
+    "origin": "https://api.clarivate.com",
+    "path": "/api/wos/",
+    "count": 1,
+    "record_view": "SR",
+    "http_status": 403,
+    "elapsed_ms": 2045,
+    "content_type": "application/json; charset=utf-8",
+    "quota_headers": {},
+    "error_response": {
+      "message": "You cannot consume this service"
+    },
+    "response_keys": [
+      "message",
+      "request_id"
+    ]
+  },
+  "conclusion": {
+    "status": "restricted",
+    "usable_for_expanded": false,
+    "observed": "Official Expanded endpoint returned HTTP 403: You cannot consume this service",
+    "interpretation": "Service access denied; check application API subscription, approval and institutional license. This does not establish whether the key string itself is invalid.",
+    "credential_validity": "Not established",
+    "next_configuration_after_entitlement_confirmed": "LITERATURE_AUTHORIZED_APIS=wiley,wos_expanded; restart MCP",
+    "official_sources": [
+      "https://developer.clarivate.com/help/api-access",
+      "https://developer.clarivate.com/apis/wos"
+    ]
+  }
+}

@@ -1,0 +1,2035 @@
+{
+  "runs": [
+    {
+      "at": "2026-11-13T15:07:58.693Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "请实际使用 literature-mcp 的 WoS Starter 通道，检索 2020—2025 年 diamond thermal conductivity 相关论文，最多返回 3 篇。请使用带 TS 和 PY 字段的检索式，列出实际调用的工具、查询式、source_statuses，以及论文标题、DOI 和 WoS 被引次数。不要下载论文，不要读取任何 .env 或凭据文件。完成后简要说明：在未配置 Expanded 的情况下，Starter 是否能够检索 WoS 核心合集、是否能使用字段条件，以及本次结果有哪些范围限制。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-8HFhay",
+      "allowed_tools": [
+        "literature-mcp_search_literature"
+      ],
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_59bec4c3b91647908fcbc1743882beb5",
+          "arguments": {
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "mode": "wos",
+            "wos_product": "starter",
+            "sources": [
+              "wos_starter"
+            ],
+            "year_from": 2020,
+            "year_to": 2025,
+            "max_results": 3,
+            "sort_by": "relevance",
+            "record_view": "full"
+          }
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_7941d2412d414a0bb57edd357c9e8846",
+          "arguments": {
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "mode": "wos",
+            "wos_product": "starter",
+            "sources": [
+              "wos_starter"
+            ],
+            "year_from": 2020,
+            "year_to": 2025,
+            "max_results": 3,
+            "sort_by": "relevance",
+            "record_view": "short"
+          }
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_6aeca7f696ff45099d13a86e62283827",
+          "arguments": {
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "mode": "wos",
+            "wos_product": "starter",
+            "sources": [
+              "wos_starter"
+            ],
+            "year_from": 2020,
+            "year_to": 2025,
+            "max_results": 3,
+            "sort_by": "relevance"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_59bec4c3b91647908fcbc1743882beb5",
+          "is_error": true,
+          "duration_ms": 672,
+          "result_preview": "{\"content\":[{\"type\":\"text\",\"text\":\"Error: MCP error -32602: Input validation error: Invalid arguments for tool search_literature: record_view requires WoS Expanded\"}],\"details\":{\"error\":\"tool_error\",\"server\":\"literature-mcp\"}}"
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_7941d2412d414a0bb57edd357c9e8846",
+          "is_error": true,
+          "duration_ms": 9,
+          "result_preview": "{\"content\":[{\"type\":\"text\",\"text\":\"Error: MCP error -32602: Input validation error: Invalid arguments for tool search_literature: record_view requires WoS Expanded\"}],\"details\":{\"error\":\"tool_error\",\"server\":\"literature-mcp\"}}"
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_6aeca7f696ff45099d13a86e62283827",
+          "is_error": false,
+          "duration_ms": 2906,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 2899
+            }
+          ],
+          "cached": false,
+          "papers": [
+            {
+              "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+              "doi": "10.1016/j.ceramint.2025.06.299",
+              "year": 2025,
+              "citation_counts": {
+                "wos_starter": 11
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001567956700028"
+                }
+              ]
+            },
+            {
+              "title": "Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite",
+              "doi": "10.1016/j.diamond.2024.111257",
+              "year": 2024,
+              "citation_counts": {
+                "wos_starter": 34
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001263715100001"
+                }
+              ]
+            },
+            {
+              "title": "Synergetic effect enabling high thermal conductivity in Cu/diamond composite",
+              "doi": "10.1016/j.diamond.2023.110213",
+              "year": 2023,
+              "citation_counts": {
+                "wos_starter": 42
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001048491800001"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "assistant_messages": [
+        "我将仅通过 `literature-mcp` 的 WoS Starter 通道执行一次字段检索，不访问本地文件、环境变量或任何凭据，也不下载全文。",
+        "Starter 不支持 `record_view=full`；我会保留同一 TS/PY 检索式，以 Starter 支持的记录视图重新发起调用。",
+        "Starter 对 `record_view` 参数整体都不开放。我会去掉该参数并用相同的 WoS 字段检索式执行最终检索。",
+        "实际调用的工具：`literature-mcp_search_literature`\n\n查询式：\n```text\nTS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n\n调用参数：`mode=wos`，`wos_product=starter`，`sources=[\"wos_starter\"]`，`max_results=3`。未下载论文，也未读取任何 `.env` 或凭据文件。\n\n`source_statuses`：\n```json\n[\n  {\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 2899\n  }\n]\n```\n\n| 年份 | 标题 | DOI | WoS Starter 被引次数 |\n|---|---|---|---:|\n| 2025 | Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite | `10.1016/j.ceramint.2025.06.299` | 11 |\n| 2024 | Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite | `10.1016/j.diamond.2024.111257` | 34 |\n| 2023 | Synergetic effect enabling high thermal conductivity in Cu/diamond composite | `10.1016/j.diamond.2023.110213` | 42 |\n\n结论：在未配置 WoS Expanded 的情况下，WoS Starter 通道可以执行本次 `TS` 与 `PY` 字段条件检索，并返回带 `wos_starter` 被引次数的记录；但不能据此宣称检索的是 WoS Core Collection。Expanded 才是该工具中面向更完整 WoS Expanded/Core Collection 能力的产品选项。\n\n本次范围限制：结果最多 3 篇，按来源相关性排序，工具明确标注其并非系统综述；检索命中的是与金刚石复合材料相关的热导研究，不能代表 2020--2025 年该主题的完整文献集合。Starter 还不支持 `record_view` 参数，该参数要求 WoS Expanded。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 5324,
+            "output": 174,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 39,
+            "totalTokens": 5498,
+            "cost": {
+              "input": 0.010648,
+              "output": 0.002088,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.012735999999999999
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 906,
+            "output": 148,
+            "cacheRead": 4608,
+            "cacheWrite": 0,
+            "reasoning": 15,
+            "totalTokens": 5662,
+            "cost": {
+              "input": 0.001812,
+              "output": 0.001776,
+              "cacheRead": 0.0009216000000000001,
+              "cacheWrite": 0,
+              "total": 0.0045096
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "error",
+          "usage": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "totalTokens": 0,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          },
+          "error_message": "terminated"
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 1096,
+            "output": 92,
+            "cacheRead": 4608,
+            "cacheWrite": 0,
+            "reasoning": 7,
+            "totalTokens": 5796,
+            "cost": {
+              "input": 0.002192,
+              "output": 0.001104,
+              "cacheRead": 0.0009216000000000001,
+              "cacheWrite": 0,
+              "total": 0.0042176
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 2896,
+            "output": 455,
+            "cacheRead": 4608,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 7959,
+            "cost": {
+              "input": 0.005791999999999999,
+              "output": 0.0054600000000000004,
+              "cacheRead": 0.0009216000000000001,
+              "cacheWrite": 0,
+              "total": 0.0121736
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 2,
+        "turn_start": 5,
+        "message_start": 10,
+        "message_end": 10,
+        "message_update": 802,
+        "tool_execution_start": 3,
+        "tool_execution_end": 3,
+        "turn_end": 5,
+        "agent_end": 2,
+        "auto_retry_start": 1,
+        "entry_appended": 1,
+        "auto_retry_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 231907,
+      "final_answer": "实际调用的工具：`literature-mcp_search_literature`\n\n查询式：\n```text\nTS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n\n调用参数：`mode=wos`，`wos_product=starter`，`sources=[\"wos_starter\"]`，`max_results=3`。未下载论文，也未读取任何 `.env` 或凭据文件。\n\n`source_statuses`：\n```json\n[\n  {\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 2899\n  }\n]\n```\n\n| 年份 | 标题 | DOI | WoS Starter 被引次数 |\n|---|---|---|---:|\n| 2025 | Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite | `10.1016/j.ceramint.2025.06.299` | 11 |\n| 2024 | Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite | `10.1016/j.diamond.2024.111257` | 34 |\n| 2023 | Synergetic effect enabling high thermal conductivity in Cu/diamond composite | `10.1016/j.diamond.2023.110213` | 42 |\n\n结论：在未配置 WoS Expanded 的情况下，WoS Starter 通道可以执行本次 `TS` 与 `PY` 字段条件检索，并返回带 `wos_starter` 被引次数的记录；但不能据此宣称检索的是 WoS Core Collection。Expanded 才是该工具中面向更完整 WoS Expanded/Core Collection 能力的产品选项。\n\n本次范围限制：结果最多 3 篇，按来源相关性排序，工具明确标注其并非系统综述；检索命中的是与金刚石复合材料相关的热导研究，不能代表 2020--2025 年该主题的完整文献集合。Starter 还不支持 `record_view` 参数，该参数要求 WoS Expanded。",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true
+      }
+    },
+    {
+      "at": "2026-11-14T10:22:57.063Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "请实际使用 literature-mcp 的 WoS Starter 通道，检索 2020—2025 年 diamond thermal conductivity 相关论文，最多返回 3 篇。请使用带 TS 和 PY 字段的检索式，列出实际调用的工具、查询式、source_statuses，以及论文标题、DOI 和 WoS 被引次数。不要下载论文，不要读取任何 .env 或凭据文件。完成后简要说明：在未配置 Expanded 的情况下，Starter 是否能够检索 WoS 核心合集、是否能使用字段条件，以及本次结果有哪些范围限制。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-Ddpmy7",
+      "case_name": "post-fix-search",
+      "service_version": "1.1.1",
+      "allowed_tools": [
+        "literature-mcp_search_literature"
+      ],
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_fac2ca2d59734be2908ca355961b3fd8",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "sources": [
+              "wos_starter"
+            ],
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 3,
+            "sort_by": "relevance"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_fac2ca2d59734be2908ca355961b3fd8",
+          "is_error": false,
+          "duration_ms": 3691,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 2963
+            }
+          ],
+          "retrieval": {
+            "requested_max_results": 3,
+            "returned_count": 3,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+              "doi": "10.1016/j.ceramint.2025.06.299",
+              "year": 2025,
+              "authors": [
+                "Zhang, Yongjian",
+                "Li, Ning",
+                "Hao, Jinpeng",
+                "Wu, Jianhua",
+                "Luo, Yang",
+                "Wang, Xitao",
+                "Zhang, Hailong"
+              ],
+              "journal": "CERAMICS INTERNATIONAL",
+              "citation_counts": {
+                "wos_starter": 11
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001567956700028"
+                }
+              ]
+            },
+            {
+              "title": "Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite",
+              "doi": "10.1016/j.diamond.2024.111257",
+              "year": 2024,
+              "authors": [
+                "Zhang, Yongjian",
+                "Wang, Luhua",
+                "Hao, Jinpeng",
+                "Li, Ning",
+                "Wang, Xitao",
+                "Zhang, Hailong"
+              ],
+              "journal": "DIAMOND AND RELATED MATERIALS",
+              "citation_counts": {
+                "wos_starter": 34
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001263715100001"
+                }
+              ]
+            },
+            {
+              "title": "Synergetic effect enabling high thermal conductivity in Cu/diamond composite",
+              "doi": "10.1016/j.diamond.2023.110213",
+              "year": 2023,
+              "authors": [
+                "Hao, Jinpeng",
+                "Zhang, Yongjian",
+                "Li, Ning",
+                "Dai, Jingjie",
+                "Wang, Xitao",
+                "Zhang, Hailong"
+              ],
+              "journal": "DIAMOND AND RELATED MATERIALS",
+              "citation_counts": {
+                "wos_starter": 42
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001048491800001"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "assistant_messages": [
+        "已实际调用 **`literature-mcp_search_literature`**，未下载论文，也未读取 `.env` 或任何凭据文件。\n\n- 通道：WoS Starter（`mode=wos`, `wos_product=starter`, `sources=[\"wos_starter\"]`）\n- 查询式：`TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`\n- 最大返回数：3\n- 排序：相关性\n\n### source_statuses\n```json\n[\n  {\n    \"database\": {\n      \"id\": \"WOS\",\n      \"name\": \"Web of Science Core Collection\"\n    },\n    \"api_product\": \"starter\",\n    \"api_version\": \"v1\",\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 2963\n  }\n]\n```\n\n### 检索结果\n\n| 年份 | 标题 | DOI | WoS 被引次数 |\n|---|---|---|---:|\n| 2025 | Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite | `10.1016/j.ceramint.2025.06.299` | 11 |\n| 2024 | Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite | `10.1016/j.diamond.2024.111257` | 34 |\n| 2023 | Synergetic effect enabling high thermal conductivity in Cu/diamond composite | `10.1016/j.diamond.2023.110213` | 42 |\n\n### 说明与范围限制\n\n- **Starter 能否检索 WoS 核心合集？** 能。本次 `source_statuses` 明确返回数据库为 **Web of Science Core Collection**（`id: WOS`），并且状态为 `ok`。\n- **Starter 能否使用字段条件？** 能。本次实际使用了 `TS`（主题）和 `PY`（出版年）字段检索式，并成功执行。\n- **未配置 Expanded 的影响：** Expanded 并非检索 WoS 核心合集或使用 `TS`、`PY` 字段的必要条件；它主要涉及更丰富的记录元数据和关联信息。\n- **结果范围限制：**\n  1. 本次仅请求并返回 3 篇，按来源相关性排序，不是系统综述或完整结果集。\n  2. 返回信息中 `total_matches` 为 `null`，且不支持分页，故无法确认全部命中数或结果穷尽性（`exhaustiveness_verified: false`）。\n  3. 查询主题会涵盖金刚石复合材料（如 Al/diamond、Cu/diamond），并不等同于只检索纯金刚石本体的热导率研究。\n  4. WoS 被引次数为本次 WoS Starter 返回时的计数。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 1204,
+            "output": 117,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 44,
+            "totalTokens": 1321,
+            "cost": {
+              "input": 0.002408,
+              "output": 0.001404,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.0038120000000000003
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 3180,
+            "output": 636,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 3816,
+            "cost": {
+              "input": 0.006359999999999999,
+              "output": 0.007632,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.013992
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 2,
+        "message_start": 5,
+        "message_end": 5,
+        "message_update": 685,
+        "tool_execution_start": 1,
+        "tool_execution_end": 1,
+        "turn_end": 2,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 44913,
+      "final_answer": "已实际调用 **`literature-mcp_search_literature`**，未下载论文，也未读取 `.env` 或任何凭据文件。\n\n- 通道：WoS Starter（`mode=wos`, `wos_product=starter`, `sources=[\"wos_starter\"]`）\n- 查询式：`TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`\n- 最大返回数：3\n- 排序：相关性\n\n### source_statuses\n```json\n[\n  {\n    \"database\": {\n      \"id\": \"WOS\",\n      \"name\": \"Web of Science Core Collection\"\n    },\n    \"api_product\": \"starter\",\n    \"api_version\": \"v1\",\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 2963\n  }\n]\n```\n\n### 检索结果\n\n| 年份 | 标题 | DOI | WoS 被引次数 |\n|---|---|---|---:|\n| 2025 | Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite | `10.1016/j.ceramint.2025.06.299` | 11 |\n| 2024 | Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite | `10.1016/j.diamond.2024.111257` | 34 |\n| 2023 | Synergetic effect enabling high thermal conductivity in Cu/diamond composite | `10.1016/j.diamond.2023.110213` | 42 |\n\n### 说明与范围限制\n\n- **Starter 能否检索 WoS 核心合集？** 能。本次 `source_statuses` 明确返回数据库为 **Web of Science Core Collection**（`id: WOS`），并且状态为 `ok`。\n- **Starter 能否使用字段条件？** 能。本次实际使用了 `TS`（主题）和 `PY`（出版年）字段检索式，并成功执行。\n- **未配置 Expanded 的影响：** Expanded 并非检索 WoS 核心合集或使用 `TS`、`PY` 字段的必要条件；它主要涉及更丰富的记录元数据和关联信息。\n- **结果范围限制：**\n  1. 本次仅请求并返回 3 篇，按来源相关性排序，不是系统综述或完整结果集。\n  2. 返回信息中 `total_matches` 为 `null`，且不支持分页，故无法确认全部命中数或结果穷尽性（`exhaustiveness_verified: false`）。\n  3. 查询主题会涵盖金刚石复合材料（如 Al/diamond、Cu/diamond），并不等同于只检索纯金刚石本体的热导率研究。\n  4. WoS 被引次数为本次 WoS Starter 返回时的计数。",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true,
+        "first_tool_call_succeeded": true
+      }
+    },
+    {
+      "at": "2026-11-14T10:24:24.908Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "请实际使用 literature-mcp 查询 DOI 10.1016/j.ceramint.2025.06.299 的元数据和 WoS 被引次数，只用已配置的 WoS Starter。返回标题、作者、期刊、年份、DOI、WoS 被引次数、数据库名称和 source_statuses。只要被引计数，不要施引论文列表或引用关系，不要下载，不要读取任何配置或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-seE3IZ",
+      "case_name": "post-fix-metadata",
+      "service_version": "1.1.1",
+      "allowed_tools": [
+        "literature-mcp_search_literature",
+        "literature-mcp_get_paper"
+      ],
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_get_paper",
+          "id": "call_bbf44dede1894aedaa79361b5f61ef81",
+          "arguments": {
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "include_citations": false,
+            "metadata_sources": [
+              "wos_starter"
+            ]
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_get_paper",
+          "id": "call_bbf44dede1894aedaa79361b5f61ef81",
+          "is_error": false,
+          "duration_ms": 2613,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1977
+            }
+          ],
+          "papers": [],
+          "paper": {
+            "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "year": 2025,
+            "authors": [
+              "Zhang, Yongjian",
+              "Li, Ning",
+              "Hao, Jinpeng",
+              "Wu, Jianhua",
+              "Luo, Yang",
+              "Wang, Xitao",
+              "Zhang, Hailong"
+            ],
+            "journal": "CERAMICS INTERNATIONAL",
+            "citation_counts": {
+              "wos_starter": 11
+            },
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001567956700028"
+              }
+            ]
+          }
+        }
+      ],
+      "assistant_messages": [
+        "- **标题**：Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite  \n- **作者**：Yongjian Zhang; Ning Li; Jinpeng Hao; Jianhua Wu; Yang Luo; Xitao Wang; Hailong Zhang  \n- **期刊**：CERAMICS INTERNATIONAL  \n- **年份**：2025  \n- **DOI**：10.1016/j.ceramint.2025.06.299  \n- **WoS 被引次数**：11  \n- **数据库名称**：Web of Science Core Collection（WOS）  \n\n**source_statuses**：\n```json\n[\n  {\n    \"database\": {\n      \"id\": \"WOS\",\n      \"name\": \"Web of Science Core Collection\"\n    },\n    \"api_product\": \"starter\",\n    \"api_version\": \"v1\",\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 1977\n  }\n]\n```"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 1476,
+            "output": 72,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 16,
+            "totalTokens": 1548,
+            "cost": {
+              "input": 0.0029519999999999998,
+              "output": 0.000864,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.003816
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 2194,
+            "output": 213,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2407,
+            "cost": {
+              "input": 0.0043879999999999995,
+              "output": 0.002556,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.006944
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 2,
+        "message_start": 5,
+        "message_end": 5,
+        "message_update": 249,
+        "tool_execution_start": 1,
+        "tool_execution_end": 1,
+        "turn_end": 2,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 20735,
+      "final_answer": "- **标题**：Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite  \n- **作者**：Yongjian Zhang; Ning Li; Jinpeng Hao; Jianhua Wu; Yang Luo; Xitao Wang; Hailong Zhang  \n- **期刊**：CERAMICS INTERNATIONAL  \n- **年份**：2025  \n- **DOI**：10.1016/j.ceramint.2025.06.299  \n- **WoS 被引次数**：11  \n- **数据库名称**：Web of Science Core Collection（WOS）  \n\n**source_statuses**：\n```json\n[\n  {\n    \"database\": {\n      \"id\": \"WOS\",\n      \"name\": \"Web of Science Core Collection\"\n    },\n    \"api_product\": \"starter\",\n    \"api_version\": \"v1\",\n    \"source\": \"wos_starter\",\n    \"status\": \"ok\",\n    \"elapsed_ms\": 1977\n  }\n]\n```",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true,
+        "first_tool_call_succeeded": true,
+        "check_scope": "Actual MCP tool selection and successful uncached WoS metadata/search result"
+      }
+    },
+    {
+      "at": "2026-11-14T10:25:55.497Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "验证 literature-mcp 的本地文献复用功能。已检索并保存的 QA 论文是 arXiv:1706.03762v7（Attention Is All You Need），标识符和本地文件已由测试程序核验。请调用 download_paper，arxiv_id=1706.03762v7，overwrite=false，allow_publisher_api=false；本次只复用已有文件，不重新检索或下载新文件。报告真实状态、文件路径、格式、SHA-256 与版本。不要读取 .env 或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-j5EjJH",
+      "case_name": "post-fix-local-reuse",
+      "service_version": "1.1.1",
+      "allowed_tools": [
+        "literature-mcp_download_paper"
+      ],
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_download_paper",
+          "id": "call_9ed00287b747454592fc8f8e86c1ce31",
+          "arguments": {
+            "arxiv_id": "1706.03762v7",
+            "overwrite": false,
+            "allow_publisher_api": false,
+            "preferred_source": "arxiv"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_download_paper",
+          "id": "call_9ed00287b747454592fc8f8e86c1ce31",
+          "is_error": false,
+          "duration_ms": 729,
+          "status": "already_exists",
+          "papers": [],
+          "download": {
+            "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+            "format": "pdf",
+            "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+            "version": "submittedVersion (1706.03762v7)",
+            "verified": true,
+            "source": "arxiv"
+          }
+        }
+      ],
+      "assistant_messages": [
+        "真实状态：`already_exists`（已复用本地已验证文件；未重新检索或下载）\n\n- arXiv 标识符：`1706.03762v7`\n- 版本：`submittedVersion (1706.03762v7)`\n- 格式：PDF\n- 文件路径：`/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf`\n- SHA-256：`bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697`\n- 文件大小：2,215,244 bytes\n- 验证：`true`（通过 PDF 首页中的 arXiv ID 核验）"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 788,
+            "output": 61,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 10,
+            "totalTokens": 849,
+            "cost": {
+              "input": 0.001576,
+              "output": 0.000732,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.002308
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 1256,
+            "output": 204,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1460,
+            "cost": {
+              "input": 0.002512,
+              "output": 0.002448,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.00496
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 2,
+        "message_start": 5,
+        "message_end": 5,
+        "message_update": 233,
+        "tool_execution_start": 1,
+        "tool_execution_end": 1,
+        "turn_end": 2,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 17895,
+      "final_answer": "真实状态：`already_exists`（已复用本地已验证文件；未重新检索或下载）\n\n- arXiv 标识符：`1706.03762v7`\n- 版本：`submittedVersion (1706.03762v7)`\n- 格式：PDF\n- 文件路径：`/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf`\n- SHA-256：`bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697`\n- 文件大小：2,215,244 bytes\n- 验证：`true`（通过 PDF 首页中的 arXiv ID 核验）",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": false,
+        "no_download_call": false,
+        "first_tool_call_succeeded": true
+      }
+    },
+    {
+      "at": "2026-11-14T10:28:06.368Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "请用本机已经安装的 literature-mcp，通过 WoS Starter 检索 2020—2025 年金刚石热导率相关英文论文，给出 2 篇的标题、DOI 和 WoS 被引次数，并说明实际查询的数据库。最后说明 Starter 能否进行字段检索、本次是否已取得全部文献，以及完成这次检索是否需要 Expanded。不要下载论文，不要读取任何配置或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-1XMQyt",
+      "case_name": "post-fix-default-pi",
+      "service_version": "1.1.1",
+      "tool_configuration": "Default Pi toolset, extensions, skills and context discovery; no allowlist",
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_64e7a16b2cb04025be44963147a372ba",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 2,
+            "sort_by": "citations"
+          }
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_151bc1c5cefa42cab599165f481d8642",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "query": "TI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 10,
+            "sort_by": "citations"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_64e7a16b2cb04025be44963147a372ba",
+          "is_error": false,
+          "duration_ms": 2577,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1963
+            }
+          ],
+          "retrieval": {
+            "requested_max_results": 2,
+            "returned_count": 2,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Thermal Conductivity of Amorphous Materials",
+              "doi": "10.1002/adfm.201903829",
+              "year": 2020,
+              "authors": [
+                "Zhou, Wu-Xing",
+                "Cheng, Yuan",
+                "Chen, Ke-Qiu",
+                "Xie, Guofeng",
+                "Wang, Tian",
+                "Zhang, Gang"
+              ],
+              "journal": "ADVANCED FUNCTIONAL MATERIALS",
+              "citation_counts": {
+                "wos_starter": 395
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000485642600001"
+                }
+              ]
+            },
+            {
+              "title": "A review on fabrication methods, reinforcements and mechanical properties of aluminum matrix composites",
+              "doi": "10.1016/j.jmapro.2020.05.042",
+              "year": 2020,
+              "authors": [
+                "Chak, Vineet",
+                "Chattopadhyay, Himadri",
+                "Dora, T. L."
+              ],
+              "journal": "JOURNAL OF MANUFACTURING PROCESSES",
+              "citation_counts": {
+                "wos_starter": 325
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000558497100004"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_151bc1c5cefa42cab599165f481d8642",
+          "is_error": false,
+          "duration_ms": 1113,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1110
+            }
+          ],
+          "retrieval": {
+            "requested_max_results": 10,
+            "returned_count": 10,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Research progress of diamond/copper composites with high thermal conductivity",
+              "doi": "10.1016/j.diamond.2020.107993",
+              "year": 2020,
+              "authors": [
+                "Dai, Shugang",
+                "Li, Jinwang",
+                "Lu, Ningxiang"
+              ],
+              "journal": "DIAMOND AND RELATED MATERIALS",
+              "citation_counts": {
+                "wos_starter": 125
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000569885400008"
+                }
+              ]
+            },
+            {
+              "title": "In situ measurements of intracellular thermal conductivity using heater-thermometer hybrid diamond nanosensors",
+              "doi": "10.1126/sciadv.abd7888",
+              "year": 2021,
+              "authors": [
+                "Sotoma, Shingo",
+                "Zhong, Chongxia",
+                "Kah, James Chen Yong",
+                "Yamashita, Hayato",
+                "Plakhotnik, Taras",
+                "Harada, Yoshie",
+                "Suzuki, Madoka"
+              ],
+              "journal": "SCIENCE ADVANCES",
+              "citation_counts": {
+                "wos_starter": 123
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000608481000030"
+                }
+              ]
+            },
+            {
+              "title": "Thermal conductivity of monolayer graphene: Convergent and lower than diamond",
+              "doi": "10.1103/physrevb.108.l121412",
+              "year": 2023,
+              "authors": [
+                "Han, Zherui",
+                "Ruan, Xiulin"
+              ],
+              "journal": "PHYSICAL REVIEW B",
+              "citation_counts": {
+                "wos_starter": 105
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001089572400002"
+                }
+              ]
+            },
+            {
+              "title": "High thermal conductivity and strong interface bonding of a hot-forged Cu/Ti-coated-diamond composite",
+              "doi": "10.1016/j.carbon.2020.07.001",
+              "year": 2020,
+              "authors": [
+                "Lei, L.",
+                "Bolzoni, L.",
+                "Yang, F."
+              ],
+              "journal": "CARBON",
+              "citation_counts": {
+                "wos_starter": 94
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000565908000001"
+                }
+              ]
+            },
+            {
+              "title": "A Novel PiGF@Diamond Color Converter with a Record Thermal Conductivity for Laser-Driven Projection Display",
+              "doi": "10.1002/adma.202406147",
+              "year": 2024,
+              "authors": [
+                "Yu, Zikang",
+                "Zhao, Jiuzhou",
+                "Yang, Zezhong",
+                "Mou, Yun",
+                "Zhang, Hongjin",
+                "Xu, Ruipeng",
+                "Wang, Qing",
+                "Zeng, Lingwei"
+              ],
+              "journal": "ADVANCED MATERIALS",
+              "citation_counts": {
+                "wos_starter": 86
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001258511100001"
+                }
+              ]
+            },
+            {
+              "title": "Thermal conductivity and phase change characteristics of hierarchical porous diamond/erythritol composite phase change materials",
+              "doi": "10.1016/j.energy.2021.121158",
+              "year": 2021,
+              "authors": [
+                "Yan, Xiaoxin",
+                "Feng, Yanhui",
+                "Qiu, Lin",
+                "Zhang, Xinxin"
+              ],
+              "journal": "ENERGY",
+              "citation_counts": {
+                "wos_starter": 79
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000681286800008"
+                }
+              ]
+            },
+            {
+              "title": "Enhanced dielectric breakdown strength and thermal conductivity of silicone gel composites with high-electron-affinity silicon Dioxide/Cationic Polymer/Nano-diamond",
+              "doi": "10.1016/j.cej.2024.157623",
+              "year": 2024,
+              "authors": [
+                "Luo, Meng",
+                "Zhou, Yuanhang",
+                "Wang, Ran",
+                "Cao, Xiaolong",
+                "Wang, Zhengdong"
+              ],
+              "journal": "CHEMICAL ENGINEERING JOURNAL",
+              "citation_counts": {
+                "wos_starter": 79
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001361187400001"
+                }
+              ]
+            },
+            {
+              "title": "High thermal conductivity in diamond induced carbon fiber-liquid metal mixtures",
+              "doi": "10.1016/j.compositesb.2022.109902",
+              "year": 2022,
+              "authors": [
+                "Zeng, Chengzong",
+                "Ma, Chaofan",
+                "Shen, Jun"
+              ],
+              "journal": "COMPOSITES PART B-ENGINEERING",
+              "citation_counts": {
+                "wos_starter": 65
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000793417900002"
+                }
+              ]
+            },
+            {
+              "title": "Reinforcement size effect on thermal conductivity in Cu-B/diamond composite",
+              "doi": "10.1016/j.jmst.2021.03.018",
+              "year": 2021,
+              "authors": [
+                "Zhang, Yongjian",
+                "Bai, Guangzhu",
+                "Liu, Xiaoyan",
+                "Dai, Jingjie",
+                "Wang, Xitao",
+                "Zhang, Hailong"
+              ],
+              "journal": "JOURNAL OF MATERIALS SCIENCE & TECHNOLOGY",
+              "citation_counts": {
+                "wos_starter": 65
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000697559200001"
+                }
+              ]
+            },
+            {
+              "title": "Exploring the underlying causes of optimizing thermal conductivity of copper/diamond composites by interface thickness",
+              "doi": "10.1016/j.jallcom.2021.161777",
+              "year": 2022,
+              "authors": [
+                "Sang, Jianquan",
+                "Yuan, Ye",
+                "Yang, Wulin",
+                "Zhu, Jiajun",
+                "Fu, Licai",
+                "Li, Deyi",
+                "Zhou, Lingping"
+              ],
+              "journal": "JOURNAL OF ALLOYS AND COMPOUNDS",
+              "citation_counts": {
+                "wos_starter": 64
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000706878000003"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "assistant_messages": [
+        "已通过本机 **literature-mcp** 的 **WoS Starter** 完成检索，未下载论文，也未读取配置或凭据文件。\n\n**实际查询数据库：**Web of Science Core Collection（`db=WOS`），API 产品为 **WoS Starter v1**。  \n**检索式：**`TI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`  \n（以题名字段限定，可减少“文中仅提到金刚石”的不相关结果。）\n\n| 年份 | 标题 | DOI | WoS 被引次数 |\n|---|---|---|---:|\n| 2020 | *Research progress of diamond/copper composites with high thermal conductivity* | 10.1016/j.diamond.2020.107993 | 125 |\n| 2021 | *In situ measurements of intracellular thermal conductivity using heater-thermometer hybrid diamond nanosensors* | 10.1126/sciadv.abd7888 | 123 |\n\n**说明**\n\n- **Starter 能进行字段检索。**本次成功使用了 `TI`（题名）和 `PY`（出版年）字段；Starter 还支持如 `TS`、`AU`、`SO`、`DO` 等字段查询。\n- **本次未取得全部文献。**接口本次返回了候选记录，但不提供总命中数和分页；返回信息明确为 `exhaustiveness_verified: false`，因此只能视为返回候选中的结果，而非完整检索集。\n- **不需要 Expanded。**完成本次检索、获得 Core Collection 记录及 WoS 被引次数，**WoS Starter 已足够**；Expanded 主要用于更丰富的记录元数据和引用关系，并非本任务所必需。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 11618,
+            "output": 112,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 47,
+            "totalTokens": 11730,
+            "cost": {
+              "input": 0.023236,
+              "output": 0.0013440000000000001,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.02458
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 2312,
+            "output": 89,
+            "cacheRead": 10752,
+            "cacheWrite": 0,
+            "reasoning": 24,
+            "totalTokens": 13153,
+            "cost": {
+              "input": 0.004624,
+              "output": 0.001068,
+              "cacheRead": 0.0021504000000000002,
+              "cacheWrite": 0,
+              "total": 0.0078424
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 5597,
+            "output": 389,
+            "cacheRead": 12800,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 18786,
+            "cost": {
+              "input": 0.011193999999999999,
+              "output": 0.004668,
+              "cacheRead": 0.00256,
+              "cacheWrite": 0,
+              "total": 0.018422
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 3,
+        "message_start": 7,
+        "message_end": 7,
+        "message_update": 485,
+        "tool_execution_start": 2,
+        "tool_execution_end": 2,
+        "turn_end": 3,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 31419,
+      "final_answer": "已通过本机 **literature-mcp** 的 **WoS Starter** 完成检索，未下载论文，也未读取配置或凭据文件。\n\n**实际查询数据库：**Web of Science Core Collection（`db=WOS`），API 产品为 **WoS Starter v1**。  \n**检索式：**`TI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`  \n（以题名字段限定，可减少“文中仅提到金刚石”的不相关结果。）\n\n| 年份 | 标题 | DOI | WoS 被引次数 |\n|---|---|---|---:|\n| 2020 | *Research progress of diamond/copper composites with high thermal conductivity* | 10.1016/j.diamond.2020.107993 | 125 |\n| 2021 | *In situ measurements of intracellular thermal conductivity using heater-thermometer hybrid diamond nanosensors* | 10.1126/sciadv.abd7888 | 123 |\n\n**说明**\n\n- **Starter 能进行字段检索。**本次成功使用了 `TI`（题名）和 `PY`（出版年）字段；Starter 还支持如 `TS`、`AU`、`SO`、`DO` 等字段查询。\n- **本次未取得全部文献。**接口本次返回了候选记录，但不提供总命中数和分页；返回信息明确为 `exhaustiveness_verified: false`，因此只能视为返回候选中的结果，而非完整检索集。\n- **不需要 Expanded。**完成本次检索、获得 Core Collection 记录及 WoS 被引次数，**WoS Starter 已足够**；Expanded 主要用于更丰富的记录元数据和引用关系，并非本任务所必需。",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true,
+        "first_tool_call_succeeded": true
+      }
+    },
+    {
+      "at": "2026-11-14T10:30:21.908Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "之前 Pi 的一段报告写道：“WoS Expanded 当前未配置 API key，因此不能进行 WoS 核心合集的字段级精确检索、完整导出或正式计量统计。”请实际使用本机 literature-mcp 的 WoS Starter 核验这段话：执行一条包含 TI 和 PY 条件的金刚石热导率论文查询，年份 2020—2025，最多返回 1 篇；展示 DOI 和数据库回执，再逐项说明原报告关于核心合集、字段检索以及全量导出/统计的判断是否准确。不要下载，不要读取配置或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-7yQWJd",
+      "case_name": "post-fix-reported-claim",
+      "service_version": "1.1.1",
+      "tool_configuration": "Default Pi toolset, extensions, skills and context discovery; no allowlist",
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_7005622196e44b1aa872b0b64d473794",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "query": "TI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 1,
+            "sort_by": "relevance"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_7005622196e44b1aa872b0b64d473794",
+          "is_error": false,
+          "duration_ms": 2511,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1903
+            }
+          ],
+          "retrieval": {
+            "requested_max_results": 1,
+            "returned_count": 1,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Lattice thermal conductivity in isotope diamond asymmetric superlattices",
+              "doi": "10.35848/1347-4065/ac4304",
+              "year": 2022,
+              "authors": [
+                "Weng, Hsu Kai",
+                "Nagakubo, Akira",
+                "Watanabe, Hideyuki",
+                "Ogi, Hirotsugu"
+              ],
+              "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS",
+              "citation_counts": {
+                "wos_starter": 1
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000766858500001"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "assistant_messages": [
+        "已使用本机 `literature-mcp` 的 **WoS Starter** 执行查询（未下载论文，未读取配置或凭据）：\n\n```text\nTI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n\n- 最大返回：1 篇\n- 返回：1 篇\n- DOI：**10.35848/1347-4065/ac4304**\n- 题名：*Lattice thermal conductivity in isotope diamond asymmetric superlattices*（2022）\n- WoS 记录号：`WOS:000766858500001`\n\n**数据库回执**\n\n```json\n{\n  \"database\": {\n    \"id\": \"WOS\",\n    \"name\": \"Web of Science Core Collection\"\n  },\n  \"api_product\": \"starter\",\n  \"api_version\": \"v1\",\n  \"source\": \"wos_starter\",\n  \"status\": \"ok\",\n  \"elapsed_ms\": 1903\n}\n```\n\n检索回执还表明：\n\n```json\n{\n  \"requested_max_results\": 1,\n  \"returned_count\": 1,\n  \"max_results_per_call\": 50,\n  \"total_matches\": null,\n  \"pagination_available\": false,\n  \"exhaustiveness_verified\": false\n}\n```\n\n### 对原报告逐项核验\n\n| 原报告判断 | 核验结论 | 说明 |\n|---|---|---|\n| “未配置 WoS Expanded API key，因此不能进行 WoS 核心合集……” | **不准确／表述过度** | WoS **Starter** 已成功访问数据库回执明确标识为 **Web of Science Core Collection** 的数据源。因此，没有 Expanded key 并不等于不能检索 WoS 核心合集。 |\n| “……字段级精确检索……” | **不准确** | 本次查询实际使用并成功执行了 `TI=`（题名）和 `PY=`（年份）字段条件，说明 WoS Starter 支持这类字段级检索。 |\n| “……完整导出……” | **在当前工具能力下基本准确，但原因应修正** | 本次回执显示 `pagination_available: false`、`total_matches: null`、`exhaustiveness_verified: false`，且单次最多 50 条。因此该接口/工具不能据此进行完整、可分页、穷尽式导出。但这应归因于 **Starter 的检索结果与分页能力限制**，而非笼统归因于“未配置 Expanded API key”。 |\n| “……正式计量统计。” | **基本准确，但原因应修正** | 因为无法获得总命中数、无法分页遍历结果集、也无法验证穷尽性，不能基于该检索接口结果进行严格的全量文献计量。Starter 仍可返回单篇的 WoS 引用计数（本例为 `1`），但这不构成全量、正式的计量统计基础。 |\n\n**结论：** 原报告将“没有 WoS Expanded key”与“无法检索 WoS Core Collection、无法字段检索”混为一谈，这两项已被实际查询证伪。关于**完整导出和严格计量统计不可行**的结论则大体成立，但应准确说明为 WoS Starter 当前的**无分页、无总数、不可验证穷尽性**限制，而不是简单断言为缺少 Expanded key。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 11660,
+            "output": 105,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 40,
+            "totalTokens": 11765,
+            "cost": {
+              "input": 0.02332,
+              "output": 0.00126,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.02458
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 1846,
+            "output": 753,
+            "cacheRead": 10752,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 13351,
+            "cost": {
+              "input": 0.003692,
+              "output": 0.009036,
+              "cacheRead": 0.0021504000000000002,
+              "cacheWrite": 0,
+              "total": 0.0148784
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 2,
+        "message_start": 5,
+        "message_end": 5,
+        "message_update": 787,
+        "tool_execution_start": 1,
+        "tool_execution_end": 1,
+        "turn_end": 2,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 37070,
+      "final_answer": "已使用本机 `literature-mcp` 的 **WoS Starter** 执行查询（未下载论文，未读取配置或凭据）：\n\n```text\nTI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n\n- 最大返回：1 篇\n- 返回：1 篇\n- DOI：**10.35848/1347-4065/ac4304**\n- 题名：*Lattice thermal conductivity in isotope diamond asymmetric superlattices*（2022）\n- WoS 记录号：`WOS:000766858500001`\n\n**数据库回执**\n\n```json\n{\n  \"database\": {\n    \"id\": \"WOS\",\n    \"name\": \"Web of Science Core Collection\"\n  },\n  \"api_product\": \"starter\",\n  \"api_version\": \"v1\",\n  \"source\": \"wos_starter\",\n  \"status\": \"ok\",\n  \"elapsed_ms\": 1903\n}\n```\n\n检索回执还表明：\n\n```json\n{\n  \"requested_max_results\": 1,\n  \"returned_count\": 1,\n  \"max_results_per_call\": 50,\n  \"total_matches\": null,\n  \"pagination_available\": false,\n  \"exhaustiveness_verified\": false\n}\n```\n\n### 对原报告逐项核验\n\n| 原报告判断 | 核验结论 | 说明 |\n|---|---|---|\n| “未配置 WoS Expanded API key，因此不能进行 WoS 核心合集……” | **不准确／表述过度** | WoS **Starter** 已成功访问数据库回执明确标识为 **Web of Science Core Collection** 的数据源。因此，没有 Expanded key 并不等于不能检索 WoS 核心合集。 |\n| “……字段级精确检索……” | **不准确** | 本次查询实际使用并成功执行了 `TI=`（题名）和 `PY=`（年份）字段条件，说明 WoS Starter 支持这类字段级检索。 |\n| “……完整导出……” | **在当前工具能力下基本准确，但原因应修正** | 本次回执显示 `pagination_available: false`、`total_matches: null`、`exhaustiveness_verified: false`，且单次最多 50 条。因此该接口/工具不能据此进行完整、可分页、穷尽式导出。但这应归因于 **Starter 的检索结果与分页能力限制**，而非笼统归因于“未配置 Expanded API key”。 |\n| “……正式计量统计。” | **基本准确，但原因应修正** | 因为无法获得总命中数、无法分页遍历结果集、也无法验证穷尽性，不能基于该检索接口结果进行严格的全量文献计量。Starter 仍可返回单篇的 WoS 引用计数（本例为 `1`），但这不构成全量、正式的计量统计基础。 |\n\n**结论：** 原报告将“没有 WoS Expanded key”与“无法检索 WoS Core Collection、无法字段检索”混为一谈，这两项已被实际查询证伪。关于**完整导出和严格计量统计不可行**的结论则大体成立，但应准确说明为 WoS Starter 当前的**无分页、无总数、不可验证穷尽性**限制，而不是简单断言为缺少 Expanded key。",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true,
+        "first_tool_call_succeeded": true
+      },
+      "content_review": {
+        "passed": false,
+        "issue": "Core Collection and fields corrected, but final text incorrectly attributed wrapper pagination/total-match limitations to the Starter API; prompted further tool metadata refinement."
+      }
+    },
+    {
+      "case_name": "post-fix-reported-claim",
+      "at": "2026-11-14T10:34:05.141Z",
+      "user_date": "2026-11-14",
+      "service_version": "1.1.1",
+      "build_fingerprint": "18648563a93fe390e7f2909b8d524a2dcf57d8be246da75102dc0756772c37e7",
+      "raw_artifact_dir": ".local/pi-e2e-2026-11-14/post-fix-reported-claim/2026-11-14T10-34-05-141Z",
+      "environment": "Actual local Pi CLI, default model, default toolset",
+      "configured_model": "gpt-5.6-terra",
+      "tool_calls": [],
+      "tool_results": [],
+      "assistant_messages": [],
+      "model_responses": [],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 1,
+        "message_start": 3,
+        "message_end": 2
+      },
+      "exit": {
+        "code": 143,
+        "signal": "SIGTERM"
+      },
+      "incomplete": true,
+      "failure": "Process terminated while awaiting the first model response; no MCP tool call had been emitted. Cause not established. Authoritative handle was terminal and no related process remained before retry."
+    },
+    {
+      "at": "2026-11-14T10:38:18.113Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "之前 Pi 的一段报告写道：“WoS Expanded 当前未配置 API key，因此不能进行 WoS 核心合集的字段级精确检索、完整导出或正式计量统计。”请实际使用本机 literature-mcp 的 WoS Starter 核验这段话：执行一条包含 TI 和 PY 条件的金刚石热导率论文查询，年份 2020—2025，最多返回 1 篇；展示 DOI 和数据库回执，再逐项说明原报告关于核心合集、字段检索以及全量导出/统计的判断是否准确。不要下载，不要读取配置或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-SKlFsj",
+      "case_name": "post-fix-reported-claim",
+      "service_version": "1.1.1",
+      "raw_artifact_dir": "/home/xianiming/桌面/lit-search-mcp/.local/pi-e2e-2026-11-14/post-fix-reported-claim/2026-11-14T10-38-18-111Z",
+      "build_fingerprint": "18648563a93fe390e7f2909b8d524a2dcf57d8be246da75102dc0756772c37e7",
+      "tool_configuration": "Default Pi toolset, extensions, skills and context discovery; no allowlist",
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_68d7cc2c581b496d842227527d4a07b8",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "query": "TI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 1,
+            "sort_by": "relevance"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_68d7cc2c581b496d842227527d4a07b8",
+          "is_error": false,
+          "duration_ms": 2006,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_capabilities": {
+                "pagination": true,
+                "total_matches": true
+              },
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1412
+            }
+          ],
+          "retrieval": {
+            "limitation_scope": "this_mcp_tool",
+            "requested_max_results": 1,
+            "returned_count": 1,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Lattice thermal conductivity in isotope diamond asymmetric superlattices",
+              "doi": "10.35848/1347-4065/ac4304",
+              "year": 2022,
+              "authors": [
+                "Weng, Hsu Kai",
+                "Nagakubo, Akira",
+                "Watanabe, Hideyuki",
+                "Ogi, Hirotsugu"
+              ],
+              "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS",
+              "citation_counts": {
+                "wos_starter": 1
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:000766858500001"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "assistant_messages": [
+        "已用本机 `literature-mcp` 的 **WoS Starter** 实测；未下载论文，也未读取任何配置或凭据文件。\n\n### 查询\n```text\nTI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n参数：`mode=wos`、`wos_product=starter`、`max_results=1`\n\n### 返回论文\n- **DOI：** `10.35848/1347-4065/ac4304`\n- **题名：** *Lattice thermal conductivity in isotope diamond asymmetric superlattices*\n- **年份：** 2022\n- **WoS 记录号：** `WOS:000766858500001`\n- **WoS Starter 引文数：** 1\n\n### 数据库回执\n```json\n{\n  \"database\": {\n    \"id\": \"WOS\",\n    \"name\": \"Web of Science Core Collection\"\n  },\n  \"api_product\": \"starter\",\n  \"api_version\": \"v1\",\n  \"source\": \"wos_starter\",\n  \"status\": \"ok\",\n  \"api_capabilities\": {\n    \"pagination\": true,\n    \"total_matches\": true\n  }\n}\n```\n\n### 对原报告逐项核验\n\n| 原判断 | 核验结论 | 说明 |\n|---|---|---|\n| “WoS Expanded 当前未配置 API key” | **本次无法直接证实或证伪** | 本次按要求只实际使用了 WoS Starter，且未读取配置/凭据。Expanded 是否配置属于另一产品的访问状态，不能由 Starter 成功与否推出。 |\n| “因此不能进行 WoS 核心合集的字段级精确检索” | **不准确** | 回执明确显示 Starter 查询的是 **Web of Science Core Collection**；并且实际成功执行了包含 `TI=` 和 `PY=` 的字段检索。WoS Starter 已能进行核心合集字段级检索。 |\n| “因此不能……完整导出” | **就本 MCP 调用层面，基本成立，但理由不准确** | 当前 `literature-mcp` 搜索封装每次最多返回 50 条，且本工具不暴露分页和总命中数；本次回执也说明 `pagination_available: false` 的限制范围是 `this_mcp_tool`。但数据库回执同时表明 **WoS Starter API 本身支持 pagination 和 total_matches**。因此，不能把当前封装的导出限制归因于“没有 Expanded key”。 |\n| “因此不能……正式计量统计” | **该绝对表述不准确／至少过度概括** | Starter 回执显示其能返回 WoS 引文计数（本记录为 1），且 API 本身有分页与总命中能力，具备进行一定文献计量数据获取的基础。若“正式计量统计”意指 Expanded 提供的更丰富元数据、关系或特定分析能力，则可能受限；但不能笼统说因缺少 Expanded key 就无法对核心合集做统计。 |\n\n**结论：** 原报告把 **WoS Expanded** 与 **WoS Core Collection 的基础检索能力** 混为一谈。实际测试证明：WoS Starter 可访问 Core Collection，并可执行 `TI`、`PY` 字段级精确检索。至于全量导出和完整计量，需区分 **Starter API 自身能力** 与 **当前 MCP 工具封装未开放分页/总数的限制**；不能简单归因于未配置 Expanded API key。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 11704,
+            "output": 113,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 48,
+            "totalTokens": 11817,
+            "cost": {
+              "input": 0.023407999999999998,
+              "output": 0.001356,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.024763999999999998
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 1947,
+            "output": 785,
+            "cacheRead": 10752,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 13484,
+            "cost": {
+              "input": 0.003894,
+              "output": 0.00942,
+              "cacheRead": 0.0021504000000000002,
+              "cacheWrite": 0,
+              "total": 0.0154644
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 2,
+        "message_start": 5,
+        "message_end": 5,
+        "message_update": 827,
+        "tool_execution_start": 1,
+        "tool_execution_end": 1,
+        "turn_end": 2,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 31596,
+      "final_answer": "已用本机 `literature-mcp` 的 **WoS Starter** 实测；未下载论文，也未读取任何配置或凭据文件。\n\n### 查询\n```text\nTI=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)\n```\n参数：`mode=wos`、`wos_product=starter`、`max_results=1`\n\n### 返回论文\n- **DOI：** `10.35848/1347-4065/ac4304`\n- **题名：** *Lattice thermal conductivity in isotope diamond asymmetric superlattices*\n- **年份：** 2022\n- **WoS 记录号：** `WOS:000766858500001`\n- **WoS Starter 引文数：** 1\n\n### 数据库回执\n```json\n{\n  \"database\": {\n    \"id\": \"WOS\",\n    \"name\": \"Web of Science Core Collection\"\n  },\n  \"api_product\": \"starter\",\n  \"api_version\": \"v1\",\n  \"source\": \"wos_starter\",\n  \"status\": \"ok\",\n  \"api_capabilities\": {\n    \"pagination\": true,\n    \"total_matches\": true\n  }\n}\n```\n\n### 对原报告逐项核验\n\n| 原判断 | 核验结论 | 说明 |\n|---|---|---|\n| “WoS Expanded 当前未配置 API key” | **本次无法直接证实或证伪** | 本次按要求只实际使用了 WoS Starter，且未读取配置/凭据。Expanded 是否配置属于另一产品的访问状态，不能由 Starter 成功与否推出。 |\n| “因此不能进行 WoS 核心合集的字段级精确检索” | **不准确** | 回执明确显示 Starter 查询的是 **Web of Science Core Collection**；并且实际成功执行了包含 `TI=` 和 `PY=` 的字段检索。WoS Starter 已能进行核心合集字段级检索。 |\n| “因此不能……完整导出” | **就本 MCP 调用层面，基本成立，但理由不准确** | 当前 `literature-mcp` 搜索封装每次最多返回 50 条，且本工具不暴露分页和总命中数；本次回执也说明 `pagination_available: false` 的限制范围是 `this_mcp_tool`。但数据库回执同时表明 **WoS Starter API 本身支持 pagination 和 total_matches**。因此，不能把当前封装的导出限制归因于“没有 Expanded key”。 |\n| “因此不能……正式计量统计” | **该绝对表述不准确／至少过度概括** | Starter 回执显示其能返回 WoS 引文计数（本记录为 1），且 API 本身有分页与总命中能力，具备进行一定文献计量数据获取的基础。若“正式计量统计”意指 Expanded 提供的更丰富元数据、关系或特定分析能力，则可能受限；但不能笼统说因缺少 Expanded key 就无法对核心合集做统计。 |\n\n**结论：** 原报告把 **WoS Expanded** 与 **WoS Core Collection 的基础检索能力** 混为一谈。实际测试证明：WoS Starter 可访问 Core Collection，并可执行 `TI`、`PY` 字段级精确检索。至于全量导出和完整计量，需区分 **Starter API 自身能力** 与 **当前 MCP 工具封装未开放分页/总数的限制**；不能简单归因于未配置 Expanded API key。",
+      "stderr_tail": "",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": true,
+        "first_tool_call_succeeded": true
+      },
+      "content_review": {
+        "passed": true,
+        "reviewer": "Main agent inspected the full reply to the original reported claim",
+        "observations": [
+          "Correctly rejects Expanded as prerequisite for Core Collection or TI/PY",
+          "Explicitly states Starter API supports pagination and total matches",
+          "Attributes unavailable paging/totals to this MCP wrapper",
+          "Avoids blanket rejection of all bibliometric work based on missing Expanded"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-14T10:39:31.709Z",
+      "user_date": "2026-11-14",
+      "environment": "User local Linux host; actual installed Pi CLI, real model conversation",
+      "configured_provider": "openai",
+      "configured_model": "gpt-5.6-terra",
+      "model_override": false,
+      "prompt": "请实际使用本机 literature-mcp 完成三个步骤：1）通过 WoS Starter 检索 2020—2025 年 diamond thermal conductivity 英文论文，返回 1 篇；2）用 get_paper 查询刚才同一 DOI 的 WoS Starter 元数据和被引次数，只要计数，不要施引关系，也不要下载这篇论文；3）已检索并保存在本地的 QA 论文是 arXiv:1706.03762v7（Attention Is All You Need），文件已由测试程序核验。只调用 download_paper 核验其本地复用，overwrite=false、allow_publisher_api=false，禁止重新下载，不必再次检索这篇 QA 论文。请分别报告三个步骤实际调用的工具、参数和返回状态，并列出检索式、真实数据库、DOI 和 WoS 计数、本地复用路径及 SHA-256。最后说明本次是否需要 Expanded，以及 Starter API 的分页/总数能力与当前 MCP 封装限制有什么区别。不要读取任何配置或凭据文件。",
+      "fresh_session": true,
+      "session_saved": false,
+      "cwd": "/tmp/literature-pi-e2e-MLh9R9",
+      "case_name": "post-fix-workflow",
+      "service_version": "1.1.1",
+      "raw_artifact_dir": "/home/xianiming/桌面/lit-search-mcp/.local/pi-e2e-2026-11-14/post-fix-workflow/2026-11-14T10-39-31-706Z",
+      "build_fingerprint": "18648563a93fe390e7f2909b8d524a2dcf57d8be246da75102dc0756772c37e7",
+      "tool_configuration": "Default Pi toolset, extensions, skills and context discovery; no allowlist",
+      "mcp_environment_overrides": false,
+      "tool_calls": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_8d83c30b2e7847b290567030387c58c6",
+          "arguments": {
+            "mode": "wos",
+            "wos_product": "starter",
+            "query": "TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)",
+            "max_results": 1,
+            "sort_by": "relevance"
+          }
+        },
+        {
+          "name": "literature-mcp_get_paper",
+          "id": "call_e5262ae5070b4e17bf579075048e69f9",
+          "arguments": {
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "metadata_sources": [
+              "wos_starter"
+            ],
+            "include_citations": false
+          }
+        },
+        {
+          "name": "literature-mcp_download_paper",
+          "id": "call_981085fd3f324a32ad67e0af5b350046",
+          "arguments": {
+            "arxiv_id": "1706.03762v7",
+            "overwrite": false,
+            "allow_publisher_api": false,
+            "preferred_source": "auto"
+          }
+        }
+      ],
+      "tool_results": [
+        {
+          "name": "literature-mcp_search_literature",
+          "id": "call_8d83c30b2e7847b290567030387c58c6",
+          "is_error": false,
+          "duration_ms": 2599,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_capabilities": {
+                "pagination": true,
+                "total_matches": true
+              },
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1730
+            }
+          ],
+          "retrieval": {
+            "limitation_scope": "this_mcp_tool",
+            "requested_max_results": 1,
+            "returned_count": 1,
+            "max_results_per_call": 50,
+            "total_matches": null,
+            "pagination_available": false,
+            "exhaustiveness_verified": false
+          },
+          "cached": false,
+          "papers": [
+            {
+              "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+              "doi": "10.1016/j.ceramint.2025.06.299",
+              "year": 2025,
+              "authors": [
+                "Zhang, Yongjian",
+                "Li, Ning",
+                "Hao, Jinpeng",
+                "Wu, Jianhua",
+                "Luo, Yang",
+                "Wang, Xitao",
+                "Zhang, Hailong"
+              ],
+              "journal": "CERAMICS INTERNATIONAL",
+              "citation_counts": {
+                "wos_starter": 11
+              },
+              "source_records": [
+                {
+                  "source": "wos_starter",
+                  "id": "WOS:001567956700028"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "literature-mcp_download_paper",
+          "id": "call_981085fd3f324a32ad67e0af5b350046",
+          "is_error": false,
+          "duration_ms": 202,
+          "status": "already_exists",
+          "papers": [],
+          "download": {
+            "file_path": "/home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+            "format": "pdf",
+            "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+            "version": "submittedVersion (1706.03762v7)",
+            "verified": true,
+            "source": "arxiv"
+          }
+        },
+        {
+          "name": "literature-mcp_get_paper",
+          "id": "call_e5262ae5070b4e17bf579075048e69f9",
+          "is_error": false,
+          "duration_ms": 1312,
+          "status": "ok",
+          "source_statuses": [
+            {
+              "database": {
+                "id": "WOS",
+                "name": "Web of Science Core Collection"
+              },
+              "api_product": "starter",
+              "api_capabilities": {
+                "pagination": true,
+                "total_matches": true
+              },
+              "api_version": "v1",
+              "source": "wos_starter",
+              "status": "ok",
+              "elapsed_ms": 1307
+            }
+          ],
+          "papers": [],
+          "paper": {
+            "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "year": 2025,
+            "authors": [
+              "Zhang, Yongjian",
+              "Li, Ning",
+              "Hao, Jinpeng",
+              "Wu, Jianhua",
+              "Luo, Yang",
+              "Wang, Xitao",
+              "Zhang, Hailong"
+            ],
+            "journal": "CERAMICS INTERNATIONAL",
+            "citation_counts": {
+              "wos_starter": 11
+            },
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001567956700028"
+              }
+            ]
+          }
+        }
+      ],
+      "assistant_messages": [
+        "已实际完成三步调用；未读取任何配置或凭据文件。\n\n1. **WoS Starter 检索**\n   - 工具：`literature-mcp_search_literature`\n   - 参数：\n     ```json\n     {\n       \"mode\": \"wos\",\n       \"wos_product\": \"starter\",\n       \"query\": \"TS=(diamond AND \\\"thermal conductivity\\\") AND PY=(2020-2025)\",\n       \"max_results\": 1,\n       \"sort_by\": \"relevance\"\n     }\n     ```\n   - 返回状态：`ok`\n   - 真实数据库：**Web of Science Core Collection**（`WOS`），产品为 **Starter / API v1**\n   - 返回 1 篇英文记录：\n     - 题名：*Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite*\n     - 年份：2025\n     - DOI：`10.1016/j.ceramint.2025.06.299`\n     - WoS 记录号：`WOS:001567956700028`\n   - 检索式：`TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`\n\n2. **同一 DOI 的 WoS Starter 元数据与被引计数**\n   - 工具：`literature-mcp_get_paper`\n   - 参数：\n     ```json\n     {\n       \"doi\": \"10.1016/j.ceramint.2025.06.299\",\n       \"metadata_sources\": [\"wos_starter\"],\n       \"include_citations\": false\n     }\n     ```\n   - 返回状态：`ok`\n   - DOI：`10.1016/j.ceramint.2025.06.299`\n   - 数据库：**Web of Science Core Collection / Starter**\n   - WoS 被引次数：**11**\n   - `include_citations: false`，因此仅取得计数，未请求施引论文关系；也未下载该论文。\n\n3. **QA 论文的本地复用核验**\n   - 工具：`literature-mcp_download_paper`\n   - 参数：\n     ```json\n     {\n       \"arxiv_id\": \"1706.03762v7\",\n       \"overwrite\": false,\n       \"allow_publisher_api\": false,\n       \"preferred_source\": \"auto\"\n     }\n     ```\n   - 返回状态：`already_exists`\n   - 结果：成功复用已经核验的本地文件，**没有重新下载**。\n   - 论文版本：`submittedVersion (1706.03762v7)`\n   - 来源：`arxiv`\n   - 本地复用路径：\n     ```text\n     /home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf\n     ```\n   - SHA-256：\n     ```text\n     bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697\n     ```\n   - 工具返回的核验状态：`verified: true`；核验方式为 PDF 首页中的 arXiv ID。\n\n**Expanded 是否需要？**  \n不需要。本任务只需检索 WoS Core Collection、获得元数据与 Times Cited 计数；WoS Starter 已提供这些能力。Expanded 是独立的可选产品，适用于更丰富的记录元数据或关系数据等需求。\n\n**Starter API 能力与当前 MCP 封装限制的区别**\n- **WoS Starter API 本身**：支持分页（`pagination: true`）和返回匹配总数（`total_matches: true`）。\n- **本次 `search_literature` MCP 封装**：单次最多返回 50 条候选；当前工具接口不暴露分页或总匹配数。因此本次虽按 `max_results: 1` 得到 1 条，但返回中的 `total_matches` 为 `null`、`pagination_available` 为 `false`。这是**封装接口的限制**，不是 Starter API 不支持分页/总数。"
+      ],
+      "model_responses": [
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 7251,
+            "output": 100,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 35,
+            "totalTokens": 7351,
+            "cost": {
+              "input": 0.014502,
+              "output": 0.0012000000000000001,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0.015702
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "toolUse",
+          "usage": {
+            "input": 1613,
+            "output": 114,
+            "cacheRead": 6656,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 8383,
+            "cost": {
+              "input": 0.0032259999999999997,
+              "output": 0.001368,
+              "cacheRead": 0.0013312,
+              "cacheWrite": 0,
+              "total": 0.0059252
+            }
+          }
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-5.6-terra",
+          "stop_reason": "stop",
+          "usage": {
+            "input": 1819,
+            "output": 922,
+            "cacheRead": 7680,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 10421,
+            "cost": {
+              "input": 0.0036379999999999997,
+              "output": 0.011064000000000001,
+              "cacheRead": 0.001536,
+              "cacheWrite": 0,
+              "total": 0.016238
+            }
+          }
+        }
+      ],
+      "event_counts": {
+        "session": 1,
+        "agent_start": 1,
+        "turn_start": 3,
+        "message_start": 8,
+        "message_end": 8,
+        "message_update": 972,
+        "tool_execution_start": 3,
+        "tool_execution_end": 3,
+        "turn_end": 3,
+        "agent_end": 1,
+        "agent_settled": 1
+      },
+      "agent_settled": {
+        "aborted": false
+      },
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "elapsed_ms": 47905,
+      "final_answer": "已实际完成三步调用；未读取任何配置或凭据文件。\n\n1. **WoS Starter 检索**\n   - 工具：`literature-mcp_search_literature`\n   - 参数：\n     ```json\n     {\n       \"mode\": \"wos\",\n       \"wos_product\": \"starter\",\n       \"query\": \"TS=(diamond AND \\\"thermal conductivity\\\") AND PY=(2020-2025)\",\n       \"max_results\": 1,\n       \"sort_by\": \"relevance\"\n     }\n     ```\n   - 返回状态：`ok`\n   - 真实数据库：**Web of Science Core Collection**（`WOS`），产品为 **Starter / API v1**\n   - 返回 1 篇英文记录：\n     - 题名：*Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite*\n     - 年份：2025\n     - DOI：`10.1016/j.ceramint.2025.06.299`\n     - WoS 记录号：`WOS:001567956700028`\n   - 检索式：`TS=(diamond AND \"thermal conductivity\") AND PY=(2020-2025)`\n\n2. **同一 DOI 的 WoS Starter 元数据与被引计数**\n   - 工具：`literature-mcp_get_paper`\n   - 参数：\n     ```json\n     {\n       \"doi\": \"10.1016/j.ceramint.2025.06.299\",\n       \"metadata_sources\": [\"wos_starter\"],\n       \"include_citations\": false\n     }\n     ```\n   - 返回状态：`ok`\n   - DOI：`10.1016/j.ceramint.2025.06.299`\n   - 数据库：**Web of Science Core Collection / Starter**\n   - WoS 被引次数：**11**\n   - `include_citations: false`，因此仅取得计数，未请求施引论文关系；也未下载该论文。\n\n3. **QA 论文的本地复用核验**\n   - 工具：`literature-mcp_download_paper`\n   - 参数：\n     ```json\n     {\n       \"arxiv_id\": \"1706.03762v7\",\n       \"overwrite\": false,\n       \"allow_publisher_api\": false,\n       \"preferred_source\": \"auto\"\n     }\n     ```\n   - 返回状态：`already_exists`\n   - 结果：成功复用已经核验的本地文件，**没有重新下载**。\n   - 论文版本：`submittedVersion (1706.03762v7)`\n   - 来源：`arxiv`\n   - 本地复用路径：\n     ```text\n     /home/xianiming/桌面/lit-search-mcp/literature-library/papers/72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf\n     ```\n   - SHA-256：\n     ```text\n     bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697\n     ```\n   - 工具返回的核验状态：`verified: true`；核验方式为 PDF 首页中的 arXiv ID。\n\n**Expanded 是否需要？**  \n不需要。本任务只需检索 WoS Core Collection、获得元数据与 Times Cited 计数；WoS Starter 已提供这些能力。Expanded 是独立的可选产品，适用于更丰富的记录元数据或关系数据等需求。\n\n**Starter API 能力与当前 MCP 封装限制的区别**\n- **WoS Starter API 本身**：支持分页（`pagination: true`）和返回匹配总数（`total_matches: true`）。\n- **本次 `search_literature` MCP 封装**：单次最多返回 50 条候选；当前工具接口不暴露分页或总匹配数。因此本次虽按 `max_results: 1` 得到 1 条，但返回中的 `total_matches` 为 `null`、`pagination_available` 为 `false`。这是**封装接口的限制**，不是 Starter API 不支持分页/总数。",
+      "stderr_tail": "Extension error (/home/xianiming/.pi/agent/npm/node_modules/pi-browser-use/dist/index.js): Chrome exited immediately (code 21).\n",
+      "protected_configuration_unchanged": true,
+      "checks": {
+        "model_made_mcp_call": true,
+        "real_wos_success": true,
+        "no_download_call": false,
+        "first_tool_call_succeeded": true
+      },
+      "content_review": {
+        "passed": true,
+        "reviewer": "Main agent inspected actual tool events and full final answer",
+        "observations": [
+          "All three tools selected and called successfully on the final build with normal Pi defaults",
+          "Starter Core Collection and fields described correctly",
+          "API pagination/totals distinguished from wrapper limitations",
+          "Same DOI and WoS citation count preserved across search/get",
+          "Only the validated pre-existing QA PDF reused; no re-download"
+        ]
+      }
+    }
+  ],
+  "assessment": {
+    "date": "2026-11-14",
+    "real_cli_model_test_completed": true,
+    "search_transport_and_credentials": "passed",
+    "first_attempt_argument_selection": "failed; record_view=full sent with Starter",
+    "second_attempt_argument_selection": "failed; record_view=short also not valid with Starter",
+    "recovery": "Original Pi session omitted record_view on its third executed tool call and retrieved three real records",
+    "model_stream_interruption": "A model response ended with stopReason=error and errorMessage=terminated after a long pause. The original session automatically recovered; cause not established. No second prompt or model override was supplied.",
+    "argument_and_capability_guidance": "Needs improvement",
+    "core_collection_explanation": {
+      "observed_quote": "但不能据此宣称检索的是 WoS Core Collection。Expanded 才是该工具中面向更完整 WoS Expanded/Core Collection 能力的产品选项。",
+      "assessment": "The response correctly acknowledged TS/PY support but left the database identity unresolved and associated Core Collection with Expanded. The MCP result itself lacks an explicit database identifier; the pinned backend uses db=WOS for this Starter route. Expanded is not required for Core Collection search.",
+      "basis": "Local routing/code review plus official Starter documentation; this is not a packet capture of the upstream HTTPS request."
+    },
+    "source_evidence": {
+      "official_starter": "https://developer.clarivate.com/apis/wos-starter",
+      "official_schema": "https://developer.clarivate.com/apis/wos-starter/swagger",
+      "main_route": "src/search/service.ts: searchSource passes apiProduct=starter and does not override databaseId",
+      "fixed_backend": "paper-search-mcp-nodejs@0.3.3",
+      "upstream_handler": "dist/mcp/handleToolCall.js: search_webofscience handler passes no databaseId override",
+      "upstream_client": "dist/platforms/WebOfScienceSearcher.js: StarterClient.search uses options.databaseId || WOS and sends db=databaseId",
+      "current_tool_guidance": "src/server.ts and src/tools/schemas.ts do not explicitly describe the Starter database or record_view field applicability to the model",
+      "reviewed_files_sha256": {
+        "src/server.ts": "1e9925fb3fbf01d8c35b6f62e90f3cee5f99903ba854890957b0604823786064",
+        "src/tools/schemas.ts": "c5d12e293f0a2293033caa16241a86e32f2305aaed06fb8eb0e6c11db4ac2f6c",
+        "src/search/service.ts": "499f692873e3b6bc2f338865b5a952c95a3eac27185fd6e9619af1a6ed911794",
+        "node_modules/paper-search-mcp-nodejs/dist/mcp/handleToolCall.js": "aefdfa2da923cef7f362894fa207c83e26949f121c313a738f16699a6d96c9fe",
+        "node_modules/paper-search-mcp-nodejs/dist/platforms/WebOfScienceSearcher.js": "b22d3a13936a34e59e43d9ed45044cf172d3b49124677626ad740516d5f952b8"
+      }
+    },
+    "scope": "Fresh CLI conversation with the installed default model and global MCP configuration; only the literature search tool allowed. Original user chat and interactive TUI not replayed.",
+    "protected_configuration_unchanged": true,
+    "application_source_changed": false,
+    "next_improvements": [
+      "Explicitly describe Starter field support and record_view applicability in the MCP schema/instructions",
+      "Return database identity and retrieval limits as structured metadata",
+      "Repeat a real Pi model conversation after implementation"
+    ],
+    "applies_to": "Baseline 1.1.0 run before fixes; preserved as historical evidence"
+  },
+  "remediation": {
+    "at": "2026-11-14T10:42:34.285Z",
+    "user_date": "2026-11-14",
+    "status": "verified",
+    "local_version": "1.1.1",
+    "build_fingerprint": "18648563a93fe390e7f2909b8d524a2dcf57d8be246da75102dc0756772c37e7",
+    "changes": [
+      "Descriptions distinguish Starter/Expanded, record_view applicability and counts versus citing-paper relations",
+      "WoS source statuses identify database/product/version and Starter API capabilities",
+      "Retrieval metadata identifies current-wrapper limits and unverified completeness",
+      "Only literature-mcp metadata cache expired and refreshed; other configuration preserved"
+    ],
+    "offline_checks": {
+      "command": "npm run check",
+      "typecheck": "passed",
+      "tests": 56,
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "stdio_smoke": "passed",
+      "format": "passed",
+      "production_audit_known_vulnerabilities": 0
+    },
+    "acceptance": [
+      {
+        "requirement": "Actual Pi default model and default toolset",
+        "result": "passed",
+        "evidence_runs": [
+          "2026-11-14T10:39:31.709Z",
+          "2026-11-14T10:38:18.113Z"
+        ]
+      },
+      {
+        "requirement": "Starter field search without invalid record_view",
+        "result": "passed",
+        "evidence_run": "2026-11-14T10:39:31.709Z"
+      },
+      {
+        "requirement": "Correct Core Collection and API-versus-wrapper explanations",
+        "result": "passed",
+        "evidence_runs": [
+          "2026-11-14T10:38:18.113Z",
+          "2026-11-14T10:39:31.709Z"
+        ]
+      },
+      {
+        "requirement": "Exact DOI metadata and WoS count without unrelated citation requests",
+        "result": "passed",
+        "evidence_run": "2026-11-14T10:39:31.709Z"
+      },
+      {
+        "requirement": "download_paper local reuse without overwrite or a new download",
+        "result": "passed",
+        "evidence_run": "2026-11-14T10:39:31.709Z",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697"
+      },
+      {
+        "requirement": "Exactly three tools, constraints and source authorization preserved",
+        "result": "passed",
+        "evidence": "Current SDK discovery plus 56-test suite"
+      },
+      {
+        "requirement": "Pi cached definitions match current service",
+        "result": "passed",
+        "evidence": "Current listTools/instructions compared with literature-mcp cached entry"
+      },
+      {
+        "requirement": "Credentials, Pi settings, Zotero configuration and local QA PDF preserved",
+        "result": "passed",
+        "evidence": "Per-run protected-file hashes and final local-file SHA-256"
+      }
+    ],
+    "limitations": [
+      "Existing interactive Pi chats were not operated; reload or reconnect to load updated definitions",
+      "No new PDF fetched in this round; download network/adapters covered by offline regressions and prior separately recorded online tests",
+      "No live Expanded account or new Windows CI verification",
+      "At completion of local debugging, changes were uncommitted/unpushed; subsequent publication is tracked in Git refs and Actions"
+    ],
+    "unrelated_warning": "Extension error (/home/xianiming/.pi/agent/npm/node_modules/pi-browser-use/dist/index.js): Chrome exited immediately (code 21).\n",
+    "reviewed_files_sha256": {
+      "dist/server.js": "c164e854919bdd8314601ba82919df4fc5c0d6158efaaaad73d1a92614b0d048",
+      "dist/tools/schemas.js": "695f512c16e3a736f68bbeadc27fbcc1e073f314c832861cda856307a798b99f",
+      "dist/models/paper.js": "c6ee7d474d0dd7b8d7a1cecfb7eba70b6f02427647cd1b4262843b65b9dedc4b",
+      "dist/search/service.js": "f2890da0abcb835555782fa3e92098e283199382de688af0eec6d5dffd1e7d37",
+      "package.json": "e9a04002a4d24d74dfd71b511d5feb2b68791ac8f76ebe736da5386132ef3a0c",
+      "package-lock.json": "276912460d47da4683afef8a95baaa13dacd285d92ff8285c2525602669a7dcf",
+      "src/server.ts": "d0000c4be2734e5dbc4d6a8afa50838047c0bc687dabaa046b5266fc2ffa57be",
+      "src/tools/schemas.ts": "69b8738c15ccd8d36bc86e27378211d80b869b0a700852a5ced47d9c54008c08",
+      "src/models/paper.ts": "23901c5b72bb7ab5deefd964127bbed8caf3790499411498a9fbb2e2d5de2a21",
+      "src/search/service.ts": "d6cfd32d0af780857f4bbdba18efd983409d64c3ed1ff3bf794d16ca7ef3354d",
+      "tests/search/search.test.mjs": "deb2c3b427ac2547189a5727259cd446f0b0035252acc08149f574bc468d9db7",
+      "tests/integration/mcp.test.mjs": "f751dafa3f6639bc6e7beb209f40636e308c34f1190e09978c4fdf0870c0a0a5",
+      "tests/integration/upstream-contract.test.mjs": "9c7bae20295b09cd7bdd093d742bc31769c123b08f5cf0d6f63fac89aa02b117"
+    }
+  },
+  "browser_startup_followup": {
+    "at": "2026-11-14T13:55:35.337Z",
+    "cause": "Orphan headless Edge retained from an interrupted Pi test; process cwd matched that exact test and profile lock pointed to its PID",
+    "cleanup": "Graceful Browser.close sent only to the verified test-owned browser",
+    "profile_data_deleted": false,
+    "other_browser_processes_terminated": false,
+    "verification": "Actual Pi SDK session_start loading installed pi-browser-use and executing browser_doctor without model request or website navigation",
+    "registered_browser_tools": 34,
+    "extension_errors": 0,
+    "doctor_is_error": false,
+    "clean_shutdown": true,
+    "settings_unchanged": true,
+    "scope": "Startup and doctor only; site interactions and authentication were not tested"
+  }
+}

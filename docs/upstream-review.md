@@ -24,3 +24,9 @@ Wiley、Springer 等上游测试有不少仅检查方法存在，不能据此认
 首次安装审计发现上游 Zod 3.x 命中 GHSA-mrhx-c7xc-m3w5。主项目通过 scoped npm override 固定其 Zod 为 4.6.7，没有修改上游源码；原始上游 WoS HTTP 合约、真实 Crossref 搜索和 stdio 连接已验证兼容。最终 `npm audit --omit=dev` 的结果见验收记录。
 
 正常请求复用一个子进程；关闭与异常超时处理有独立生命周期。上游部分网络请求不能完全处理 MCP 取消，因此本项目在超时/取消时关闭共享进程，下一次重新建立连接。
+
+## WoS 能力契约补核：2026-11-14
+
+固定包仍为 0.3.3。Starter 搜索客户端在未指定数据库时向 v1/v2 documents 端点发送 db=WOS；Expanded 使用 databaseId=WOS。上游 MCP handler 未提供数据库切换参数，本项目当前路由也未覆盖默认数据库，因此两种产品的该路由均指向核心合集；Starter 并不依赖 Expanded 才能执行 TS/TI/AU/SO/PY/DO 等支持字段查询。实际固定类的 HTTP Mock 已同时断言 v1/v2 的 URL、db=WOS、认证头、查询及零被引计数，并断言 Expanded 的 databaseId。
+
+Starter 官方 API 支持 page/limit，响应 metadata.total 提供总命中数；上游检索类会读取这些值用于其内部取回，但本项目的有界数组接口未透出翻页或总数。1.1.1 的 api_capabilities 与 retrieval.limitation_scope 区分产品能力和当前 MCP 封装限制。来源见 [Starter OpenAPI](https://developer.clarivate.com/apis/wos-starter/swagger)；不修改上游源码，也不因本地声明推定账户权限。
