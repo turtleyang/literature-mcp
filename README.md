@@ -6,15 +6,17 @@
 
 ## 在新电脑上安装与使用
 
-### 方式一：在任何 Agent 中直接挂载（推荐，免克隆免编译）
+### 方式一：在任何 Agent 中直接挂载
 
-仓库内包含预编译好的运行产物，可在任何支持 MCP 的客户端中通过 `npx` 直接按需启动：
+仓库内包含预编译好的运行产物，可直接被各类 MCP 客户端挂载运行。
 
+#### 1. Linux / macOS
+可直接使用 `npx` 按需启动：
 * **Pi Agent**（单行指令挂载）：
   ```bash
   pi mcp add literature-mcp --exposure direct -- npx -y github:turtleyang/literature-mcp
   ```
-* **Claude Desktop / Cursor / Codex / Windsurf / Cline**（在客户端 `mcp.json` 中直接配置）：
+* **Claude Desktop / Cursor / Codex / Windsurf / Cline**（在客户端 `mcp.json` 中配置）：
   ```json
   {
     "mcpServers": {
@@ -30,11 +32,47 @@
     }
   }
   ```
-* **全局安装（作为全局命令使用）**：
-  ```bash
-  npm install -g git+https://github.com/turtleyang/literature-mcp.git
+
+#### 2. Windows 平台（特别注意与推荐最佳实践）
+
+> [!WARNING]
+> **Windows 下为什么不能直接使用 `command: "npx"`？**
+> Windows 环境下的 `npx` 实际是批处理脚本 `npx.cmd`，而 MCP 客户端底层普遍使用 `child_process.spawn(command, args, { shell: false })` 启动子进程；Node.js 24 起禁止在无 shell 模式下隐式执行 `.cmd`，会直接抛出 `SPAWN_ERROR ENOENT spawn npx ENOENT`。
+> 
+> 此外，若使用 `cmd /c npx -y github:...` 转接，由于每次启动都要联网克隆并动态安装 163 个依赖，实测冷启动长达 **73 秒**。
+
+**Windows 最佳实践：预装 / 克隆副本 + Node 原生直启（推荐，实测约 1 秒秒启，离线稳定）**：
+将代码克隆或预装至固定目录（例如 `%USERPROFILE%\.dsh\mcp-servers\literature-mcp` 或 `D:\code\literature-mcp`），在客户端中直接使用原生 `node` 启动预编译的 `dist/server.js`：
+
+* **Pi Agent**（直接指向本机路径）：
+  ```powershell
+  pi mcp add literature-mcp --exposure direct -- "node" "C:\Users\54509\.dsh\mcp-servers\literature-mcp\dist\server.js"
   ```
-  安装后即可在任何客户端配置中直接将 `command` 设为 `literature-mcp`。
+* **通用客户端配置（`mcp.json`）**：
+  ```json
+  {
+    "mcpServers": {
+      "literature-mcp": {
+        "command": "node",
+        "args": ["C:\\Users\\54509\\.dsh\\mcp-servers\\literature-mcp\\dist\\server.js"],
+        "env": {
+          "WOS_API_KEY": "你的Key(可选)",
+          "WILEY_TDM_TOKEN": "你的Token(可选)",
+          "LITERATURE_AUTHORIZED_APIS": "wos_starter,wiley"
+        }
+      }
+    }
+  }
+  ```
+* **备选方案（动态拉取但冷启动慢）**：
+  如果临时机器上确实无法预装，必须使用 `cmd` 包装转接：
+  ```json
+  {
+    "command": "cmd",
+    "args": ["/c", "npx", "-y", "github:turtleyang/literature-mcp"]
+  }
+  ```
+
 
 ### 方式二：本地源码克隆运行
 

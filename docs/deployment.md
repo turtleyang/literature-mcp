@@ -12,9 +12,15 @@ setup 用独占创建保留已有环境文件和客户端配置。更换机器�
 
 文献库默认位于 checkout 内，各电脑各自保存。索引目前记录实际绝对路径，不支持直接把整套索引拷到另一种操作系统后继续引用旧路径。跨机器文献迁移/同步不属于 Git 发布流程；不要把 PDF 加入仓库。
 
-## Windows 路径与测试
+## Windows 路径与客户端启动实测
 
 目录逐级校验保留盘符根和 UNC share 根；realpath 比较允许 Windows 的大小写和长路径命名空间规范化；8.3 短路径需通过目录卷号和文件 ID 同一性确认，同时仍拒绝符号链接/目录联接跳转。测试中的目录链接使用 Windows junction，无需开发者模式的 symlink 权限。
+
+### Windows 下客户端启动命令陷阱与基准测试（2026-11-17 实测）
+很多 MCP 客户端（包括 Pi、Cursor 等）在底层使用 `child_process.spawn(command, args, { shell: false })` 启动 stdio 子进程。在 Windows 平台：
+1. **直接调用 `command: "npx"` 会报错 `SPAWN_ERROR ENOENT spawn npx ENOENT`**：因为 Windows 上的 npx 是 `npx.cmd`，且 Node.js 24 因安全策略禁止在无 shell 模式下隐式执行 `.cmd` 文件。
+2. **`cmd /c npx -y github:...` 包装方案**：虽然可以通过 cmd 启动，但由于每次调用都会动态克隆远端仓库并安装 163 个依赖，实测冷启动耗时高达 **73 秒**，体验极差且每次都依赖网络。
+3. **最佳方案（预装副本 + Node 原生直启）**：将构建好的产物预装到固定目录（如 `%USERPROFILE%\.dsh\mcp-servers\literature-mcp` 或 `D:\code\literature-mcp`），在客户端配置中直接由 `node` 执行 `dist/server.js`。实测冷启动仅需 **约 1 秒**，离线稳定可用。
 
 GitHub Actions 的 Windows 和 Ubuntu 任务使用相同固定 Node 版本，执行全部离线测试及原生 stdio 子进程检查。没有真实 API Key 的 CI 不调用商业接口，也不下载论文。每次改变源码、启动器、依赖或测试后必须观察两个平台的实际结果。
 

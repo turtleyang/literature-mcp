@@ -28,18 +28,22 @@ Pi 浏览器扩展启动错误的后续核验：已确认此前被终止的测�
 
 本轮 Pi 使用调试已完成。已打开的 Pi 需 `/reload` 或重新连接文献服务以加载更新后的定义；没有操作用户原交互会话。当前 MCP 仍是有界候选检索，未新增全量分页导出或第四个工具。未来扩展和维护按 AGENTS.md、README 与 docs/architecture.md 执行；不把本状态文件作为长期规则或授权证明。
 
-## Windows 宿主机实测部署：2026-11-16
+## Windows 宿主机实测部署与客户端直启基准：2026-11-16 ~ 2026-11-17
 
-已通过 SSH 在用户 Windows 宿主机（`littleplane`，Windows 11 x64，Node.js v24.15.0，npm 11.12.1，Pi 1.4.0）完成完整克隆、构建与 Pi 挂载。部署位于 `D:\code\literature-mcp`。
+已通过 SSH 在用户 Windows 宿主机（`littleplane`，Windows 11 x64，Node.js v24.15.0，npm 11.12.1，Pi 1.4.0）完成完整克隆、构建与 Pi 挂载。部署位于 `D:\code\literature-mcp`，预装产物位于 `C:\Users\54509\.dsh\mcp-servers\literature-mcp`。
 
-验证结果如下：
+验证结果与基准分析如下：
 1. **原生离线检查**：Windows 环境下 56 项测试全部通过（含驱动器根、UNC 根、短路径名与大小写规范化校验），stdio smoke 通过，代码格式一致，依赖审计 0 漏洞。
 2. **私有凭据与 Doctor 校验**：持久配置 `.env` 安全复制至 Windows 端，`npm run doctor` 确认 Node v24.15.0、存储目录 `D:\code\literature-mcp\literature-library`、wiley 与 wos_starter 授权状态正常。
-3. **Pi 全局客户端挂载**：通过 `pi mcp add` 将直接入口挂载至 `C:\Users\54509\.pi\agent\mcp.json`，保留已有 Zotero 配置；`pi mcp list` 成功连接并列出 3 个工具（`search_literature`, `get_paper`, `download_paper`）。
+3. **Pi 全局客户端挂载与 Windows 启动陷阱定位（2026-11-17 实测）**：
+   - **`spawn npx ENOENT` 踩坑**：MCP 客户端底层普遍使用 `child_process.spawn(command, args, { shell: false })`。Windows 上 `npx` 实为 `npx.cmd`，且 Node 24 严格禁止在无 shell 模式下隐式执行 `.cmd` 文件，直接抛出 `SPAWN_ERROR ENOENT spawn npx ENOENT`。
+   - **`cmd /c npx -y github:...` 方案**：每次启动均需动态克隆仓库并安装 163 个依赖，冷启动耗时长达 **73 秒**，无法满足交互实时性且依赖外网。
+   - **预装副本 + `node dist/server.js` 直启（最佳实践，已采纳）**：在预装目录（`C:\Users\54509\.dsh\mcp-servers\literature-mcp`）由原生 `node` 直启预编译的 `dist/server.js`，冷启动仅需 **约 1 秒**，零依赖外部网络，秒级响应。
 4. **真机端到端调用闭环**：通过 `verify-pi-windows.mjs` 与 `online-test.mjs` 实测：
    - `search_literature`（fast 模式，OpenAlex + Crossref）返回 3 篇，status=ok。
    - `search_literature`（wos 模式，WoS Starter v1 核心合集）真实检索返回 10 篇，status=ok。
    - `get_paper`（精确 DOI `10.1038/nphys1170`）返回元数据，status=ok。
    - `download_paper`（arXiv `1706.03762v7`）真实下载官方 PDF 并通过严格格式校验，保存至 `D:\code\literature-mcp\literature-library\papers\`；随后二次调用正确返回 `already_exists` 本地复用。
 5. 验收回执保存在 [Windows Pi 回执](docs/pi-windows-receipt.json) 与 [Windows 在线结果](docs/online-results-windows.json)。
+
 
