@@ -15,21 +15,6 @@ export interface Candidate {
   wiley?: boolean;
   metadata?: Partial<Paper>;
 }
-export interface PublisherDownloadAdapter {
-  name: string;
-  supports(paper: Paper): boolean;
-  discover(doi: string, signal?: AbortSignal): Promise<Candidate[]>;
-}
-/** Reserved extension points: no unsupported publisher is presented as implemented. */
-export const reservedPublishers = [
-  'acs',
-  'rsc',
-  'ieee',
-  'taylor_francis',
-  'iop',
-  'aip',
-  'aps',
-] as const;
 export class Discovery {
   constructor(
     private cfg: Config,

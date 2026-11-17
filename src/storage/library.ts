@@ -205,16 +205,15 @@ export class Library {
         bytes: response.data.length,
         version: verified.arxiv_id ? `submittedVersion (${verified.arxiv_id})` : version,
       };
+      const formats = paper ? [...new Set([...paper.available_formats, verified.format])] : [];
       const metadata = {
         schema_version: 1,
         identifier,
         paper: paper
           ? {
               ...paper,
-              available_formats: [...new Set([...paper.available_formats, verified.format])],
-              available_fulltext_formats: [
-                ...new Set([...paper.available_formats, verified.format]),
-              ],
+              available_formats: formats,
+              available_fulltext_formats: formats,
               fulltext_access_status: ['wiley_tdm', 'elsevier_article', 'springer_tdm'].includes(
                 source,
               )

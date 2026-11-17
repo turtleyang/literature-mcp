@@ -1,16 +1,6 @@
 import { XMLParser } from 'fast-xml-parser';
 import { maybeDoi, normalizeArxiv } from '../utils/identifiers.js';
 import { Failure } from '../utils/control.js';
-/** Reserved extension points: no unsupported publisher is presented as implemented. */
-export const reservedPublishers = [
-    'acs',
-    'rsc',
-    'ieee',
-    'taylor_francis',
-    'iop',
-    'aip',
-    'aps',
-];
 export class Discovery {
     cfg;
     http;

@@ -2,7 +2,7 @@
 
 本地科研文献检索与合法全文下载 MCP Server。TypeScript + 官方 MCP SDK，使用 stdio，向客户端只暴露 `search_literature`、`get_paper`、`download_paper` 三个工具。检索不会自动下载论文；每次下载只处理一个明确指定的 DOI 或 arXiv ID。
 
-源码仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/literature-mcp)（私有，需要你的 GitHub 账户有访问权限）。Windows 和 Linux 使用同一份源码、依赖锁与 Node.js 入口，无需单独维护两个版本。GitHub 不存储你的 API Key 或文献库。
+源码仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/literature-mcp)。Windows 和 Linux 使用同一份源码、依赖锁与 Node.js 入口，无需单独维护两个版本。GitHub 不存储你的 API Key 或文献库。
 
 ## 在新电脑上安装与使用
 
@@ -93,7 +93,7 @@ npm run setup
 npm run smoke
 ```
 
-Windows PowerShell 若阻止 `npm.ps1`，将命令里的 `npm` 换成 `npm.cmd`，无需修改执行策略。私有仓库需要先配置自己的 GitHub SSH 登录；也可使用 GitHub 提供的 HTTPS clone 地址和正常账户认证，不要将 Token 拼进 URL。
+Windows PowerShell 若阻止 `npm.ps1`，将命令里的 `npm` 换成 `npm.cmd`，无需修改执行策略。可直接使用 HTTPS 或 SSH clone 仓库，无需将 Token 拼进 URL。
 
 `npm run setup` 会记录当前 Node 的绝对路径，并在缺失时创建：
 

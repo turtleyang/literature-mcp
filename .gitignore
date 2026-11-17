@@ -15,3 +15,9 @@ config/node-path
 .cursor/mcp.json
 *.pem
 *.key
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

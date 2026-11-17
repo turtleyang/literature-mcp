@@ -10,6 +10,7 @@ import { SearchService } from './search/service.js';
 import { DownloadService } from './download/service.js';
 import { searchSchema, getSchema, downloadSchema } from './tools/schemas.js';
 import { failure } from './utils/control.js';
+import { normalizeDoi } from './utils/identifiers.js';
 export async function createApp(
   cfg: Config = makeConfig(),
   dependencies: { backend?: Backend; http?: Http } = {},
@@ -76,7 +77,6 @@ export async function createApp(
           input.include_citations,
           operationSignal(extra.signal),
         );
-        const { normalizeDoi } = await import('./utils/identifiers.js');
         let local;
         try {
           local = await library.existing(normalizeDoi(input.doi));

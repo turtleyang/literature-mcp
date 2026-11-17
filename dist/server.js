@@ -10,6 +10,7 @@ import { SearchService } from './search/service.js';
 import { DownloadService } from './download/service.js';
 import { searchSchema, getSchema, downloadSchema } from './tools/schemas.js';
 import { failure } from './utils/control.js';
+import { normalizeDoi } from './utils/identifiers.js';
 export async function createApp(cfg = makeConfig(), dependencies = {}) {
     const library = new Library(cfg);
     await library.init();
@@ -49,7 +50,6 @@ export async function createApp(cfg = makeConfig(), dependencies = {}) {
         annotations: { readOnlyHint: true, openWorldHint: true },
     }, (input, extra) => guarded(async () => {
         const result = await search.get(input.doi, input.metadata_sources, input.include_citations, operationSignal(extra.signal));
-        const { normalizeDoi } = await import('./utils/identifiers.js');
         let local;
         try {
             local = await library.existing(normalizeDoi(input.doi));

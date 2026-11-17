@@ -20,7 +20,7 @@ WoS Starter v1 已于 2026-11-13 通过本机真实凭据及持久配置复验�
 
 若需启用 WoS Expanded、Elsevier、Scopus、Springer，仍需对应真实产品凭据和 API/TDM 许可；Unpaywall 需真实邮箱。Semantic Scholar 的匿名请求曾 429，尚未取得真实检索/全文成功证据。
 
-当前发布目标为私有仓库 `turtleyang/literature-mcp`；用户选择只发布跨平台仓库，暂不部署服务器。仓库已创建并推送，Windows 和 Ubuntu CI 均已验证成功。新电脑安装入口是 README 的 clone → npm ci → build → setup → smoke，私有 .env 与文献库不随 Git 分发。
+当前发布目标为公开仓库 `turtleyang/literature-mcp`；用户选择只发布跨平台仓库，暂不部署服务器。仓库已创建并推送，Windows 和 Ubuntu CI 均已验证成功。新电脑安装入口是 README 的 clone → npm ci → build → setup → smoke，私有 .env 与文献库不随 Git 分发。
 
 1.1.1 已在本机编译并生效，按用户指令纳入 main 分发；提交与推送状态以实际 Git refs 为准。私有 .env、文献库、本机客户端配置及 .local 原始日志不随分发。
 
