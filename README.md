@@ -4,7 +4,39 @@
 
 源码仓库：[turtleyang/literature-mcp](https://github.com/turtleyang/literature-mcp)（私有，需要你的 GitHub 账户有访问权限）。Windows 和 Linux 使用同一份源码、依赖锁与 Node.js 入口，无需单独维护两个版本。GitHub 不存储你的 API Key 或文献库。
 
-## 在新电脑上安装
+## 在新电脑上安装与使用
+
+### 方式一：在任何 Agent 中直接挂载（推荐，免克隆免编译）
+
+仓库内包含预编译好的运行产物，可在任何支持 MCP 的客户端中通过 `npx` 直接按需启动：
+
+* **Pi Agent**（单行指令挂载）：
+  ```bash
+  pi mcp add literature-mcp --exposure direct -- npx -y github:turtleyang/literature-mcp
+  ```
+* **Claude Desktop / Cursor / Codex / Windsurf / Cline**（在客户端 `mcp.json` 中直接配置）：
+  ```json
+  {
+    "mcpServers": {
+      "literature-mcp": {
+        "command": "npx",
+        "args": ["-y", "github:turtleyang/literature-mcp"],
+        "env": {
+          "WOS_API_KEY": "你的Key(可选)",
+          "WILEY_TDM_TOKEN": "你的Token(可选)",
+          "LITERATURE_AUTHORIZED_APIS": "wos_starter,wiley"
+        }
+      }
+    }
+  }
+  ```
+* **全局安装（作为全局命令使用）**：
+  ```bash
+  npm install -g git+https://github.com/turtleyang/literature-mcp.git
+  ```
+  安装后即可在任何客户端配置中直接将 `command` 设为 `literature-mcp`。
+
+### 方式二：本地源码克隆运行
 
 先安装 Git 与 Node.js **24.x**（固定验证版本见 `.nvmrc`）。在终端执行：
 

@@ -1,0 +1,1363 @@
+{
+  "at": "2026-11-16T14:29:29.942Z",
+  "environment": "win32/x64, v24.15.0; actual caller network",
+  "tests": [
+    {
+      "label": "A",
+      "name": "search_literature",
+      "input": {
+        "query": "diamond thermal conductivity measurement",
+        "mode": "fast",
+        "max_results": 5
+      },
+      "elapsed_ms": 3348,
+      "result": {
+        "status": "ok",
+        "query": "diamond thermal conductivity measurement",
+        "papers": [
+          {
+            "doi": "10.1016/s0925-9635(00)00515-x",
+            "title": "Thermal conductivity measurements on CVD diamond",
+            "authors": [
+              "Daniel J. Twitchen",
+              "Charles S. J. Pickles",
+              "Steven E. Coe",
+              "Ricardo S. Sussmann",
+              "C.E. Hall"
+            ],
+            "journal": "Diamond and Related Materials",
+            "year": 2001,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W1969257282",
+                "url": "https://doi.org/10.1016/s0925-9635(00)00515-x"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 96
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 5,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1023/a:1022577830607",
+            "title": "Measurements of Thermal Conductivity and Thermal Diffusivity of CVD Diamond",
+            "authors": [
+              "John E. Graebner"
+            ],
+            "journal": "International Journal of Thermophysics",
+            "year": 1998,
+            "publisher": "Springer Science+Business Media",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W128560583",
+                "url": "https://doi.org/10.1023/a:1022577830607"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 27
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 1,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.7567/1347-4065/ab01f1",
+            "title": "In situ thermal conductivity measurement in diamond anvil cell",
+            "authors": [
+              "Donghui Yue",
+              "Yang Gao",
+              "Lin Zhao",
+              "Yalan Yan",
+              "Tingting Ji",
+              "Yonghao Han",
+              "Chunxiao Gao"
+            ],
+            "journal": "Japanese Journal of Applied Physics",
+            "year": 2019,
+            "publisher": "Institute of Physics",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W2913368159",
+                "url": "https://doi.org/10.7567/1347-4065/ab01f1"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 11
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://iopscience.iop.org/article/10.7567/1347-4065/ab01f1/pdf",
+                "landing_page_url": "https://doi.org/10.7567/1347-4065/ab01f1",
+                "format": "pdf",
+                "version": "publishedVersion",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.7567/1347-4065/ab01f1"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 7,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1063/1.356585",
+            "title": "Measurements of thermal conductivity of diamond films by photothermal deflection technique",
+            "authors": [
+              "M. Bertolotti",
+              "G. Liakhou",
+              "A. Ferrari",
+              "Victor Ralchenko",
+              "Andrey A. Smolin",
+              "Elena D. Obraztsova",
+              "K. G. Korotoushenko",
+              "Sergei M. Pimenov"
+            ],
+            "journal": "Journal of Applied Physics",
+            "year": 1994,
+            "publisher": "American Institute of Physics",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W2048567314",
+                "url": "https://doi.org/10.1063/1.356585"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 35
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 9,
+            "authors_truncated": true
+          },
+          {
+            "doi": "10.1016/s0925-9635(98)00241-6",
+            "title": "Report on a second round robin measurement of the thermal conductivity of CVD diamond",
+            "authors": [
+              "John E. Graebner",
+              "H. Altmann",
+              "Naira Maria Balzaretti",
+              "Robert Campbell",
+              "H. B. Chae",
+              "Alain Degiovanni",
+              "R. C. Enck",
+              "Ari D Feldman"
+            ],
+            "journal": "Diamond and Related Materials",
+            "year": 1998,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W1966995723",
+                "url": "https://doi.org/10.1016/s0925-9635(98)00241-6"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 47
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 30,
+            "authors_truncated": true
+          }
+        ],
+        "source_statuses": [
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 1619
+          },
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 3340
+          }
+        ],
+        "retrieval": {
+          "limitation_scope": "this_mcp_tool",
+          "requested_max_results": 5,
+          "returned_count": 5,
+          "max_results_per_call": 50,
+          "total_matches": null,
+          "pagination_available": false,
+          "exhaustiveness_verified": false
+        },
+        "deduplicated": true,
+        "ranking": "Source order, source relevance; not a systematic review",
+        "cached": false
+      }
+    },
+    {
+      "label": "B",
+      "name": "search_literature",
+      "input": {
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "mode": "wos"
+      },
+      "elapsed_ms": 1811,
+      "result": {
+        "status": "ok",
+        "query": "TS=(\"diamond\" AND \"thermal conductivity\")",
+        "papers": [
+          {
+            "doi": "10.1016/j.ceramint.2025.06.299",
+            "title": "Role of diamond particle size in maintaining high-temperature thermal conductivity of Al/diamond composite",
+            "authors": [
+              "Zhang, Yongjian",
+              "Li, Ning",
+              "Hao, Jinpeng",
+              "Wu, Jianhua",
+              "Luo, Yang",
+              "Wang, Xitao",
+              "Zhang, Hailong"
+            ],
+            "journal": "CERAMICS INTERNATIONAL",
+            "year": 2025,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001567956700028",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 11
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 7,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.diamond.2024.111257",
+            "title": "Effect of diamond particle size on thermal conductivity and thermal stability of Zr-diamond/Cu composite",
+            "authors": [
+              "Zhang, Yongjian",
+              "Wang, Luhua",
+              "Hao, Jinpeng",
+              "Li, Ning",
+              "Wang, Xitao",
+              "Zhang, Hailong"
+            ],
+            "journal": "DIAMOND AND RELATED MATERIALS",
+            "year": 2024,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001263715100001",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 34
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 6,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.diamond.2023.110213",
+            "title": "Synergetic effect enabling high thermal conductivity in Cu/diamond composite",
+            "authors": [
+              "Hao, Jinpeng",
+              "Zhang, Yongjian",
+              "Li, Ning",
+              "Dai, Jingjie",
+              "Wang, Xitao",
+              "Zhang, Hailong"
+            ],
+            "journal": "DIAMOND AND RELATED MATERIALS",
+            "year": 2023,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001048491800001",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 42
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 6,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.3390/cryst13060906",
+            "title": "Progress in the Copper-Based Diamond Composites for Thermal Conductivity Applications",
+            "authors": [
+              "Chen, Kang",
+              "Leng, Xuesong",
+              "Zhao, Rui",
+              "Kang, Yiyao",
+              "Chen, Hongsheng"
+            ],
+            "journal": "CRYSTALS",
+            "year": 2023,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:001014344500001",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 38
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 5,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.4028/www.scientific.net/amr.311-313.287",
+            "title": "Thermal Conductivity of the Diamond-Cu Composites with Chromium Addition",
+            "authors": [
+              "Zuo, Qiang",
+              "Wang, Wei",
+              "Gu, Mengsen",
+              "Fang, Haijiang",
+              "Ma, Li",
+              "Wang, Peng",
+              "Li, Jianxin",
+              "Hu, Xing"
+            ],
+            "journal": "ADVANCED MATERIALS AND PROCESSES, PTS 1-3",
+            "year": 2011,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000309144500060",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 8
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 9,
+            "authors_truncated": true
+          },
+          {
+            "doi": "10.1007/s10854-021-05859-w",
+            "title": "Enhanced thermal conductivity in TiC/diamond or Cr3C2/diamond particles modified Bi-In-Sn compounds",
+            "authors": [
+              "Zeng, Chengzong",
+              "Shen, Jun",
+              "Gong, Mengqi",
+              "Chen, Hui"
+            ],
+            "journal": "JOURNAL OF MATERIALS SCIENCE-MATERIALS IN ELECTRONICS",
+            "year": 2021,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000645890900005",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 11
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 4,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.4028/www.scientific.net/amm.275-277.1610",
+            "title": "Effect of TiC intermediate layers on the thermal conductivity of copper/diamond composites",
+            "authors": [
+              "Kang, Qiping",
+              "He, Xinbo",
+              "Ren, Shubin",
+              "Jia, Baorui",
+              "Qu, Xuanhui"
+            ],
+            "journal": "APPLIED MECHANICS AND MATERIALS I, PTS 1-3",
+            "year": 2013,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000320899900307",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 5
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 5,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.diamond.2019.02.014",
+            "title": "Thermal conductivity of Cu-Ti/diamond composites via spark plasma sintering",
+            "authors": [
+              "Yang, Lin",
+              "Sun, Long",
+              "Bai, Weiwei",
+              "Li, Lichen"
+            ],
+            "journal": "DIAMOND AND RELATED MATERIALS",
+            "year": 2019,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000467511300006",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 77
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 4,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1177/0021998312460259",
+            "title": "Microstructure and thermal conductivity of Cu-B/diamond composites",
+            "authors": [
+              "Chu, Ke",
+              "Jia, Chengchang",
+              "Guo, Hong",
+              "Li, Wensheng"
+            ],
+            "journal": "JOURNAL OF COMPOSITE MATERIALS",
+            "year": 2013,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000329545100004",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 39
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 4,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1007/s42823-022-00330-0",
+            "title": "Thermal and mechanical properties of diamond/SiC substrate reinforced by bimodal diamond particles",
+            "authors": [
+              "Liu, Pengfei",
+              "Wang, Xulei",
+              "He, Xinbo",
+              "Qu, Xuanhui"
+            ],
+            "journal": "CARBON LETTERS",
+            "year": 2022,
+            "publisher": null,
+            "publication_type": null,
+            "source_records": [
+              {
+                "source": "wos_starter",
+                "id": "WOS:000767051900001",
+                "url": "https://www.webofscience.com/api/gateway?GWVersion=2&SrcApp=xm001&SrcAuth=***"
+              }
+            ],
+            "citation_counts": {
+              "wos_starter": 18
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 4,
+            "authors_truncated": false
+          }
+        ],
+        "source_statuses": [
+          {
+            "database": {
+              "id": "WOS",
+              "name": "Web of Science Core Collection"
+            },
+            "api_product": "starter",
+            "api_capabilities": {
+              "pagination": true,
+              "total_matches": true
+            },
+            "api_version": "v1",
+            "source": "wos_starter",
+            "status": "ok",
+            "elapsed_ms": 1809
+          }
+        ],
+        "retrieval": {
+          "limitation_scope": "this_mcp_tool",
+          "requested_max_results": 10,
+          "returned_count": 10,
+          "max_results_per_call": 50,
+          "total_matches": null,
+          "pagination_available": false,
+          "exhaustiveness_verified": false
+        },
+        "deduplicated": true,
+        "ranking": "Source order, source relevance; not a systematic review",
+        "cached": false
+      }
+    },
+    {
+      "label": "C",
+      "name": "get_paper",
+      "input": {
+        "doi": "10.1038/nphys1170"
+      },
+      "elapsed_ms": 1207,
+      "result": {
+        "status": "ok",
+        "paper": {
+          "doi": "10.1038/nphys1170",
+          "title": "Measured measurement",
+          "authors": [
+            "Markus Aspelmeyer"
+          ],
+          "journal": "Nature Physics",
+          "year": 2009,
+          "publisher": "Springer Science and Business Media LLC",
+          "abstract": null,
+          "publication_type": "journal-article",
+          "source_records": [
+            {
+              "source": "crossref",
+              "id": "10.1038/nphys1170",
+              "url": "https://doi.org/10.1038/nphys1170"
+            },
+            {
+              "source": "openalex",
+              "id": "https://openalex.org/W4289253527",
+              "url": "https://doi.org/10.1038/nphys1170"
+            }
+          ],
+          "citation_counts": {
+            "crossref": 12,
+            "openalex": 18
+          },
+          "open_access_locations": [],
+          "fulltext_access_status": "unknown",
+          "available_formats": [],
+          "available_fulltext_formats": [],
+          "local_file_path": null,
+          "downloaded_from": null,
+          "downloaded_at": null
+        },
+        "source_statuses": [
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 1205
+          },
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 330
+          }
+        ]
+      }
+    },
+    {
+      "label": "D",
+      "name": "download_paper",
+      "input": {
+        "arxiv_id": "1706.03762v7",
+        "preferred_source": "arxiv"
+      },
+      "elapsed_ms": 22166,
+      "result": {
+        "status": "downloaded",
+        "downloaded_at": "2026-11-16T14:29:58.865Z",
+        "arxiv_id": "1706.03762v7",
+        "source": "arxiv",
+        "format": "pdf",
+        "file_path": "D:\\code\\literature-mcp\\literature-library\\papers\\72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+        "verified": true,
+        "identity_verification": "arXiv ID in PDF front matter",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "bytes": 2215244,
+        "version": "submittedVersion (1706.03762v7)",
+        "attempts": [
+          {
+            "source": "arxiv",
+            "status": "ok",
+            "elapsed_ms": 21365
+          }
+        ]
+      }
+    },
+    {
+      "label": "D-local-reuse",
+      "name": "download_paper",
+      "input": {
+        "arxiv_id": "1706.03762v7",
+        "preferred_source": "arxiv"
+      },
+      "elapsed_ms": 95,
+      "result": {
+        "status": "already_exists",
+        "downloaded_at": "2026-11-16T14:29:58.865Z",
+        "arxiv_id": "1706.03762v7",
+        "source": "arxiv",
+        "format": "pdf",
+        "file_path": "D:\\code\\literature-mcp\\literature-library\\papers\\72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf",
+        "verified": true,
+        "identity_verification": "arXiv ID in PDF front matter",
+        "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+        "bytes": 2215244,
+        "version": "submittedVersion (1706.03762v7)"
+      }
+    },
+    {
+      "label": "E-no-token",
+      "name": "download_paper",
+      "input": {
+        "doi": "10.1111/1467-923x.12168",
+        "preferred_source": "wiley"
+      },
+      "elapsed_ms": 4213,
+      "result": {
+        "status": "credentials_required",
+        "doi": "10.1111/1467-923x.12168",
+        "reason": "Wiley TDM token is invalid, missing, or not registered",
+        "publisher_url": "https://doi.org/10.1111/1467-923x.12168",
+        "open_access_locations": [
+          {
+            "source": "openalex",
+            "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/1467-923X.12168",
+            "landing_page_url": "https://doi.org/10.1111/1467-923x.12168",
+            "format": "pdf",
+            "version": "publishedVersion",
+            "license": null,
+            "is_oa": true,
+            "evidence": "OpenAlex DOI-matched work location",
+            "doi": "10.1111/1467-923x.12168"
+          },
+          {
+            "source": "openalex",
+            "url": "https://ora.ox.ac.uk/objects/uuid:e39bc688-8796-480f-85b6-96f57c2294af/files/s5q47rn96j",
+            "landing_page_url": "https://ora.ox.ac.uk/objects/uuid:e39bc688-8796-480f-85b6-96f57c2294af",
+            "format": "pdf",
+            "version": "submittedVersion",
+            "license": null,
+            "is_oa": true,
+            "evidence": "OpenAlex DOI-matched work location",
+            "doi": "10.1111/1467-923x.12168"
+          },
+          {
+            "source": "openalex",
+            "url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID2777150_code1694652.pdf?abstractid=2757040&mirid=1&type=2",
+            "landing_page_url": "https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID2777150_code1694652.pdf?abstractid=2757040&mirid=1&type=2",
+            "version": "submittedVersion",
+            "license": null,
+            "is_oa": true,
+            "evidence": "OpenAlex DOI-matched work location",
+            "doi": "10.1111/1467-923x.12168"
+          }
+        ],
+        "requires_institutional_authorization": true,
+        "attempts": [
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 1808
+          },
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 1359
+          },
+          {
+            "source": "wiley_tdm",
+            "status": "credentials_required",
+            "reason": "Wiley TDM token is invalid, missing, or not registered",
+            "elapsed_ms": 2400
+          }
+        ]
+      }
+    },
+    {
+      "label": "F-search-only",
+      "name": "search_literature",
+      "input": {
+        "query": "diamond semiconductor interfacial thermal conductance",
+        "mode": "fast",
+        "year_from": 2022,
+        "year_to": 2026,
+        "max_results": 8,
+        "sort_by": "citations"
+      },
+      "elapsed_ms": 3508,
+      "result": {
+        "status": "ok",
+        "query": "diamond semiconductor interfacial thermal conductance",
+        "papers": [
+          {
+            "doi": "10.3390/ma17143437",
+            "title": "A Review of Diamond Materials and Applications in Power Semiconductor Devices",
+            "authors": [
+              "Feiyang Zhao",
+              "Yongjie He",
+              "Bin Huang",
+              "Tianyi Zhang",
+              "Hao Zhu"
+            ],
+            "journal": "Materials",
+            "year": 2024,
+            "publisher": "Multidisciplinary Digital Publishing Institute",
+            "publication_type": "review",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4400522954",
+                "url": "https://doi.org/10.3390/ma17143437"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 109
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://doi.org/10.3390/ma17143437",
+                "landing_page_url": "https://doi.org/10.3390/ma17143437",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.3390/ma17143437"
+              },
+              {
+                "source": "openalex",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11278176/pdf/",
+                "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/11278176",
+                "format": "pdf",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.3390/ma17143437"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 5,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.mtphys.2022.100901",
+            "title": "Realizing ultrahigh thermal conductivity in bimodal-diamond/Al composites via interface engineering",
+            "authors": [
+              "Ning Li",
+              "Yongjian Zhang",
+              "Yang Zhang",
+              "Xitao Wang",
+              "Haijun Wu",
+              "Li‐Dong Zhao",
+              "Hailong Zhang"
+            ],
+            "journal": "Materials Today Physics",
+            "year": 2022,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4307446776",
+                "url": "https://doi.org/10.1016/j.mtphys.2022.100901"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 57
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 7,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.carbon.2024.119021",
+            "title": "Enhancement of interfacial thermal conductance by introducing carbon vacancy at the Cu/diamond interface",
+            "authors": [
+              "Kongping Wu",
+              "Leng Zhang",
+              "Fangzhen Li",
+              "Liwen Sang",
+              "Meiyong Liao",
+              "Kun Tang",
+              "Jiandong Ye",
+              "Shulin Gu"
+            ],
+            "journal": "Carbon",
+            "year": 2024,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4392446944",
+                "url": "https://doi.org/10.1016/j.carbon.2024.119021"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 56
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://doi.org/10.2139/ssrn.4700255",
+                "landing_page_url": "https://doi.org/10.2139/ssrn.4700255",
+                "version": "submittedVersion",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.carbon.2024.119021"
+              },
+              {
+                "source": "openalex",
+                "url": "https://mdr.nims.go.jp/filesets/2bc6ce7e-5542-408a-be63-12e8008311eb/download",
+                "landing_page_url": "https://mdr.nims.go.jp/filesets/2bc6ce7e-5542-408a-be63-12e8008311eb/download",
+                "version": "acceptedVersion",
+                "license": "cc-by-nc-nd",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.carbon.2024.119021"
+              },
+              {
+                "source": "openalex",
+                "url": "https://mdr.nims.go.jp/pid/225ea149-a6e9-4936-bbfb-1eb6f5c088d4",
+                "landing_page_url": "https://mdr.nims.go.jp/pid/225ea149-a6e9-4936-bbfb-1eb6f5c088d4",
+                "version": "acceptedVersion",
+                "license": "cc-by-nc-nd",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.carbon.2024.119021"
+              },
+              {
+                "source": "openalex",
+                "url": "https://mdr.nims.go.jp/pid/225ea149-a6e9-4936-bbfb-1eb6f5c088d4",
+                "landing_page_url": "https://mdr.nims.go.jp/pid/225ea149-a6e9-4936-bbfb-1eb6f5c088d4",
+                "version": "submittedVersion",
+                "license": "cc-by-nc-nd",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.carbon.2024.119021"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 8,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.ijheatmasstransfer.2024.126227",
+            "title": "Thermal boundary conductance of metal–diamond interfaces predicted by machine learning interatomic potentials",
+            "authors": [
+              "Khalid Zobaid Adnan",
+              "Mahesh Raj Neupane",
+              "Tianli Feng"
+            ],
+            "journal": "International Journal of Heat and Mass Transfer",
+            "year": 2024,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4402696521",
+                "url": "https://doi.org/10.1016/j.ijheatmasstransfer.2024.126227"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 31
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://www.sciencedirect.com/science/article/am/pii/S0017931024010573",
+                "landing_page_url": "https://doi.org/10.1016/j.ijheatmasstransfer.2024.126227",
+                "format": "pdf",
+                "version": "acceptedVersion",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.ijheatmasstransfer.2024.126227"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 3,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1016/j.ijthermalsci.2025.109876",
+            "title": "Accurate estimation of interfacial thermal conductance between silicon and diamond enabled by a machine learning interatomic potential",
+            "authors": [
+              "Ali Rajabpour",
+              "Bohayra Mortazavi",
+              "Pedram Mirchi",
+              "Julien El Hajj",
+              "Yangyu Guo",
+              "Xiaoying Zhuang",
+              "Samy Mérabia"
+            ],
+            "journal": "International Journal of Thermal Sciences",
+            "year": 2025,
+            "publisher": "Elsevier BV",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4408557592",
+                "url": "https://doi.org/10.1016/j.ijthermalsci.2025.109876"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 27
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://doi.org/10.1016/j.ijthermalsci.2025.109876",
+                "landing_page_url": "https://doi.org/10.1016/j.ijthermalsci.2025.109876",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.ijthermalsci.2025.109876"
+              },
+              {
+                "source": "openalex",
+                "url": "https://arxiv.org/pdf/2407.15404",
+                "landing_page_url": "https://arxiv.org/abs/2407.15404",
+                "format": "pdf",
+                "version": "submittedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.ijthermalsci.2025.109876"
+              },
+              {
+                "source": "openalex",
+                "url": "https://hal.science/hal-05012208v1/document",
+                "landing_page_url": "https://hal.science/hal-05012208",
+                "format": "pdf",
+                "version": "submittedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.ijthermalsci.2025.109876"
+              },
+              {
+                "source": "openalex",
+                "url": "https://repo.uni-hannover.de/bitstreams/fcb0a946-f0a8-4381-b9ff-1fb761a2a6c5/download",
+                "landing_page_url": "https://repo.uni-hannover.de/handle/123456789/22858",
+                "format": "pdf",
+                "version": "submittedVersion",
+                "license": "cc-by-nc-nd",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1016/j.ijthermalsci.2025.109876"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 7,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1038/s41598-022-24379-z",
+            "title": "A comparative study of interfacial thermal conductance between metal and semiconductor",
+            "authors": [
+              "Kongping Wu",
+              "Leng Zhang",
+              "Danbei Wang",
+              "Fangzhen Li",
+              "Pengzhan Zhang",
+              "Liwen Sang",
+              "Meiyong Liao",
+              "Kun Tang"
+            ],
+            "journal": "Scientific Reports",
+            "year": 2022,
+            "publisher": "Nature Portfolio",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4309563835",
+                "url": "https://doi.org/10.1038/s41598-022-24379-z"
+              },
+              {
+                "source": "crossref",
+                "id": "10.1038/s41598-022-24379-z",
+                "url": "https://doi.org/10.1038/s41598-022-24379-z"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 23,
+              "crossref": 23
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://www.nature.com/articles/s41598-022-24379-z.pdf",
+                "landing_page_url": "https://doi.org/10.1038/s41598-022-24379-z",
+                "format": "pdf",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1038/s41598-022-24379-z"
+              },
+              {
+                "source": "openalex",
+                "url": "https://doi.org/10.2139/ssrn.4175324",
+                "landing_page_url": "https://doi.org/10.2139/ssrn.4175324",
+                "version": "submittedVersion",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1038/s41598-022-24379-z"
+              },
+              {
+                "source": "openalex",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9675788/",
+                "landing_page_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9675788/",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1038/s41598-022-24379-z"
+              },
+              {
+                "source": "openalex",
+                "url": "https://doaj.org/article/9546769c70a449dcb4559efc0478b4a6",
+                "landing_page_url": "https://doaj.org/article/9546769c70a449dcb4559efc0478b4a6",
+                "version": "submittedVersion",
+                "license": "cc-by-sa",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1038/s41598-022-24379-z"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 10,
+            "authors_truncated": true
+          },
+          {
+            "doi": "10.1016/j.apsusc.2023.158001",
+            "title": "Amorphous carbon interlayer modulated interfacial thermal conductance between Cu and diamond",
+            "authors": [
+              "Yongjian Zhang",
+              "Ziyang Wang",
+              "Ning Li",
+              "Fangyuan Sun",
+              "Jinpeng Hao",
+              "Haijun Wu",
+              "Hailong Zhang"
+            ],
+            "journal": "Applied Surface Science",
+            "year": 2023,
+            "publisher": "Elsevier BV",
+            "publication_type": "journal-article",
+            "source_records": [
+              {
+                "source": "crossref",
+                "id": "10.1016/j.apsusc.2023.158001",
+                "url": "https://doi.org/10.1016/j.apsusc.2023.158001"
+              }
+            ],
+            "citation_counts": {
+              "crossref": 21
+            },
+            "open_access_locations": [],
+            "fulltext_access_status": "unknown",
+            "available_formats": [],
+            "available_fulltext_formats": [],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 7,
+            "authors_truncated": false
+          },
+          {
+            "doi": "10.1002/aelm.202400387",
+            "title": "Interfacial Reaction Boosts Thermal Conductance of Room‐Temperature Integrated Semiconductor Interfaces Stable up to 1100 °C",
+            "authors": [
+              "Xiaoyang Ji",
+              "Zifeng Huang",
+              "Yutaka Ohno",
+              "Koji Inoue",
+              "Yasusyohi Nagai",
+              "Yoshiki Sakaida",
+              "Hiroki Uratani",
+              "Jinchi Sun"
+            ],
+            "journal": "Advanced Electronic Materials",
+            "year": 2024,
+            "publisher": "Wiley",
+            "publication_type": "article",
+            "source_records": [
+              {
+                "source": "openalex",
+                "id": "https://openalex.org/W4403405503",
+                "url": "https://doi.org/10.1002/aelm.202400387"
+              }
+            ],
+            "citation_counts": {
+              "openalex": 20
+            },
+            "open_access_locations": [
+              {
+                "source": "openalex",
+                "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/aelm.202400387",
+                "landing_page_url": "https://doi.org/10.1002/aelm.202400387",
+                "format": "pdf",
+                "version": "publishedVersion",
+                "license": "cc-by",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1002/aelm.202400387"
+              },
+              {
+                "source": "openalex",
+                "url": "https://arxiv.org/pdf/2404.09120",
+                "landing_page_url": "http://arxiv.org/abs/2404.09120",
+                "format": "pdf",
+                "version": "submittedVersion",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1002/aelm.202400387"
+              },
+              {
+                "source": "openalex",
+                "url": "https://doaj.org/article/64a2e376dfa0448b929fd385666b1485",
+                "landing_page_url": "https://doaj.org/article/64a2e376dfa0448b929fd385666b1485",
+                "version": "submittedVersion",
+                "license": "cc-by-sa",
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1002/aelm.202400387"
+              },
+              {
+                "source": "openalex",
+                "url": "https://doi.org/10.48550/arxiv.2404.09120",
+                "landing_page_url": "https://doi.org/10.48550/arxiv.2404.09120",
+                "version": "unknown",
+                "license": null,
+                "is_oa": true,
+                "evidence": "OpenAlex DOI-matched work location",
+                "doi": "10.1002/aelm.202400387"
+              }
+            ],
+            "fulltext_access_status": "open_access",
+            "available_formats": [
+              "pdf"
+            ],
+            "available_fulltext_formats": [
+              "pdf"
+            ],
+            "local_file_path": null,
+            "downloaded_from": null,
+            "downloaded_at": null,
+            "author_count": 11,
+            "authors_truncated": true
+          }
+        ],
+        "source_statuses": [
+          {
+            "source": "openalex",
+            "status": "ok",
+            "elapsed_ms": 934
+          },
+          {
+            "source": "crossref",
+            "status": "ok",
+            "elapsed_ms": 3505
+          }
+        ],
+        "retrieval": {
+          "limitation_scope": "this_mcp_tool",
+          "requested_max_results": 8,
+          "returned_count": 8,
+          "max_results_per_call": 50,
+          "total_matches": null,
+          "pagination_available": false,
+          "exhaustiveness_verified": false
+        },
+        "deduplicated": true,
+        "ranking": "Within retrieved candidates: OpenAlex count when present, otherwise Crossref then another available source count. Counts remain separate; not a global ranking.",
+        "cached": false
+      }
+    }
+  ],
+  "tools": [
+    "search_literature",
+    "get_paper",
+    "download_paper"
+  ]
+}

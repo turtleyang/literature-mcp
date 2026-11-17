@@ -1,0 +1,47 @@
+{
+  "tested_at": "2026-11-16T14:33:38.587Z",
+  "platform": "win32",
+  "arch": "x64",
+  "node": "v24.15.0",
+  "client": "pi-mcp-adapter (Windows native runtime)",
+  "server_entry": "D:\\code\\literature-mcp\\dist\\server.js",
+  "tools": [
+    "search_literature",
+    "get_paper",
+    "download_paper"
+  ],
+  "calls": [
+    {
+      "tool": "search_literature_fast",
+      "status": "ok",
+      "papers_count": 3,
+      "sources": [
+        {
+          "source": "openalex",
+          "status": "ok"
+        },
+        {
+          "source": "crossref",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "tool": "search_literature_wos",
+      "status": "ok",
+      "database": "Web of Science Core Collection",
+      "papers_count": 10
+    },
+    {
+      "tool": "get_paper",
+      "status": "ok",
+      "title": "Measured measurement",
+      "doi": "10.1038/nphys1170"
+    },
+    {
+      "tool": "download_paper",
+      "status": "already_exists",
+      "file_path": "D:\\code\\literature-mcp\\literature-library\\papers\\72fd78a7f5e21204f1711586911778117427780ea5c16c0d9d712c77b093f3e2.pdf"
+    }
+  ]
+}

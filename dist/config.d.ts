@@ -1,0 +1,21 @@
+export declare const projectRoot: string;
+export declare const projectVersion: string;
+export declare function loadLocalEnv(): void;
+export declare function makeConfig(env?: NodeJS.ProcessEnv): {
+    env: NodeJS.ProcessEnv;
+    library: string;
+    allowed: string[];
+    authorization: Set<string>;
+    order: string[];
+    trustedFakeIpHosts: Set<string>;
+    timeout: number;
+    downloadTimeout: number;
+    maxBytes: number;
+    maxCandidates: number;
+    searchConcurrency: number;
+    downloadConcurrency: number;
+    proxy: string | undefined;
+    unpaywallEmail: string | undefined;
+    elsevierFormat: "pdf" | "xml";
+};
+export type Config = ReturnType<typeof makeConfig>;

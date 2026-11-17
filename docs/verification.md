@@ -225,3 +225,35 @@ Windows 的真实出版社账户/机构网络下载、Windows 各 Agent 的完�
 随后通过实际 Pi SDK 加载原 pi-browser-use 扩展，运行 session_start 和 browser_doctor：34 个浏览器工具注册成功、扩展错误 0、doctor 非错误；没有发 LLM 请求或打开网站，session_shutdown 正常完成，Pi settings 哈希不变。该结果仅验证启动和诊断，不代表网站交互或登录已验收。[后续摘要](pi-e2e-2026-11-14.json)保留原因、处理范围和复验结果。
 
 按用户明确的推送指令，将 1.1.1 源码、相关测试、使用说明及脱敏回执归为同一修复。发布前检查所有非忽略候选文件及可达 Git blob，使用实际凭据精确匹配和常见 Token/私钥模式检查，未发现凭据；未安装专用扫描器。实际 .env、文献库、机器客户端配置和 .local 原始日志均排除，Pi 安装回执中的机器专用启动值也已省略。仓库权限和可见性经连接工具核对为 turtleyang/literature-mcp 私有仓库；最新远端和本地 main 在提交前同步。
+
+## Windows 宿主机真机完整部署与 Pi 验收：2026-11-16
+
+通过 SSH 在用户 Windows 物理机 `littleplane`（Windows 11 x64 10.0.26300，Node.js v24.15.0，npm 11.12.1，Pi 1.4.0）完成独立实机验收。
+
+### 1. 编译与离线检查
+- 代码位置：`D:\code\literature-mcp`（commit `e9e312f`）。
+- 离线测试：`npm.cmd run check`，共 56 项测试通过、0 失败，耗时 3.4 秒。
+- 覆盖 Windows 关键特性：驱动器盘符根与 UNC 根保留、大小写规范化、8.3 短路径名（`RUNNER~1`）匹配防软链接跳转、stdio smoke 进程检查、无已知漏洞（0 vulnerabilities）。
+
+### 2. 凭据与存储初始化
+- `.env` 通过受保护通道安全同步至 `D:\code\literature-mcp\.env`。
+- `npm.cmd run doctor` 核实通过：Node.js `D:\nodejs\node.exe`、文献库 `D:\code\literature-mcp\literature-library`，`wiley` 与 `wos_starter` 权限正常加载。
+
+### 3. Pi 客户端集成
+- 注册方式：`pi mcp add literature-mcp --exposure direct -- "D:\nodejs\node.exe" "D:\code\literature-mcp\dist\server.js"`。
+- 配置文件更新：`C:\Users\54509\.pi\agent\mcp.json`，保留已有 Zotero 配置。
+- `pi mcp list` 实机连接回执：
+  ```text
+  literature-mcp: connected, 3 tools (direct, global)
+    D:\nodejs\node.exe D:\code\literature-mcp\dist\server.js
+    tools: search_literature, get_paper, download_paper
+  ```
+
+### 4. 真实端到端链路核验
+通过 `scripts/verify-pi-windows.mjs`（调用 Windows 原生 `pi-mcp-adapter` 运行时）及 `scripts/online-test.mjs` 完成实测：
+- `search_literature` (fast)：OpenAlex + Crossref 实时检索返回 3 篇，status=ok。
+- `search_literature` (wos)：WoS Starter v1 核心合集检索返回 10 篇，status=ok。
+- `get_paper`：精确 DOI `10.1038/nphys1170` 成功返回论文元数据，status=ok。
+- `download_paper`：arXiv `1706.03762v7` 真实网络下载官方 PDF 并通过严格格式与身份校验，保存至 `D:\code\literature-mcp\literature-library\papers\`；随后二次调用正确返回 `already_exists` 本地复用。
+- 真实脱敏回执参见 `docs/pi-windows-receipt.json` 及 `docs/online-results-windows.json`。
+

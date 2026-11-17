@@ -1,7 +1,15 @@
 {
   "name": "literature-mcp",
-  "version": "1.1.1",
-  "private": true,
+  "version": "1.1.2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turtleyang/literature-mcp.git"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "description": "Local, source-aware literature discovery and authorized full-text MCP server",
   "type": "module",
   "engines": {

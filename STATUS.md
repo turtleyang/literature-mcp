@@ -1,8 +1,8 @@
 # 当前状态
 
-更新：2026-11-14（Asia/Tokyo）。
+更新：2026-11-17（Asia/Tokyo）。
 
-`literature-mcp` 当前源码版本为 1.1.1，已修复 Pi 参数误用和 WoS 能力边界解释。本机 Linux 的类型、56 项离线测试、stdio smoke、格式及生产依赖审计均通过，审计 0 个已知漏洞。Windows/Linux 通用安装器沿用 1.1.0；此前 GitHub 原生 Windows/Ubuntu CI 的 52 项测试检查的是源码提交 b2df873；详见 [历史跨平台回执](docs/cross-platform-ci.json)，本次发布后的远端状态以 [Actions](https://github.com/turtleyang/literature-mcp/actions) 为准。详细验收与边界统一维护在 [docs/verification.md](docs/verification.md)。
+`literature-mcp` 当前源码版本为 1.1.2。支持通过 GitHub 直接以 `npx -y github:turtleyang/literature-mcp` 在任何支持 MCP 的 Agent 中即下即用，已将预编译产物 `dist/` 纳入仓库，并支持用户主目录文献持久存储和环境文件自动回退查找。Windows 物理机（littleplane）实测通过，默认文献调研表格格式已固化。本机 Linux 的类型、56 项离线测试、stdio smoke、格式及生产依赖审计均 100% 通过。
 
 公开能力已实际验证：OpenAlex/Crossref 搜索及精确 DOI；arXiv PDF 下载和本地复用；先搜索、再明确选择 DOI、通过合法关联预印本下载的组合流程。三份真实 PDF 保存在被 Git 忽略的 `literature-library/papers`。
 
@@ -27,3 +27,19 @@ WoS Starter v1 已于 2026-11-13 通过本机真实凭据及持久配置复验�
 Pi 浏览器扩展启动错误的后续核验：已确认此前被终止的测试留下一个后台 Edge，工作目录与该次测试相同，浏览器锁也指向该 PID。仅对该测试进程发送 Browser.close 平稳关闭，未删除配置或登录数据。实际 Pi SDK 重新加载 pi-browser-use 后注册 34 个工具，browser_doctor 成功、扩展错误 0，并已正常关闭测试连接。没有修改浏览器扩展或用户设置，也未验证网站操作。[后续回执](docs/pi-e2e-2026-11-14.json)。
 
 本轮 Pi 使用调试已完成。已打开的 Pi 需 `/reload` 或重新连接文献服务以加载更新后的定义；没有操作用户原交互会话。当前 MCP 仍是有界候选检索，未新增全量分页导出或第四个工具。未来扩展和维护按 AGENTS.md、README 与 docs/architecture.md 执行；不把本状态文件作为长期规则或授权证明。
+
+## Windows 宿主机实测部署：2026-11-16
+
+已通过 SSH 在用户 Windows 宿主机（`littleplane`，Windows 11 x64，Node.js v24.15.0，npm 11.12.1，Pi 1.4.0）完成完整克隆、构建与 Pi 挂载。部署位于 `D:\code\literature-mcp`。
+
+验证结果如下：
+1. **原生离线检查**：Windows 环境下 56 项测试全部通过（含驱动器根、UNC 根、短路径名与大小写规范化校验），stdio smoke 通过，代码格式一致，依赖审计 0 漏洞。
+2. **私有凭据与 Doctor 校验**：持久配置 `.env` 安全复制至 Windows 端，`npm run doctor` 确认 Node v24.15.0、存储目录 `D:\code\literature-mcp\literature-library`、wiley 与 wos_starter 授权状态正常。
+3. **Pi 全局客户端挂载**：通过 `pi mcp add` 将直接入口挂载至 `C:\Users\54509\.pi\agent\mcp.json`，保留已有 Zotero 配置；`pi mcp list` 成功连接并列出 3 个工具（`search_literature`, `get_paper`, `download_paper`）。
+4. **真机端到端调用闭环**：通过 `verify-pi-windows.mjs` 与 `online-test.mjs` 实测：
+   - `search_literature`（fast 模式，OpenAlex + Crossref）返回 3 篇，status=ok。
+   - `search_literature`（wos 模式，WoS Starter v1 核心合集）真实检索返回 10 篇，status=ok。
+   - `get_paper`（精确 DOI `10.1038/nphys1170`）返回元数据，status=ok。
+   - `download_paper`（arXiv `1706.03762v7`）真实下载官方 PDF 并通过严格格式校验，保存至 `D:\code\literature-mcp\literature-library\papers\`；随后二次调用正确返回 `already_exists` 本地复用。
+5. 验收回执保存在 [Windows Pi 回执](docs/pi-windows-receipt.json) 与 [Windows 在线结果](docs/online-results-windows.json)。
+
