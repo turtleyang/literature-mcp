@@ -44,9 +44,13 @@
 **Windows 最佳实践：预装 / 克隆副本 + Node 原生直启（推荐，实测约 1 秒秒启，离线稳定）**：
 将代码克隆或预装至固定目录（例如 `%USERPROFILE%\.dsh\mcp-servers\literature-mcp` 或 `D:\code\literature-mcp`），在客户端中直接使用原生 `node` 启动预编译的 `dist/server.js`：
 
-* **Pi Agent**（直接指向本机路径）：
+* **Pi Agent**（直接指向本机预编译产物路径）：
   ```powershell
-  pi mcp add literature-mcp --exposure direct -- "node" "C:\Users\54509\.dsh\mcp-servers\literature-mcp\dist\server.js"
+  # 若通过 git clone 至本地（如 D:\code\literature-mcp）：
+  pi mcp add literature-mcp --exposure direct -- "node" "D:\code\literature-mcp\dist\server.js"
+
+  # 若在专项目录通过 npm install 安装（如 %USERPROFILE%\.dsh\mcp-servers\literature-mcp）：
+  pi mcp add literature-mcp --exposure direct -- "node" "C:\Users\<你的用户名>\.dsh\mcp-servers\literature-mcp\node_modules\literature-mcp\dist\server.js"
   ```
 * **通用客户端配置（`mcp.json`）**：
   ```json
@@ -54,7 +58,9 @@
     "mcpServers": {
       "literature-mcp": {
         "command": "node",
-        "args": ["C:\\Users\\54509\\.dsh\\mcp-servers\\literature-mcp\\dist\\server.js"],
+        "args": [
+          "D:\\code\\literature-mcp\\dist\\server.js"
+        ],
         "env": {
           "WOS_API_KEY": "你的Key(可选)",
           "WILEY_TDM_TOKEN": "你的Token(可选)",
